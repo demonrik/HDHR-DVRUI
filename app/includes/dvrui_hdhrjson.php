@@ -18,10 +18,8 @@ class DVRUI_HDHRjson {
 	private $hdhrkey_storageURL = 'StorageURL';
 	private $hdhrlist = array();
 	private $hdhrlist_key_channelcount = 'ChannelCount';
-
+	private $storageURL = "??";
 	public function DVRUI_HDHRjson() {
-		$storageURL = "??";
-		$myip = getHostByName(getHostName());
 		$json = file_get_contents($this->myhdhrurl);
 		$hdhr_data = json_decode($json, true);
 		for ($i=0;$i<count($hdhr_data);$i++) {
