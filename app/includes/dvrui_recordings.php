@@ -18,7 +18,7 @@ class DVRUI_Recordings {
 	private $recording_DisplayGroupTitle = 'DisplayGroupTitle';
 	private $recording_PlayURL = 'PlayURL';
 	private $recording_CmdURL = 'CmdURL';
-
+	private $recordings = array();
 	
 	private $recordings_list = array();
 
