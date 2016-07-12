@@ -13,16 +13,15 @@
 }
 
 #header {
-	background: @LogoBackgroundColor;
-	color: @LogoSecondaryTextColor;
-	height: 80px;
+	background: #FFFFFF;
+	height: 60px;
 	position: relative;
-	padding: 20px;
-	border-radius: 10px;
-	border-top: solid 1px #96D0F7;
-	border-bottom: solid 1px #0C3459;
+	padding: 5px;
+	border-top: solid 3px #393;
 }
-
+#toppage {
+	padding: 0px 0px 0px 0px;
+}
 #logo {
 	height: 65px;
 	position: absolute;
@@ -36,14 +35,16 @@
 
 #logo h1 {
 	top: 5px;
-	font-size: 2.8em;
-	text-shadow: 0 2px 2px #0E3E68;
+	font-size: 2em;
+	color: #000000;
+	text-shadow: 0 4px 4px #000000;
 	bottom: 5px;
 }
 
 #logo p {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
+	font-size: 0.75em;
 }
 
 
@@ -102,7 +103,6 @@ img.alignleft {
 	margin: 5px 20px 20px 0;
 	float: left;
 }
-
 img.aligntop {
 	margin: 5px 0 20px 0;
 }
@@ -110,18 +110,47 @@ img.aligntop {
 #page {
 	position: relative;
 	margin: 0px;
-	padding: 5px;
+	padding: 0px;
 	width: 100%;
 }
 
-#rules_page, #search_page, #recordings_page, #upcoming_page, #log_page, #hdhr_page, #server_page {
+
+#upcoming_page, #search_page, #recordings_page, #rules_page {
 	position: relative;
 	padding: 0;
 	width: 100%;
-	border-radius: 0px 0px 10px 10px;
-	border: solid 2px #020;
+	border: none;
 	display: hidden;
+	background-color: #FFFFFF;
+}
+
+#log_page {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 100%;
 	min-width: 800px;
+	display: hidden;
+	background-color: #FFFFFF;
+}
+
+#hdhr_page {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-width: 800px;
+	display: hidden;
+	background-color: #FFFFFF;
+}
+
+#server_page {
+	position: relative;
+	padding: 0;
+	width: 100%;
+	border: none;
+	display: hidden;
+	background-color: #FFFFFF;
 }
 
 #start_page {
@@ -131,8 +160,11 @@ img.aligntop {
 	width: 100%;
 	min-width: 800px;
 	display: block;
+	background-color: #FFFFFF;
 }
-
+#search_prompt{
+	padding: 10px 10px 10px 10px;
+}
 
 .box {
 	overflow: hidden;
@@ -202,24 +234,29 @@ img.aligntop {
 	border 0;
 }
 
-#loglist {
-	background-color: @DarkElementBackgroundColor;
-	color: @TextColor;
-	float: left;
-	width: 180px;
-	height: 80%;
-	text-align: center;
-	overflow-y: scroll;
-	overflow-x: none;
+#serverParams {
+	width: 80%;
 }
 
-#loglist::-webkit-scrollbar {
-	display: none;
+#serverControls {
+	text-align: center;
+ 	width: 100%;
+}
+
+#loglist {
+	float: left;
+	width: 20%;
+	height: 80%;
+	text-align: center;
+	overflow: auto;
+	background: #EAEEF2;
+	border-radius: 0px 0px 10px 10px;
+	border: solid 2px #FFFFFF;
+	text-shadow: 0 1px 0 #FFFFFF;
 }
 
 #loglist h4 {
 	text-shadow: 0 1px 0 #FFFFFF;
-	color: @TextColor;
 }
 
 #loglist_box {
@@ -232,6 +269,7 @@ img.aligntop {
 
 #loglist ul li {
 	padding: 2px 0 2px 0;
+	border-top: dotted 1px #C5CDD8;
 }
 
 #loglist ul li.first {
@@ -241,9 +279,12 @@ img.aligntop {
 
 #logfile_content {
 	position: right;
-	margin-left: 185px;
-	width: 80%%;
+	margin-left: 21%;
+	width: 79%;
 	background: #EAEEF2;
+	border-radius: 0px 0px 10px 10px;
+	border: solid 2px #FFFFFF;
+	text-shadow: 0 1px 0 #FFFFFF;
 	height: 80%;
 }
 
@@ -371,7 +412,8 @@ img.aligntop {
 input[type="text"] {
 	background: #EAEEF2;
 	margin: 0;
-	width: 60%;
+	width: 300px;
+	height: 20px;
 	appearance: none;
 	box-shadow: none;
 	border-radius: none;
@@ -380,6 +422,15 @@ input[type="text"] {
 input[type="text"]:focus {
 	outline: none;
 }
+#search_count {
+	font-size: 0.75em;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	color: #000000;
+	height: 20px;
+	vertical-align: middle;
+}
+	
 
 #statusMessage {
 	background: @StatusBackgroundColor;
@@ -436,196 +487,40 @@ ul.tabmenu {
 	padding: 0;
 	overflow: hidden;
 	border: none;
+	background-color: #000000;
 }
 
 ul.tabmenu li {
 	float: left;
+	background-color: #000000;
 }
 
 ul.tabmenu li a {
 	display: inline-block;
 	color: @TabMenuTextColor;
 	text-align: center;
-	padding: 10px 10px;
+	padding: 5px 20px 5px 20px;
 	text-decoration: none;
 	transition: 0.1s;
-	font-size: 20px;
-	border-radius: 10px 10px 0px 0px;
-	border: solid 1px #020;
+	font-size: 1em;
 }
 
-ul.tabmenu li a:hover {background-color: @TabMenuHighlightColor;}
+ul.tabmenu li a:hover {
+	background-color: @TabMenuHighlightColor;}
 
-ul.tabmenu li a:focus, a.active {background-color: @TabMenuHighlightColor;}
+ul.tabmenu li a:focus, a.active {
+	border-bottom: solid 4px #393;
+	background-color: #000000;
+}
 
 .tabcontent {
 	display: none;
 }
 
-#rules_tools, #recordings_tools, #upcoming_tools, #search_tools {
-	float:right;
-}
-
-#upcoming_entry, #search_entry, #rule_entry, #recording_entry {
-	border-top: dotted 1px #C5CDD8;
-	background: @DarkElementBackgroundColor;
-	height: 128px;
-	position: relative;
-}
-
-#upcoming_img, #search_img, #rule_img, #recording_img {
-	float: left;
-	height: 128px;
-	width: 172px;
-}
-
-#upcoming_select, #search_select, #rule_select, #recordings_select {
-	height: 20px;
-	width: 20px;
-	float: right;
-}
-
-.upcoming_entry h4, .search_entry h4, .rule_entry h4, .recording_entry h4 {
-	color: @TextColor;
-}
-
-.upcoming, .search , .recordings, .rules {
-	color: @TextColor;
-}
-
-.upcoming_entry p , .search_entry p, .recording_entry p, .rule_entry p {
-	font-style: italic;
-	color: @TextColor;
-}
-
-#hdhr_entry {
-	border-top: dotted 1px #C5CDD8;
-	background: @DarkElementBackgroundColor;
-	height: 128px;
-}
-
-#hdhr_img {
-	display: block;
-	margin: 0 auto;
-	width: 145px;
-}
-
-#hdhr_img_cnt {
-	vertical-align: middle;
-	display: table-cell;
-}
-
-#hdhr_img_flt {
-	float: left;
-	background-color: darkslategrey;
-	width: 172px;
-	height: 128px;
-	margin: 0 10px 0 0;
-	display: table;
-}
-
-.hdhr_entry h4 {
-	color: @TextColor;
-}
-
-.hdhr_entry p {
-	font-style: italic;
-	color: @TextColor;
-}
-
-ul.decorator {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	border: none;
-	position: absolute;
-	bottom: 0;
-	padding: 0px 0px 0px 200px;
-}
-
-ul.decorator li {
-	float: left;
-	margin: 0px 10px;
-}
-
-ul.decorator li p {
-	display: inline-block;
-	color: @DecoratorDefaultTextColor;
-	background-color: @DecoratorDefaultBackgroundColor;
-	text-align: center;
-	padding: 2px 5px;
-	text-decoration: none;
-	transition: 0.1s;
-	border: none;
-}
-
-ul.decorator li a  {
-	display: inline-block;
-	color: @DecoratorDefaultTextColor;
-	background-color: @DecoratorDefaultBackgroundColor;
-	text-align: center;
-	padding: 2px 5px;
-	text-decoration: none;
-	transition: 0.1s;
-	border: none;
-}
-
-ul.decorator li a:hover {
-	cursor:pointer;
-}
-
-ul.decorator li.delete a {
-	background-color: @DecoratorDeleteBackgroundColor;
-}
-
-ul.decorator li.delete a:hover {
-	cursor:pointer;
-}
-
-#serverParams {
-	width: 100%;
-	margin: 130px 0px 0px 0px;
-}
-
-#serverControls {
-	text-align: center;
- 	width: 100%;
-}
-
-#server_cfg_entry {
-	height: 100px;
-	width: 100%;
-	margin-bottom: 5px;
-}
-
-#server_params_text {
-	width: 100%;
-}
-
-textarea.server_param {
-	background: #EAEEF2;
-	margin: 0;
-	width: 100%;
-	appearance: none;
-	box-shadow: none;
-	border-radius: none;
-	height: 40px;
-	color: @InputAreaTextColor;
-	background-color: @InputAreaBackgroundColor;
-}
-
-#server_param_name {
-	color: @TextColor;
-	background-color: @LogoBackgroundColor;
-}
-
-#server_param_detail {
-}
-
 #server_controls {
 	padding: 20px;
 	text-align: center;
+	background-color: #FFFFFF;
 }
 
 #server_controls_box {
@@ -633,6 +528,7 @@ textarea.server_param {
 	position: relative;
 	left: -50%; /* or right 50% */
 	text-align: left;
+	background-color: #FFFFFF;
 }
 
 ul.serverctrls {
@@ -652,11 +548,11 @@ ul.serverctrls li {
 }
 
 ul.serverctrls li a {
-	background-color: @DarkElementBackgroundColor;
+	background-color: #400;
 	display: inline-block;
 	color: @TabMenuTextColor;
 	text-align: center;
-	padding: 35px 35px;
+	padding: 50px 50px;
 	text-decoration: none;
 	transition: 0.1s;
 	font-size: 20px;
@@ -664,11 +560,195 @@ ul.serverctrls li a {
 	border: solid 1px #020;
 }
 
+ul.serverctrls li a:hover {background-color: @TabMenuHighlightColor;}
 
-ul.serverctrls li a:hover {
-	background-color: @TabMenuHighlightColor;
+ul.serverctrls li a:focus, a.active {background-color: @TabMenuHighlightColor;}
+
+#rules_tools, #recordings_tools, #upcoming_tools, #search_tools {
+	float:right;
 }
 
-ul.serverctrls li a:focus, a.active {
+#upcoming_entry, #search_entry, #rule_entry, #recording_entry {
+	border-top: solid 2px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 100px;
+	position: relative;
+}
+
+#upcoming_img, #search_img, #rule_img, #recording_img {
+	float: left;
+	height: 100px;
+	width: 133px;
+}
+
+#upcoming_select, #search_select, #rule_select, #recordings_select {
+	height: 20px;
+	width: 20px;
+	float: right;
+}
+
+.upcoming_entry h4, .search_entry h4, .rule_entry h4, .recording_entry h4 {
+	color: @EntryTextColor;
+	font-size: 1em;
+}
+
+.upcoming, .search , .recordings, .rules {
+	color: @EntryTextColor;
+}
+
+.upcoming_entry p , .search_entry p, .recording_entry p, .rule_entry p {
+	font-style: italic;
+	color: @EntryTextColor;
+	font-size: 0.75em;
+}
+
+#hdhr_entry {
+	border-top: solid 1px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 100px;
+}
+
+#hdhr_img {
+	display: block;
+	margin: 0 auto;
+	height: 60px;
+	width: 200px;
+}
+
+#hdhr_img_cnt {
+	vertical-align: middle;
+	display: table-cell;
+}
+
+#hdhr_img_flt {
+	float: left;
+	background-color: #FFFFFF;
+	width: 300px;
+	height: 100px;
+	margin: 0 10px 0 0;
+	display: table;
+}
+
+.hdhr_entry h4 {
+	color: @EntryTextColor;
+	font-size: 1.25em;
+}
+
+.hdhr_entry p {
+	font-style: italic;
+	color: @EntryTextColor;
+	font-size: 1em;
+}
+
+ul.decorator  {
+	list-style-type: none;
+	margin: 0;
+	overflow: hidden;
+	border: none;
+	position: absolute;
+	bottom: 3;
+	padding: 0px 0px 0px 150px;
+	font-size: 1em;
+}
+
+ul.decorator li  {
+	float: left;
+	margin: 0px 10px;
+	font-size: 1em;
+	display: inline-block;
+	color: @TabMenuTextColor;
+	text-align: center;
+	padding: 2px 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+}
+
+ul.decorator li a{
+	display: inline-block;
+	color: @TabMenuTextColor;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.1s;
+}
+ul.decorator li a:hover {
+	cursor:pointer;
+}
+
+ul.decorator li.info p {
 	background-color: @TabMenuHighlightColor;
+	color: #FFFFFF;
+	font-size: 1em;
+}
+ul.decorator li.delete a {
+	font-size: 14px;
+	border-radius: 5px 5px 5px 5px;
+	background-color: #FF0000;
+	padding: 2px 2px;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+}
+
+ul.decorator li.play a, ul.decorator li.record a {
+	font-size: 14px;
+	border-radius: 5px 5px 5px 5px;
+	background-color: @TabMenuHighlightColor;
+	padding: 2px 2px;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+}
+
+ul.decorator li.delete a:hover {
+	cursor:pointer;
+}
+
+#server_cfg_entry {
+	text-align: center;
+	height: 100px;
+	width: 100%;
+	margin-bottom: 5px;
+		display: table;
+}
+
+#server_params_img {
+	display: block;
+	margin: 0 auto;
+	width: 100px;
+	max-height: 100px;
+}
+
+#server_params_cnt {
+	vertical-align: middle;
+	display: table-cell;
+}
+
+#server_params_flt {
+	float: left;
+	width: 100px;
+	height: 100px;
+	display: table;
+}
+
+#server_params_text {
+	vertical-align: middle;
+	text-align: left;
+	display: table-cell;
+	padding: 5px;
+	width: 100%;
+}
+
+textarea.server_param {
+	background: #EAEEF2;
+	margin: 0;
+	width: 60%;
+	appearance: none;
+	box-shadow: none;
+	border-radius: none;
+	height: 40px;
+}
+
+#server_param_name {
+	color: @TextColor;
 }
