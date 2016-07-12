@@ -5,7 +5,6 @@
 	require_once("TinyAjax.php");
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
-	require_once("includes/dvrui_hdhrbintools.php");
 	require_once("statusmessage.php");
 	require_once("rules.php");
 	require_once("recordings.php");
