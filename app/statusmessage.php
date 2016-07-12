@@ -5,7 +5,7 @@
 	function getLatestHDHRStatus() {
 		
 		
-		$htmlstr = "stand-alone instance.  No status available";
+		$htmlstr = " ";
 		return $htmlstr;
 	}
 
