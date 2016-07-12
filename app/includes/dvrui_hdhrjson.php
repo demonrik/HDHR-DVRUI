@@ -135,18 +135,18 @@ class DVRUI_HDHRjson {
 		$device = $this->hdhrlist[$pos];
 		switch ($device[$this->hdhrkey_modelNum]) {
 			case 'HDTC-2US':
-				return './images/extend-logo.png';
+				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/extend-logo-2.png';
 			case 'HDHR3-CC':
-				return './images/prime-logo.png';
+				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/prime-logo-2.png';
 			case 'HDHR3-EU':
 			case 'HDHR3-4DC':
-				return './images/expand-logo.png';
+				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/expand-logo-2.png';
 			case 'HDHR3-US':
 			case 'HDHR3-DT':
 				return './images/notsupported.png';
 			case 'HDHR4-2US':
 			case 'HDHR4-2DT':
-				return './images/connect-logo.png';
+				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/connect-logo.png';
 			default:
 				return $device[$this->hdhrkey_modelNum];
 		}

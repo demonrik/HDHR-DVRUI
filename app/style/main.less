@@ -124,31 +124,12 @@ img.aligntop {
 	background-color: #FFFFFF;
 }
 
-#log_page {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	min-width: 800px;
-	display: hidden;
-	background-color: #FFFFFF;
-}
-
 #hdhr_page {
 	position: relative;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	min-width: 800px;
-	display: hidden;
-	background-color: #FFFFFF;
-}
-
-#server_page {
-	position: relative;
-	padding: 0;
-	width: 100%;
-	border: none;
 	display: hidden;
 	background-color: #FFFFFF;
 }
@@ -179,120 +160,15 @@ img.aligntop {
 	min-width: 1080px;
 }
 
-
-.viewbutton {
-	background: url('../images/view.png') no-repeat;
-	background-size: contain;
-}
-
-.deletebutton {
-	background: url('../images/delete.png') no-repeat;
-	background-size: contain;
-}
-
 .updatebutton {
 	background: url('../images/update.png') no-repeat;
 	background-size: contain;
-}
-
-.restartbutton {
-	background: url('../images/restart_large.png') no-repeat;
-	background-size: contain;
-}
-
-.stopbutton {
-	background: url('../images/shutdown_large.png') no-repeat;
-	background-size: contain;
-}
-
-.startbutton {
-	background: url('../images/start_large.png') no-repeat;
-	background-size: contain;
-}
-
-.btn_100_100 {
-	width:100px;
-	height:100px;
-	border: none;
 }
 
 .btn_20_120 {
 	width:120px;
 	height:20px;
 	border 0;
-}
-
-.btn_32_120 {
-	width:120px;
-	height:32px;
-	border 0;
-}
-
-.btn_20 {
-	width:20px;
-	height:20px;
-	border 0;
-}
-
-#serverParams {
-	width: 80%;
-}
-
-#serverControls {
-	text-align: center;
- 	width: 100%;
-}
-
-#loglist {
-	float: left;
-	width: 20%;
-	height: 80%;
-	text-align: center;
-	overflow: auto;
-	background: #EAEEF2;
-	border-radius: 0px 0px 10px 10px;
-	border: solid 2px #FFFFFF;
-	text-shadow: 0 1px 0 #FFFFFF;
-}
-
-#loglist h4 {
-	text-shadow: 0 1px 0 #FFFFFF;
-}
-
-#loglist_box {
-	padding: 0px;
-}
-
-#loglist ul {
-	list-style: none;
-}
-
-#loglist ul li {
-	padding: 2px 0 2px 0;
-	border-top: dotted 1px #C5CDD8;
-}
-
-#loglist ul li.first {
-	border-top: 0;
-	padding-top: 0;
-}
-
-#logfile_content {
-	position: right;
-	margin-left: 21%;
-	width: 79%;
-	background: #EAEEF2;
-	border-radius: 0px 0px 10px 10px;
-	border: solid 2px #FFFFFF;
-	text-shadow: 0 1px 0 #FFFFFF;
-	height: 80%;
-}
-
-#logfile_box {
-	height:100%;
-	width:100%;
-	overflow-x: scroll;
-	overflow-y: scroll;
 }
 
 #search_content {
@@ -311,11 +187,6 @@ img.aligntop {
 }
 
 #server_content {
-	width: 100%;
-	height: 80%;
-}
-
-#hdhr_content {
 	width: 100%;
 	height: 80%;
 }
@@ -393,11 +264,6 @@ img.aligntop {
 	display: none;
 }
 
-#server_box {
-	height:100%;
-	width:100%;
-}
-
 #hdhr_box {
 	height:100%;
 	width:100%;
@@ -422,6 +288,7 @@ input[type="text"] {
 input[type="text"]:focus {
 	outline: none;
 }
+
 #search_count {
 	font-size: 0.75em;
 	font-weight: bold;
@@ -439,46 +306,6 @@ input[type="text"]:focus {
 	width: 100%;
 	color: @StatusTextColor;
 	text-align: center;
-}
-
-/* Span templates for logfile info */
-.logDate {
-	font-style: italic;
-}
-
-.logTypeError {
-	font-style: bold;
-	color: red;
-}
-
-.logTypeStatus {
-	font-style: bold;
-	color: blue;
-}
-
-.logTypePlayback {
-	font-style: bold;
-	color: green;
-}
-
-.logTypeRecording {
-	font-style: bold;
-	color: orange;
-}
-
-.logTypeRecorded {
-	font-style: underline;
-	color: orange;
-}
-
-.logTypeInfo {
-	font-style: bold;
-	color: black;
-}
-
-.logInfoError {
-	font-style: italic;
-	color: red;
 }
 
 ul.tabmenu {
@@ -516,53 +343,6 @@ ul.tabmenu li a:focus, a.active {
 .tabcontent {
 	display: none;
 }
-
-#server_controls {
-	padding: 20px;
-	text-align: center;
-	background-color: #FFFFFF;
-}
-
-#server_controls_box {
-	float: right;
-	position: relative;
-	left: -50%; /* or right 50% */
-	text-align: left;
-	background-color: #FFFFFF;
-}
-
-ul.serverctrls {
-	position: relative;
-	left: 50%; 
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	border: none;
-	text-align: center;
-}
-ul.serverctrls li {
-	float: left;
-	list-style-type: none;
-	margin: 20px;
-}
-
-ul.serverctrls li a {
-	background-color: #400;
-	display: inline-block;
-	color: @TabMenuTextColor;
-	text-align: center;
-	padding: 50px 50px;
-	text-decoration: none;
-	transition: 0.1s;
-	font-size: 20px;
-	border-radius: 60px 60px 60px 60px;
-	border: solid 1px #020;
-}
-
-ul.serverctrls li a:hover {background-color: @TabMenuHighlightColor;}
-
-ul.serverctrls li a:focus, a.active {background-color: @TabMenuHighlightColor;}
 
 #rules_tools, #recordings_tools, #upcoming_tools, #search_tools {
 	float:right;
@@ -704,51 +484,3 @@ ul.decorator li.delete a:hover {
 	cursor:pointer;
 }
 
-#server_cfg_entry {
-	text-align: center;
-	height: 100px;
-	width: 100%;
-	margin-bottom: 5px;
-		display: table;
-}
-
-#server_params_img {
-	display: block;
-	margin: 0 auto;
-	width: 100px;
-	max-height: 100px;
-}
-
-#server_params_cnt {
-	vertical-align: middle;
-	display: table-cell;
-}
-
-#server_params_flt {
-	float: left;
-	width: 100px;
-	height: 100px;
-	display: table;
-}
-
-#server_params_text {
-	vertical-align: middle;
-	text-align: left;
-	display: table-cell;
-	padding: 5px;
-	width: 100%;
-}
-
-textarea.server_param {
-	background: #EAEEF2;
-	margin: 0;
-	width: 60%;
-	appearance: none;
-	box-shadow: none;
-	border-radius: none;
-	height: 40px;
-}
-
-#server_param_name {
-	color: @TextColor;
-}

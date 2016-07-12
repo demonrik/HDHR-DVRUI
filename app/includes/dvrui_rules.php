@@ -227,15 +227,6 @@ class DVRUI_Rules {
 			.  $this->rules[$pos][$this->recording_RecID];
 	}
 	
-	public function getRuleString($pos) {
-		$rule = $this->rules[$pos];
-		return 'Priority: ' . $rule[$this->recording_Priority]
-			. ' RecID: ' . $rule[$this->recording_RecID]
-			. ' SeriesID: ' . $rule[$this->recording_SeriesID]
-			. ' Title: ' . $rule[$this->recording_Title]
-			. ' StartPadding: ' . $rule[$this->recording_StartPad]
-			. ' EndPadding: ' . $rule[$this->recording_EndPad];
-	}
 	
 }
 ?>

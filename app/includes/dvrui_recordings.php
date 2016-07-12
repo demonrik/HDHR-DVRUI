@@ -106,8 +106,6 @@ class DVRUI_Recordings {
 					$this->recording_RecordStartTime => $recordStartTime,
 					$this->recording_Synopsis => $synopsis,
 					$this->recording_Title => $title);
-
-
 		}
 	}
 
@@ -115,37 +113,37 @@ class DVRUI_Recordings {
 		return count($this->recordings);
 	}
 
-        public function getDisplayGroupTitle($pos) {
-                return $this->recordings[$pos][$this->recording_DisplayGroupTitle];
+	public function getDisplayGroupTitle($pos) {
+		return $this->recordings[$pos][$this->recording_DisplayGroupTitle];
 	}
 
-        public function get_PlayURL($pos) {
-                return $this->recordings[$pos][$this->recording_PlayURL];
-        }
+	public function get_PlayURL($pos) {
+		return $this->recordings[$pos][$this->recording_PlayURL];
+	}
 
-        public function get_CmdURL($pos) {
-                return $this->recordings[$pos][$this->recording_CmdURL];
-        }
+	public function get_CmdURL($pos) {
+		return $this->recordings[$pos][$this->recording_CmdURL];
+	}
 
-        public function getRecordingImage($pos) {
-                return $this->recordings[$pos][$this->recording_ImageURL];
-        }
+	public function getRecordingImage($pos) {
+		return $this->recordings[$pos][$this->recording_ImageURL];
+	}
 
-        public function getCategory($pos) {
-                return $this->recordings[$pos][$this->recording_Category];
-        }
+	public function getCategory($pos) {
+		return $this->recordings[$pos][$this->recording_Category];
+	}
 
-        public function getChannelImageURL($pos) {
-                return $this->recordings[$pos][$this->recording_ChannelImageURL];
-        }
+	public function getChannelImageURL($pos) {
+		return $this->recordings[$pos][$this->recording_ChannelImageURL];
+	}
 
-        public function getChannelName($pos) {
-                return $this->recordings[$pos][$this->recording_ChannelName];
-        }
+	public function getChannelName($pos) {
+		return $this->recordings[$pos][$this->recording_ChannelName];
+	}
 
-        public function getChannelNumber($pos) {
-                return $this->recordings[$pos][$this->recording_ChannelNumber];
-        }
+	public function getChannelNumber($pos) {
+		return $this->recordings[$pos][$this->recording_ChannelNumber];
+	}
 
 	public function getEpisodeNumber($pos) {
 		if ($this->recordings[$pos][$this->recording_EpisodeNumber] == 'X') {
@@ -163,21 +161,21 @@ class DVRUI_Recordings {
 		}
 	}
 
-        public function getOriginalAirDate($pos) {
-                return $this->recordings[$pos][$this->recording_OriginalAirDate];
-        }
+	public function getOriginalAirDate($pos) {
+		return $this->recordings[$pos][$this->recording_OriginalAirDate];
+	}
 
-        public function getRecordStartTime($pos) {
-                return $this->recordings[$pos][$this->recording_RecordStartTime];
-        }
+	public function getRecordStartTime($pos) {
+		return $this->recordings[$pos][$this->recording_RecordStartTime];
+	}
 
-        public function getSynopsis($pos) {
-                return $this->recordings[$pos][$this->recording_Synopsis];
-        }
+	public function getSynopsis($pos) {
+		return $this->recordings[$pos][$this->recording_Synopsis];
+	}
 
-        public function getTitle($pos) {
-                return $this->recordings[$pos][$this->recording_Title];
-        }
+	public function getTitle($pos) {
+		return $this->recordings[$pos][$this->recording_Title];
+	}
 
 	public function getDeleteCmdURL($pos) {
 		return $this->recordings[$pos][$this->recording_CmdURL] . '&cmd=delete&rerecord=0';
@@ -186,24 +184,13 @@ class DVRUI_Recordings {
 	public function getRerecordCmdURL($pos) {
 		return $this->recordings[$pos][$this->recording_CmdURL] . '&cmd=delete&rerecord=1';
 	}
-        
+
 	public function getLinks($pos) {
 		return  '[<a href="' . $this->recordings[$pos][$this->recording_PlayURL] . '">Play</a>] ' .
 			'[<a href="' . $this->recordings[$pos][$this->recording_CmdURL] . '&cmd=delete&rerecord=0" target=new>Del</a>] ' .
 			'[<a href="' . $this->recordings[$pos][$this->recording_CmdURL] . '&cmd=delete&rerecord=1" target=new>Rerecord</a>] ' ;
-        }
-
-
-	public function getRecordingString($pos) {
-		$recording = $this->recordings[$pos];
-		return '<tr><td>' .
-			'[<a href="' . $recording[$this->recording_PlayURL] . '">Play</a>] ' .
-			'[<a href="' . $recording[$this->recording_CmdURL]  . '&cmd=delete&rerecord=0" target=new>Delete</a>] ' .
-			'[<a href="' . $recording[$this->recording_CmdURL] . '&cmd=delete&rerecord=1" target=new>Rerecord</a>]' .
-			'</td><td>' . $recording[$this->recording_Title] .
-			'</td><td>' . $recording[$this->recording_EpisodeNumber] . 
-			'</td><td>' . $recording[$this->recording_EpisodeTitle] . '</td></tr>'; 
 	}
+
 	
 }
 ?>
