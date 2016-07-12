@@ -68,7 +68,6 @@
 
 	$topmenu = str_replace('[[pagetitle]]',$pageName,$topmenu);
 	$topmenu = str_replace('[[UI-Version]]',$UIVersion,$topmenu);
-	$topmenu = str_replace('[[DVR-Version]]','',$topmenu);
 
 	$indexPage = str_replace('<!-- dvrui_topmenu -->',$topmenu,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_pagemenu -->',$menu_data,$indexPage);
