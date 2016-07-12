@@ -37,20 +37,8 @@ class DVRUI_HDHRjson {
 
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
-				
-				//get the IP address of record engine.
-				$hdhr_ip = $hdhr[$this->hdhrkey_localIP];
-				// Split IP and port
-				if (preg_match('/^(\d[\d.]+):(\d+)\b/', $hdhr_ip, $matches)) {
-				    $ip = $matches[1];
-				    $port = $matches[2];
-				    // if IP of record engine matches the IP of this server
-				    // return storageURL
-				    if($ip == $myip){	
-					$this->storageURL = $hdhr[$this->hdhrkey_storageURL];
-					continue;
-				    }
-				}
+				$this->storageURL = $hdhr[$this->hdhrkey_storageURL];
+				continue;
 			}
 			$hdhr_info_json = file_get_contents($hdhr[$this->hdhrkey_discoverURL]);
 			$hdhr_info = json_decode($hdhr_info_json, true);
