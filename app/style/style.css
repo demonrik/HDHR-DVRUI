@@ -258,6 +258,8 @@ input[type="text"]:focus {
   width: 100%;
   color: #FFFFFF;
   text-align: center;
+  overflow-y: scroll;
+  max-height: 200px;
 }
 ul.tabmenu {
   list-style-type: none;
