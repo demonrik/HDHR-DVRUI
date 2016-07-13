@@ -161,14 +161,12 @@ img.aligntop {
 }
 
 .updatebutton {
-	background: url('../images/update.png') no-repeat;
-	background-size: contain;
-}
-
-.btn_20_120 {
-	width:120px;
-	height:20px;
-	border 0;
+	background: @UpdateButtonBackgroundColor;
+	background-size: cover;
+	width: 150px;
+	height: 20px;
+	color: @UpdateButtonTextColor;
+	border: 0px;
 }
 
 #search_content {
@@ -306,7 +304,7 @@ input[type="text"]:focus {
 	width: 100%;
 	color: @StatusTextColor;
 	text-align: center;
-	overflow-y:scroll;
+	overflow-y:auto;
 	max-height: 200px;
 }
 

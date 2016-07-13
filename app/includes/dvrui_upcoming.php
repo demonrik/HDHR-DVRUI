@@ -130,7 +130,7 @@ class DVRUI_Upcoming {
 				$episodes_json = file_get_contents($this->recordingsURL . $auth,false,$context);	
 			}
 			$episodes_info = json_decode($episodes_json, true);
-			
+
 			for ($i = 0; $i < count($episodes_info); $i++) {
 				if (array_key_exists($this->epData_RecordingRule,$episodes_info[$i])){
 					$this->extractEpisodeInfo($episodes_info[$i]);

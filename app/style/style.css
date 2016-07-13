@@ -139,12 +139,12 @@ img.aligntop {
   min-width: 1080px;
 }
 .updatebutton {
-  background: url('../images/update.png') no-repeat;
-  background-size: contain;
-}
-.btn_20_120 {
-  width: 120px;
+  background: #555;
+  background-size: cover;
+  width: 150px;
   height: 20px;
+  color: #000;
+  border: 0px;
 }
 #search_content {
   width: 100%;
@@ -258,7 +258,7 @@ input[type="text"]:focus {
   width: 100%;
   color: #FFFFFF;
   text-align: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 200px;
 }
 ul.tabmenu {
