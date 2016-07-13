@@ -16,7 +16,9 @@ class DVRUI_HDHRjson {
 
 	private $hdhrkey_storageID = 'StorageID';
 	private $hdhrkey_storageURL = 'StorageURL';
+
 	private $hdhrlist = array();
+	private $enginelist = array();
 	private $hdhrlist_key_channelcount = 'ChannelCount';
 	private $storageURL = "??";
 	public function DVRUI_HDHRjson() {
@@ -36,6 +38,12 @@ class DVRUI_HDHRjson {
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
 				$this->storageURL = $hdhr[$this->hdhrkey_storageURL];
+				$this->enginelist[] = array ($this->hdhrkey_storageID => $hdhr[$this->hdhrkey_storageID],
+									$this->hdhrkey_localIP => $hdhr[$this->hdhrkey_localIP],
+									$this->hdhrkey_baseURL => $hdhr[$this->hdhrkey_baseURL],
+									$this->hdhrkey_discoverURL => $hdhr[$this->hdhrkey_discoverURL],
+									$this->hdhrkey_storageURL => $hdhr[$this->hdhrkey_storageURL]);
+
 				continue;
 			}
 			$hdhr_info_json = file_get_contents($hdhr[$this->hdhrkey_discoverURL]);
@@ -71,6 +79,9 @@ class DVRUI_HDHRjson {
 	public function device_count() {
 		return count($this->hdhrlist);
 	}
+	public function engine_count() {
+		return count($this->enginelist);
+	}
 
 	public function get_device_info($pos) {
 		$device = $this->hdhrlist[$pos];
@@ -81,6 +92,23 @@ class DVRUI_HDHRjson {
 	public function get_storage_url(){
 		return $this->storageURL;
 	}	
+	public function get_engine_storage_url($pos){
+		$engine = $this->enginelist[$pos];
+		return $engine[$this->hdhrkey_storageURL];
+	}
+	public function get_engine_storage_id($pos){
+		$engine = $this->enginelist[$pos];
+		return $engine[$this->hdhrkey_storageID];
+	}
+	public function get_engine_local_ip($pos){
+		$engine = $this->enginelist[$pos];
+		return $engine[$this->hdhrkey_localIP];
+	}
+	public function get_engine_image($pos) {
+		return "https://www.silicondust.com/wp-content/uploads/2016/03/dvr-logo.png";
+	}
+
+
 	public function get_device_id($pos) {
 		$device = $this->hdhrlist[$pos];
 		return $device[$this->hdhrkey_devID];

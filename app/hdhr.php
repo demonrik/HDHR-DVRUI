@@ -46,7 +46,19 @@
 			$hdhrEntry = str_replace('<!--hdhr_image-->',$hdhr->get_device_image($i),$hdhrEntry);
 			$hdhr_data .= $hdhrEntry ;	
 		}
-		
+		$engines =  $hdhr->engine_count();
+		$hdhr_data .= $engines . " recording engines found.";	
+		if($engines > 1){
+			$hdhr_data .=  " Running more than 1 engine is not supported at this time.";	
+		}
+		for ($i=0; $i < $engines; $i++) {
+			$engineEntry = file_get_contents('style/recordenginelist_entry.html');
+			$engineEntry = str_replace('<!--rec_image-->',$hdhr->get_engine_image($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_storageid-->',$hdhr->get_engine_storage_id($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_localip-->',$hdhr->get_engine_local_ip($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_storageurl-->',$hdhr->get_engine_storage_url($i),$engineEntry);
+			$hdhr_data .= $engineEntry;
+		}
 		return $hdhr_data;
 	}
 ?>
