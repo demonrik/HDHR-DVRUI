@@ -38,6 +38,7 @@
 		$recordingsData = '';
 		for ($i=0; $i < $numRecordings; $i++) {
 			$recordingsEntry = file_get_contents('style/recordings_entry.html');
+			$recordingsEntry = str_replace('<!-- dvr_engine_id -->',$hdhrRecordings->getEngineID($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_image -->',$hdhrRecordings->getRecordingImage($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recording_id -->',$i,$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_episode -->',$hdhrRecordings->getEpisodeNumber($i),$recordingsEntry);

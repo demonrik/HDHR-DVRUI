@@ -48,9 +48,6 @@
 		}
 		$engines =  $hdhr->engine_count();
 		$hdhr_data .= $engines . " recording engines found.";	
-		if($engines > 1){
-			$hdhr_data .=  " Running more than 1 engine is not supported at this time.";	
-		}
 		for ($i=0; $i < $engines; $i++) {
 			$engineEntry = file_get_contents('style/recordenginelist_entry.html');
 			$engineEntry = str_replace('<!--rec_image-->',$hdhr->get_engine_image($i),$engineEntry);
