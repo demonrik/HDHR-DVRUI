@@ -127,7 +127,7 @@ class DVRUI_Upcoming {
 					array('http' => array(
 						'header'=>'Connection: close\r\n',
 						'timeout' => 2.0)));
-				$episodes_json = file_get_contents($this->recordingsURL . $auth,false,$context);	
+				$episodes_json = file_get_contents($seriesURL . $auth);	
 			}
 			$episodes_info = json_decode($episodes_json, true);
 
