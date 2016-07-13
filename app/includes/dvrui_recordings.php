@@ -115,6 +115,32 @@ class DVRUI_Recordings {
 		}
 	}
 
+	public function sortRecordingsByDate(){
+
+		usort($this->recordings, function ($a, $b) {
+			if ($a[$this->recording_RecordStartTime] == $b[$this->recording_RecordStartTime]) {
+				return 0;
+			}
+			else {
+				return ($a[$this->recording_RecordStartTime] < $b[$this->recording_RecordStartTime]) ? -1 : 1;
+			}
+		});
+		return;
+	}
+	public function sortRecordingsByTitle(){
+
+		usort($this->recordings, function ($a, $b) {
+			if ($a[$this->recording_Title] == $b[$this->recording_Title]) {
+				return 0;
+			}
+			else {
+				return ($a[$this->recording_Title] < $b[$this->recording_Title]) ? -1 : 1;
+			}
+		});
+		return;
+	}
+
+
 	public function getRecordingCount() {
 		return count($this->recordings);
 	}
