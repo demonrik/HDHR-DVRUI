@@ -18,29 +18,33 @@ class DVRUI_Recordings {
 	private $recording_DisplayGroupTitle = 'DisplayGroupTitle';
 	private $recording_PlayURL = 'PlayURL';
 	private $recording_CmdURL = 'CmdURL';
+	private $recording_StorageID = 'StorageID';
 	private $recordings = array();
 	
 	private $recordings_list = array();
 
 	public function DVRUI_Recordings($hdhr) {
-		$this->recordingsURL = $hdhr->get_storage_url();	
-	
-		if (in_array('curl', get_loaded_extensions())){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $this->recordingsURL);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-			$recordings_json = curl_exec($ch);
-			curl_close($ch);
-		} else { 
-			$context = stream_context_create(
-				array('http' => array(
-					'header'=>'Connection: close\r\n',
-					'timeout' => 2.0)));
-			$recordings_json = file_get_contents($this->recordingsURL,false,$context);	
-		}
-		$recordings_info = json_decode($recordings_json, true);
-		for ($i = 0; $i < count($recordings_info); $i++) {
+		$enginecount = $hdhr->engine_count();
+
+		for ($e=0; $e < $enginecount; $e++){
+			$recengine = $hdhr->get_engine_storage_url($e);
+			$storageid = "engine #" . $e . " - " . $hdhr->get_engine_storage_id($e);
+			if (in_array('curl', get_loaded_extensions())){
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $recengine);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+				$recordings_json = curl_exec($ch);
+				curl_close($ch);
+			} else { 
+				$context = stream_context_create(
+					array('http' => array(
+						'header'=>'Connection: close\r\n',
+						'timeout' => 2.0)));
+				$recordings_json = file_get_contents($recengine,false,$context);	
+			}
+			$recordings_info = json_decode($recordings_json, true);
+			for ($i = 0; $i < count($recordings_info); $i++) {
 				$playURL = $recordings_info[$i][$this->recording_PlayURL];
 				$cmdURL = $recordings_info[$i][$this->recording_CmdURL];
 				$displayGroupTitle = $recordings_info[$i][$this->recording_DisplayGroupTitle];
@@ -92,6 +96,7 @@ class DVRUI_Recordings {
 				}
 
 				$this->recordings[] = array(
+					$this->recording_StorageID => $storageid,
 					$this->recording_PlayURL => $playURL,
 					$this->recording_CmdURL => $cmdURL,
 					$this->recording_DisplayGroupTitle => $displayGroupTitle,
@@ -106,11 +111,16 @@ class DVRUI_Recordings {
 					$this->recording_RecordStartTime => $recordStartTime,
 					$this->recording_Synopsis => $synopsis,
 					$this->recording_Title => $title);
+			}
 		}
 	}
 
 	public function getRecordingCount() {
 		return count($this->recordings);
+	}
+
+	public function getEngineID($pos) {
+		return $this->recordings[$pos][$this->recording_StorageID];
 	}
 
 	public function getDisplayGroupTitle($pos) {
