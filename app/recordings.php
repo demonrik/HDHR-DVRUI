@@ -36,7 +36,7 @@
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$recordingsData = '';
-		$hdhrRecordings->sortRecordingsByDate();
+		$hdhrRecordings->sortRecordingsByTitle();
 		for ($i=0; $i < $numRecordings; $i++) {
 			$recordingsEntry = file_get_contents('style/recordings_entry.html');
 			$recordingsEntry = str_replace('<!-- dvr_engine_id -->',$hdhrRecordings->getEngineID($i),$recordingsEntry);
