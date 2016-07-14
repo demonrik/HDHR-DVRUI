@@ -19,8 +19,9 @@ class DVRUI_Search {
 	private $auth = '';
 	private $searchURL = "http://my.hdhomerun.com/api/search?DeviceAuth=";
 	
-	public function DVRUI_Search($hdhr, $searchString) {
+	public function DVRUI_Search($hdhr, $searchStr) {
 		DVRUI_setTZ();
+		$searchString = rawurlencode($searchStr);
 
 		//build up Auth string
 		$auth='';
