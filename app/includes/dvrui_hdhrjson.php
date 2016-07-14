@@ -171,6 +171,7 @@ class DVRUI_HDHRjson {
 			case 'HDTC-2US':
 				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/extend-logo-2.png';
 			case 'HDHR3-CC':
+			case 'HDHR3-6CC-3X2':
 				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/prime-logo-2.png';
 			case 'HDHR3-EU':
 			case 'HDHR3-4DC':

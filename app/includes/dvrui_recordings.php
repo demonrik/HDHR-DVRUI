@@ -122,11 +122,12 @@ class DVRUI_Recordings {
 				return 0;
 			}
 			else {
-				return ($a[$this->recording_RecordStartTime] < $b[$this->recording_RecordStartTime]) ? -1 : 1;
+				return ($a[$this->recording_RecordStartTime] > $b[$this->recording_RecordStartTime]) ? -1 : 1;
 			}
 		});
 		return;
 	}
+
 	public function sortRecordingsByTitle(){
 
 		usort($this->recordings, function ($a, $b) {
