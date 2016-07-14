@@ -1,5 +1,6 @@
 <?php
 	require_once("includes/dvrui_hdhrjson.php");
+	require_once("includes/dvrui_tz.php");
 
 class DVRUI_Search {
 	private $search_SeriesID = 'SeriesID';
@@ -19,6 +20,7 @@ class DVRUI_Search {
 	private $searchURL = "http://my.hdhomerun.com/api/search?DeviceAuth=";
 	
 	public function DVRUI_Search($hdhr, $searchString) {
+		DVRUI_setTZ();
 
 		//build up Auth string
 		$auth='';

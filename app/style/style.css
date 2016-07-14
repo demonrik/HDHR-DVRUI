@@ -260,6 +260,8 @@ input[type="text"]:focus {
   text-align: center;
   overflow-y: auto;
   max-height: 200px;
+  height: 20px;
+  -webkit-transform: translateZ(0);
 }
 ul.tabmenu {
   list-style-type: none;

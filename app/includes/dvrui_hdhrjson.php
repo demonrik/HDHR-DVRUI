@@ -11,8 +11,10 @@ class DVRUI_HDHRjson {
 	private $hdhrkey_modelName = 'FriendlyName';
 	private $hdhrkey_auth = 'DeviceAuth';
 	private $hdhrkey_fwVer = 'FirmwareVersion';
+	private $hdhrkey_Ver = 'Version';
 	private $hdhrkey_fwName = 'FirmwareName';
 	private $hdhrkey_tuners = 'TunerCount';
+	private $hdhrkey_free = 'FreeSpace';
 
 	private $hdhrkey_storageID = 'StorageID';
 	private $hdhrkey_storageURL = 'StorageURL';
@@ -21,6 +23,7 @@ class DVRUI_HDHRjson {
 	private $enginelist = array();
 	private $hdhrlist_key_channelcount = 'ChannelCount';
 	private $storageURL = "??";
+	
 	public function DVRUI_HDHRjson() {
 		$json = file_get_contents($this->myhdhrurl);
 		$hdhr_data = json_decode($json, true);
@@ -35,10 +38,17 @@ class DVRUI_HDHRjson {
 				continue;
 			}
 
+			$hdhr_info_json = file_get_contents($hdhr[$this->hdhrkey_discoverURL]);
+			$hdhr_info = json_decode($hdhr_info_json, true);
+
+
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
 				$this->storageURL = $hdhr[$this->hdhrkey_storageURL];
 				$this->enginelist[] = array ($this->hdhrkey_storageID => $hdhr[$this->hdhrkey_storageID],
+									$this->hdhrkey_modelName => $hdhr_info[$this->hdhrkey_localIP],
+									$this->hdhrkey_Ver => $hdhr_info[$this->hdhrkey_Ver],
+									$this->hdhrkey_free => $hdhr_info[$this->hdhrkey_free],
 									$this->hdhrkey_localIP => $hdhr[$this->hdhrkey_localIP],
 									$this->hdhrkey_baseURL => $hdhr[$this->hdhrkey_baseURL],
 									$this->hdhrkey_discoverURL => $hdhr[$this->hdhrkey_discoverURL],
@@ -46,8 +56,6 @@ class DVRUI_HDHRjson {
 
 				continue;
 			}
-			$hdhr_info_json = file_get_contents($hdhr[$this->hdhrkey_discoverURL]);
-			$hdhr_info = json_decode($hdhr_info_json, true);
 			$hdhr_lineup_json = file_get_contents($hdhr[$this->hdhrkey_lineupURL]);
 			$hdhr_lineup = json_decode($hdhr_lineup_json, true);
 		
@@ -106,7 +114,7 @@ class DVRUI_HDHRjson {
 	}
 	public function get_engine_image($pos) {
 		return "https://www.silicondust.com/wp-content/uploads/2016/03/dvr-logo.png";
-	}
+	}                                             
 
 
 	public function get_device_id($pos) {

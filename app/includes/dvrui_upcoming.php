@@ -1,5 +1,7 @@
 <?php
 	require_once("includes/dvrui_rules.php");
+	require_once("includes/dvrui_tz.php");
+
 
 class DVRUI_Upcoming {
 	/*
@@ -32,6 +34,7 @@ class DVRUI_Upcoming {
 	private $auth = '';
 
 	public function DVRUI_Upcoming($rules) {
+		DVRUI_setTZ();
 		// only interested in small set of the rules data
 		$this->auth = $rules->getAuth();
 		for ($i=0; $i < $rules->getRuleCount(); $i++) {
@@ -157,14 +160,14 @@ class DVRUI_Upcoming {
 	}
 	
 	public function getUpcomingEpInfo($pos) {
-		date_default_timezone_set('UTC');
+		date_default_timezone_set('America/Phoenix');
 		if ($pos < count($this->upcoming_list)) {
 			$episode = $this->upcoming_list[$pos];
 			return 'ProgramID: ' . $episode[$this->epData_ProgramID]
 				. ' Title: ' . $episode[$this->epData_Title]
 				. ' epNum: ' . $episode[$this->epData_EpisodeNumber]
 				. ' epTitle: ' . $episode[$this->epData_EpisodeTitle]
-				. ' StartTime: ' . date('D M/d Y @ g:ia T',$episode[$this->epData_StartTime])
+				. ' StartTime: ' . date('D M/d Y @ g:ia',$episode[$this->epData_StartTime])
 				. ' EndTime: ' . date('D M/d Y @ g:ia',$episode[$this->epData_EndTime]);
 		} else {
 			return '';
@@ -195,7 +198,6 @@ class DVRUI_Upcoming {
 	}
 	
 	public function getEpStart($pos) {
-		date_default_timezone_set('UTC');
 		if ($pos < count($this->upcoming_list)) {
 			return date('D M/d Y @ g:ia T',$this->upcoming_list[$pos][$this->epData_StartTime]);
 		} else {
@@ -204,7 +206,7 @@ class DVRUI_Upcoming {
 	}
 	
 	public function getEpEnd($pos) {
-		date_default_timezone_set('UTC');
+		//date_default_timezone_set('UTC');
 		if ($pos < count($this->upcoming_list)) {
 			return  date('D M/d Y @ g:ia T',$this->upcoming_list[$pos][$this->epData_EndTime]);
 		} else {
