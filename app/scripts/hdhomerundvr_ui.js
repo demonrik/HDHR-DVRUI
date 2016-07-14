@@ -1,3 +1,12 @@
+function revealAuth(evt, modal) {
+        document.getElementById(modal).style.display = "block";
+}
+
+function hideReveal(evt, modal) {
+	elm = document.getElementById(modal);
+	elm.style.display = 'none';
+}
+
 function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }

@@ -53,9 +53,17 @@
 			$rulesData .= $rulesEntry;
 		}
 		$rulesList = file_get_contents('style/rules_list.html');
-		$rulesList = str_replace('<!-- dvr_rules_auth -->','AuthKey Used: ' . $hdhrRules->getAuth() . '<br/>',$rulesList);
-		$rulesList = str_replace('<!-- dvr_rules_count -->','Found: ' . $numRules . ' Rules<br/>',$rulesList);
+
+		$authReveal = file_get_contents('style/auth_reveal.html');
+		$authReveal = str_replace('<!-- drvui_auth -->', 'AuthKey Used: ' . $hdhrRules->getAuth() . '<br/>',$authReveal);
+
+		$authRevealStr = 'RulesAuth';
+		$rulesList = str_replace('<!-- dvrui_auth_reveal -->',$authRevealStr,$rulesList);
+		$authReveal = str_replace('<!-- dvrui_auth_reveal -->',$authRevealStr,$authReveal);
+		
+		$rulesList = str_replace('<!-- dvr_rules_count -->','Found: ' . $numRules . ' Rules.  ',$rulesList);
 		$rulesList = str_replace('<!-- dvr_rules_list -->',$rulesData,$rulesList);
+		$rulesList .= $authReveal;
 		return $rulesList;
 	}
 ?>
