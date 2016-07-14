@@ -25,7 +25,21 @@ class DVRUI_HDHRjson {
 	private $storageURL = "??";
 	
 	public function DVRUI_HDHRjson() {
-		$json = file_get_contents($this->myhdhrurl);
+		if (in_array('curl', get_loaded_extensions())){
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $this->myhdhrurl);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+			$json = curl_exec($ch);
+			curl_close($ch);
+		} else { 
+			$context = stream_context_create(
+				array('http' => array(
+					'header'=>'Connection: close\r\n',
+					'timeout' => 2.0)));
+			$json = file_get_contents($this->myhdhrurl,false,$context);	
+		}
+
 		$hdhr_data = json_decode($json, true);
 		for ($i=0;$i<count($hdhr_data);$i++) {
 			$hdhr = $hdhr_data[$i];
@@ -38,7 +52,24 @@ class DVRUI_HDHRjson {
 				continue;
 			}
 
-			$hdhr_info_json = file_get_contents($hdhr[$this->hdhrkey_discoverURL]);
+                        if (in_array('curl', get_loaded_extensions())){
+                                $ch = curl_init();
+                                curl_setopt($ch, CURLOPT_URL, $hdhr[$this->hdhrkey_discoverURL]);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+                                $hdhr_info_json = curl_exec($ch);
+                                curl_close($ch);
+                        } else {
+                                $context = stream_context_create(
+                                        array('http' => array(
+                                                'header'=>'Connection: close\r\n',
+                                                'timeout' => 2.0)));
+                                $hdhr_info_json = file_get_contents($hdhr[$this->hdhrkey_discoverURL],false,$context);
+                        }
+
+
+
+
 			$hdhr_info = json_decode($hdhr_info_json, true);
 
 
@@ -56,7 +87,23 @@ class DVRUI_HDHRjson {
 
 				continue;
 			}
-			$hdhr_lineup_json = file_get_contents($hdhr[$this->hdhrkey_lineupURL]);
+			if (in_array('curl', get_loaded_extensions())){
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $hdhr[$this->hdhrkey_lineupURL]);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+				$hdhr_lineup_json = curl_exec($ch);
+				curl_close($ch);
+			} else { 
+				$context = stream_context_create(
+					array('http' => array(
+						'header'=>'Connection: close\r\n',
+						'timeout' => 2.0)));
+				$hdhr_lineup_json = file_get_contents($hdhr[$this->hdhrkey_lineupURL],false,$context);	
+			}
+		
+
+
 			$hdhr_lineup = json_decode($hdhr_lineup_json, true);
 		
 			if (array_key_exists($this->hdhrkey_tuners,$hdhr_info)) {
