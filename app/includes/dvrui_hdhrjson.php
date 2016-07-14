@@ -25,20 +25,7 @@ class DVRUI_HDHRjson {
 	private $storageURL = "??";
 	
 	public function DVRUI_HDHRjson() {
-		if (in_array('curl', get_loaded_extensions())){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $this->myhdhrurl);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-			$json = curl_exec($ch);
-			curl_close($ch);
-		} else { 
-			$context = stream_context_create(
-				array('http' => array(
-					'header'=>'Connection: close\r\n',
-					'timeout' => 2.0)));
-			$json = file_get_contents($this->myhdhrurl,false,$context);	
-		}
+		$json = $this->get_url($this->myhdhrurl);
 
 		$hdhr_data = json_decode($json, true);
 		for ($i=0;$i<count($hdhr_data);$i++) {
@@ -52,20 +39,7 @@ class DVRUI_HDHRjson {
 				continue;
 			}
 
-                        if (in_array('curl', get_loaded_extensions())){
-                                $ch = curl_init();
-                                curl_setopt($ch, CURLOPT_URL, $hdhr[$this->hdhrkey_discoverURL]);
-                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                                curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-                                $hdhr_info_json = curl_exec($ch);
-                                curl_close($ch);
-                        } else {
-                                $context = stream_context_create(
-                                        array('http' => array(
-                                                'header'=>'Connection: close\r\n',
-                                                'timeout' => 2.0)));
-                                $hdhr_info_json = file_get_contents($hdhr[$this->hdhrkey_discoverURL],false,$context);
-                        }
+			$hdhr_info_json = $this->get_url($hdhr[$this->hdhrkey_discoverURL]);
 
 
 
@@ -87,23 +61,8 @@ class DVRUI_HDHRjson {
 
 				continue;
 			}
-			if (in_array('curl', get_loaded_extensions())){
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $hdhr[$this->hdhrkey_lineupURL]);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-				$hdhr_lineup_json = curl_exec($ch);
-				curl_close($ch);
-			} else { 
-				$context = stream_context_create(
-					array('http' => array(
-						'header'=>'Connection: close\r\n',
-						'timeout' => 2.0)));
-				$hdhr_lineup_json = file_get_contents($hdhr[$this->hdhrkey_lineupURL],false,$context);	
-			}
 		
-
-
+			$hdhr_lineup_json = $this->get_url($hdhr[$this->hdhrkey_lineupURL]);	
 			$hdhr_lineup = json_decode($hdhr_lineup_json, true);
 		
 			if (array_key_exists($this->hdhrkey_tuners,$hdhr_info)) {
@@ -232,6 +191,25 @@ class DVRUI_HDHRjson {
 			default:
 				return $device[$this->hdhrkey_modelNum];
 		}
+	}
+	
+	private function get_url($url){
+		$content = "";
+		if (in_array('curl', get_loaded_extensions())){
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 1);
+			$content = curl_exec($ch);
+			curl_close($ch);
+		} else { 
+			$context = stream_context_create(
+				array('http' => array(
+					'header'=>'Connection: close\r\n',
+					'timeout' => 1.0)));
+			$content = file_get_contents($url,false,$context);	
+		}
+		return $content;
 	}
 }
 ?>
