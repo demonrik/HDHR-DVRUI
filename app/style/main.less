@@ -487,13 +487,14 @@ ul.decorator li.delete a:hover {
 	cursor:pointer;
 }
 
-/* Auth Reveal Modal Box */
+/* Auth Reveal Button */
 #AuthReveal {
 	color: white;
 	background-color: orange;
 }
 
-.authModal {
+/* Reveal Modal Dialog*/
+.revealModal {
 	display: none;
 	position: fixed;
 	z-index: 1; /* Bring to top */
@@ -506,7 +507,7 @@ ul.decorator li.delete a:hover {
 	width: 100%;
 }
 
-.authModal-content {
+.revealModal-content {
 	background-color: #EEE;
 	width: 80%;
 	height: 40%;
@@ -516,14 +517,14 @@ ul.decorator li.delete a:hover {
 	border-radius: 20px;
 }
 
-.authClose {
+.revealClose {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
 }
 
-.authClose:hover, .authClose:focus {
+.revealClose:hover, .revealClose:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;

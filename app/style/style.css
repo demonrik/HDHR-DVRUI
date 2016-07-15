@@ -440,7 +440,7 @@ ul.decorator li.delete a:hover {
   color: white;
   background-color: orange;
 }
-.authModal {
+.revealModal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -452,7 +452,7 @@ ul.decorator li.delete a:hover {
   height: 100%;
   width: 100%;
 }
-.authModal-content {
+.revealModal-content {
   background-color: #EEE;
   width: 80%;
   height: 40%;
@@ -460,14 +460,14 @@ ul.decorator li.delete a:hover {
   margin: 15% auto;
   border-radius: 20px;
 }
-.authClose {
+.revealClose {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-.authClose:hover,
-.authClose:focus {
+.revealClose:hover,
+.revealClose:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

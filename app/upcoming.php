@@ -47,9 +47,7 @@
 		}
 		
 		$upcoming->sortUpcomingByDate();
-		
 		$numShows = $upcoming->getUpcomingCount();
-		
 		for ($i=0; $i < $numShows; $i++) {
 			$entry = file_get_contents('style/upcoming_entry.html');
 			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
@@ -61,11 +59,22 @@
 			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
 			$entryData .= $entry;
 		}
-		$upcoming_list_pos = 5;
+
+		$authRevealID = 'UpcomingAuth';
+		$authReveal = file_get_contents('style/reveal.html');
 		$htmlStr = file_get_contents('style/upcoming_list.html');
-		$htmlStr = str_replace('<!-- dvr_rules_auth -->','AuthKey Used: ' . $hdhrRules->getAuth() . '<br/>',$htmlStr);
-		$htmlStr = str_replace('<!-- dvr_upcoming_count -->','Found: ' . $numShows . ' Shows<br/>',$htmlStr);
+
+		$authReveal = str_replace('<!-- dvrui_reveal -->',$authRevealID,$authReveal);
+		$authReveal = str_replace('<!-- drvui_reveal_title -->', 'AuthKey Used:',$authReveal);
+		$authReveal = str_replace('<!-- drvui_reveal_content -->', $hdhrRules->getAuth(),$authReveal);
+
+		$htmlStr = str_replace('<!-- dvrui_auth_reveal -->',$authRevealID,$htmlStr);
+
+		$htmlStr = str_replace('<!-- dvr_upcoming_count -->','Found: ' . $numShows . ' Shows. ',$htmlStr);
 		$htmlStr = str_replace('<!-- dvr_upcoming_list -->',$entryData,$htmlStr);
+		
+		$htmlStr .= $authReveal;
+		
 		return $htmlStr;
 	}
 

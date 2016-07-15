@@ -56,14 +56,15 @@
 			$rulesEntry = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($i),$rulesEntry);
 			$rulesData .= $rulesEntry;
 		}
+
+		$authRevealID = 'RulesAuth';
 		$rulesList = file_get_contents('style/rules_list.html');
+		$authReveal = file_get_contents('style/reveal.html');
+		$authReveal = str_replace('<!-- drvui_reveal_title -->', 'AuthKey Used:',$authReveal);
+		$authReveal = str_replace('<!-- drvui_reveal_content -->', $hdhrRules->getAuth(),$authReveal);
 
-		$authReveal = file_get_contents('style/auth_reveal.html');
-		$authReveal = str_replace('<!-- drvui_auth -->', 'AuthKey Used: ' . $hdhrRules->getAuth() . '<br/>',$authReveal);
-
-		$authRevealStr = 'RulesAuth';
-		$rulesList = str_replace('<!-- dvrui_auth_reveal -->',$authRevealStr,$rulesList);
-		$authReveal = str_replace('<!-- dvrui_auth_reveal -->',$authRevealStr,$authReveal);
+		$rulesList = str_replace('<!-- dvrui_auth_reveal -->',$authRevealID,$rulesList);
+		$authReveal = str_replace('<!-- dvrui_reveal -->',$authRevealID,$authReveal);
 		
 		$rulesList = str_replace('<!-- dvr_rules_count -->','Found: ' . $numRules . ' Rules.  ',$rulesList);
 		$rulesList = str_replace('<!-- dvr_rules_list -->',$rulesData,$rulesList);
