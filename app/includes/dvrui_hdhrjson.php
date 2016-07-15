@@ -22,7 +22,6 @@ class DVRUI_HDHRjson {
 	private $hdhrlist = array();
 	private $enginelist = array();
 	private $hdhrlist_key_channelcount = 'ChannelCount';
-	private $storageURL = "??";
 	
 	public function DVRUI_HDHRjson() {
 		$json = $this->get_url($this->myhdhrurl);
@@ -40,18 +39,14 @@ class DVRUI_HDHRjson {
 			}
 
 			$hdhr_info_json = $this->get_url($hdhr[$this->hdhrkey_discoverURL]);
-
-
-
-
 			$hdhr_info = json_decode($hdhr_info_json, true);
-
 
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
 				$this->storageURL = $hdhr[$this->hdhrkey_storageURL];
+				echo(var_dump($hdhr_info));
 				$this->enginelist[] = array ($this->hdhrkey_storageID => $hdhr[$this->hdhrkey_storageID],
-									$this->hdhrkey_modelName => $hdhr_info[$this->hdhrkey_localIP],
+									$this->hdhrkey_modelName => $hdhr_info[$this->hdhrkey_modelName],
 									$this->hdhrkey_Ver => $hdhr_info[$this->hdhrkey_Ver],
 									$this->hdhrkey_free => $hdhr_info[$this->hdhrkey_free],
 									$this->hdhrkey_localIP => $hdhr[$this->hdhrkey_localIP],
@@ -97,31 +92,51 @@ class DVRUI_HDHRjson {
 		return count($this->enginelist);
 	}
 
-	public function get_device_info($pos) {
-		$device = $this->hdhrlist[$pos];
-		return ' DeviceID: ' . $device[$this->hdhrkey_devID] 
-		          . ' Model Number: ' . $device[$this->hdhrkey_modelNum] 
-		          . ' Channels: ' . $device[$this->hdhrlist_key_channelcount] . ' ';
-	}
-	public function get_storage_url(){
-		return $this->storageURL;
-	}	
 	public function get_engine_storage_url($pos){
 		$engine = $this->enginelist[$pos];
 		return $engine[$this->hdhrkey_storageURL];
 	}
+	
 	public function get_engine_storage_id($pos){
 		$engine = $this->enginelist[$pos];
 		return $engine[$this->hdhrkey_storageID];
 	}
+	
 	public function get_engine_local_ip($pos){
 		$engine = $this->enginelist[$pos];
 		return $engine[$this->hdhrkey_localIP];
 	}
+	
 	public function get_engine_image($pos) {
 		return "https://www.silicondust.com/wp-content/uploads/2016/03/dvr-logo.png";
-	}                                             
+	}
 
+	public function get_engine_name($pos) {
+		return $this->enginelist[$pos][$this->hdhrkey_modelName];
+	}
+	
+	public function get_engine_version($pos) {
+		return $this->enginelist[$pos][$this->hdhrkey_Ver];
+	}
+	
+	public function get_engine_space($pos) {
+		$free = $this->enginelist[$pos][$this->hdhrkey_free];
+		if ($free > 1e+12 ) {
+			return number_format($free/1e+12,2) . ' TB';
+		} else if ($free > 1e+9) {
+			return number_format($free/1e+9,2) . ' GB';
+		} else if ( $free >  1e+6) {
+			return number_format($free/1e+6,2) . ' MB';
+		} else if ( $free > 1e+3){
+			return number_format($free/1e+3,2) . ' kB';
+		} else {
+			return number_format($free,2) . ' B';
+		}
+	}
+	
+	public function get_engine_discoverURL($pos) {
+		return $this->enginelist[$pos][$this->hdhrkey_discoverURL];
+	}
 
 	public function get_device_id($pos) {
 		$device = $this->hdhrlist[$pos];

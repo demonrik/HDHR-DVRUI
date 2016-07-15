@@ -36,8 +36,8 @@
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$recordingsData = '';
-		//$hdhrRecordings->sortRecordingsByTitle();
-		$hdhrRecordings->sortRecordingsByDate();
+		$hdhrRecordings->sortRecordingsByTitle();
+		//$hdhrRecordings->sortRecordingsByDate();
 		for ($i=0; $i < $numRecordings; $i++) {
 			$recordingsEntry = file_get_contents('style/recordings_entry.html');
 			$recordingsEntry = str_replace('<!-- dvr_engine_id -->',$hdhrRecordings->getEngineID($i),$recordingsEntry);
@@ -54,7 +54,6 @@
 			$recordingsData .= $recordingsEntry;
 		}
 		$recordingsList = file_get_contents('style/recordings_list.html');
-		$recordingsList = str_replace('<!-- dvr_storage_url -->','Processing Recordings From: ' . $hdhr->get_storage_url() . '<br/>',$recordingsList);
 		$recordingsList = str_replace('<!-- dvr_recordings_count -->','Found: ' . $numRecordings . ' Recordings<br/>',$recordingsList);
 		$recordingsList = str_replace('<!-- dvr_recordings_list -->',$recordingsData,$recordingsList);
 		

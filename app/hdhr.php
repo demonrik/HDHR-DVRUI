@@ -51,9 +51,13 @@
 		for ($i=0; $i < $engines; $i++) {
 			$engineEntry = file_get_contents('style/recordenginelist_entry.html');
 			$engineEntry = str_replace('<!--rec_image-->',$hdhr->get_engine_image($i),$engineEntry);
-			$engineEntry = str_replace('<!--rec_storageid-->',$hdhr->get_engine_storage_id($i),$engineEntry);
-			$engineEntry = str_replace('<!--rec_localip-->',$hdhr->get_engine_local_ip($i),$engineEntry);
-			$engineEntry = str_replace('<!--rec_storageurl-->',$hdhr->get_engine_storage_url($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_name-->',$hdhr->get_engine_name($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_version-->',$hdhr->get_engine_version($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_freespace-->',$hdhr->get_engine_space($i),$engineEntry);
+			$engine_discover_data = "<a href=" . $hdhr->get_engine_discoverURL($i) . ">" . $hdhr->get_engine_local_ip($i) . "</a>";
+			$engineEntry = str_replace('<!--rec_localip-->',$engine_discover_data,$engineEntry);
+			$engine_storage_data = "<a href=" . $hdhr->get_engine_storage_url($i) . ">" . $hdhr->get_engine_storage_id($i) . "</a>";
+			$engineEntry = str_replace('<!--rec_storageid-->',$engine_storage_data,$engineEntry);
 			$hdhr_data .= $engineEntry;
 		}
 		return $hdhr_data;
