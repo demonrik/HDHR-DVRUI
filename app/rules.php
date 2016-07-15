@@ -4,6 +4,7 @@
 	require_once("statusmessage.php");
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_rules.php");
+	require_once("includes/dvrui_recordings.php");
 	
 	function openRulesPage() {
 		// prep
@@ -35,10 +36,12 @@
 		// Discover Recording Rules
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRules = new DVRUI_Rules($hdhr);
+		$hdhrRecordings = new DVRUI_Recordings($hdhr);
 		$hdhrRules->processAllRules();
 		$numRules = $hdhrRules->getRuleCount();
 		$rulesData = '';
 		for ($i=0; $i < $numRules; $i++) {
+			$reccount = $hdhrRecordings->getRecordingCountBySeries($hdhrRules->getRuleSeriesID($i));
 			$rulesEntry = file_get_contents('style/rules_entry.html');
 			$rulesEntry = str_replace('<!-- dvr_rules_id -->', 'Rule ' . $i,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$rulesEntry);
@@ -48,6 +51,7 @@
 			$rulesEntry = str_replace('<!-- dvr_rules_startpad -->',$hdhrRules->getRuleStartPad($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_endpad -->',$hdhrRules->getRuleEndPad($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($i),$rulesEntry);
+			$rulesEntry = str_replace('<!-- dvr_reccount -->',$reccount,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($i),$rulesEntry);
 			$rulesData .= $rulesEntry;

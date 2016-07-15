@@ -36,7 +36,8 @@
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$recordingsData = '';
-		$hdhrRecordings->sortRecordingsByTitle();
+		//$hdhrRecordings->sortRecordingsByTitle();
+		$hdhrRecordings->sortRecordingsByDate();
 		for ($i=0; $i < $numRecordings; $i++) {
 			$recordingsEntry = file_get_contents('style/recordings_entry.html');
 			$recordingsEntry = str_replace('<!-- dvr_engine_id -->',$hdhrRecordings->getEngineID($i),$recordingsEntry);
@@ -46,6 +47,7 @@
 			$recordingsEntry = str_replace('<!-- dvr_recordings_show -->',$hdhrRecordings->getEpisodeTitle($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_title -->',$hdhrRecordings->getTitle($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_synopsis -->',$hdhrRecordings->getSynopsis($i),$recordingsEntry);
+			$recordingsEntry = str_replace('<!-- dvr_recordings_start_time -->',$hdhrRecordings->getRecordStartTime($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_play -->',$hdhrRecordings->get_PlayURL($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_delete -->',$hdhrRecordings->getDeleteCmdURL($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_rerec -->',$hdhrRecordings->getRerecordCmdURL($i),$recordingsEntry);
