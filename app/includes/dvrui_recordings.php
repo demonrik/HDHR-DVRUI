@@ -1,5 +1,6 @@
 <?php
 	require_once("includes/dvrui_hdhrjson.php");
+	require_once("includes/dvrui_tz.php");
 
 class DVRUI_Recordings {
 	
@@ -19,11 +20,13 @@ class DVRUI_Recordings {
 	private $recording_PlayURL = 'PlayURL';
 	private $recording_CmdURL = 'CmdURL';
 	private $recording_StorageID = 'StorageID';
+	private $recording_SeriesID = 'SeriesID';
 	private $recordings = array();
 	
 	private $recordings_list = array();
 
 	public function DVRUI_Recordings($hdhr) {
+		DVRUI_setTZ();
 		$enginecount = $hdhr->engine_count();
 
 		for ($e=0; $e < $enginecount; $e++){
@@ -59,8 +62,11 @@ class DVRUI_Recordings {
 				$recordStartTime = '';
 				$synopsis = '';
 				$title = '';
+				$seriesid = '';
 
-
+				if (array_key_exists($this->recording_SeriesID,$recordings_info[$i])){
+					$seriesid = $recordings_info[$i][$this->recording_SeriesID];
+				}
 				if (array_key_exists($this->recording_Category,$recordings_info[$i])){
 					$category = $recordings_info[$i][$this->recording_Category];
 				}
@@ -97,6 +103,7 @@ class DVRUI_Recordings {
 
 				$this->recordings[] = array(
 					$this->recording_StorageID => $storageid,
+					$this->recording_SeriesID => $seriesid,
 					$this->recording_PlayURL => $playURL,
 					$this->recording_CmdURL => $cmdURL,
 					$this->recording_DisplayGroupTitle => $displayGroupTitle,
@@ -144,6 +151,15 @@ class DVRUI_Recordings {
 
 	public function getRecordingCount() {
 		return count($this->recordings);
+	}
+	public function getRecordingCountBySeries($ID) {
+		$count = 0;
+		foreach($this->recordings as $rec){
+			if($rec[$this->recording_SeriesID] == $ID){
+				++$count;
+			}
+		}
+		return $count;
 	}
 
 	public function getEngineID($pos) {
@@ -203,7 +219,7 @@ class DVRUI_Recordings {
 	}
 
 	public function getRecordStartTime($pos) {
-		return $this->recordings[$pos][$this->recording_RecordStartTime];
+		return date('D M/d Y @ g:ia',$this->recordings[$pos][$this->recording_RecordStartTime]);
 	}
 
 	public function getSynopsis($pos) {
