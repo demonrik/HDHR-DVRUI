@@ -148,27 +148,27 @@ img.aligntop {
 }
 #search_content {
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 #rules_content {
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 #start_content {
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 #server_content {
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 #recordings_content {
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 #upcoming_content {
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 #search_box {
   height: 100%;
@@ -177,6 +177,7 @@ img.aligntop {
 #search_list_box {
   height: 100%;
   width: 100%;
+  padding-bottom: 20px;
   overflow-x: scroll;
   overflow-y: scroll;
 }
@@ -187,9 +188,14 @@ img.aligntop {
   height: 100%;
   width: 100%;
 }
+#rules_info {
+  height: 100%;
+  width: 100%;
+}
 #rules_list_box {
   height: 100%;
   width: 100%;
+  padding-bottom: 20px;
   overflow-x: scroll;
   overflow-y: scroll;
 }
@@ -200,9 +206,14 @@ img.aligntop {
   height: 100%;
   width: 100%;
 }
+#recordings_info {
+  height: 100%;
+  width: 100%;
+}
 #recordings_list_box {
   height: 100%;
   width: 100%;
+  padding-bottom: 20px;
   overflow-x: scroll;
   overflow-y: scroll;
 }
@@ -213,9 +224,14 @@ img.aligntop {
   height: 100%;
   width: 100%;
 }
+#upcoming_info {
+  height: 100%;
+  width: 100%;
+}
 #upcoming_list_box {
   height: 100%;
   width: 100%;
+  padding-bottom: 20px;
   overflow-x: scroll;
   overflow-y: scroll;
 }
@@ -225,6 +241,7 @@ img.aligntop {
 #hdhr_box {
   height: 100%;
   width: 100%;
+  padding-bottom: 20px;
   overflow-x: auto;
   overflow-y: auto;
 }
@@ -261,7 +278,6 @@ input[type="text"]:focus {
   overflow-y: auto;
   max-height: 200px;
   height: 20px;
-  -webkit-transform: translateZ(0);
 }
 ul.tabmenu {
   list-style-type: none;

@@ -169,43 +169,50 @@ img.aligntop {
 	border: 0px;
 }
 
+#hdhr_content {
+	width: 100%;
+	height: 100%;
+}
+
 #search_content {
 	width: 100%;
-	height: 80%;
+	height: 100%;
 }
 
 #rules_content {
 	width: 100%;
-	height: 80%;
+	height: 100%;
 }
 
 #start_content {
 	width: 100%;
-	height: 80%;
+	height: 100%;
 }
 
 #server_content {
 	width: 100%;
-	height: 80%;
+	height: 100%;
 }
 
 #recordings_content {
 	width: 100%;
-	height: 80%;
+	height: 100%;
 }
 
 #upcoming_content {
 	width: 100%;
-	height: 80%;
+	height: 100%;
 }
 
 #search_box {
 	height:100%;
 	width:100%;
 }
+
 #search_list_box {
 	height:100%;
 	width:100%;
+	padding-bottom: 20px; /* Needs to be size of statusbar */
 	overflow-x: scroll;
 	overflow-y: scroll;
 }
@@ -219,9 +226,15 @@ img.aligntop {
 	width:100%;
 }
 
+#rules_info {
+	height:100%;
+	width:100%;
+}
+
 #rules_list_box {
 	height:100%;
 	width:100%;
+	padding-bottom: 20px; /* Needs to be size of statusbar */
 	overflow-x: scroll;
 	overflow-y: scroll;
 }
@@ -235,9 +248,15 @@ img.aligntop {
 	width:100%;
 }
 
+#recordings_info {
+	height:100%;
+	width:100%;
+}
+
 #recordings_list_box {
 	height:100%;
 	width:100%;
+	padding-bottom: 20px; /* Needs to be size of statusbar */
 	overflow-x: scroll;
 	overflow-y: scroll;
 }
@@ -251,9 +270,15 @@ img.aligntop {
 	width:100%;
 }
 
+#upcoming_info {
+	height:100%;
+	width:100%;
+}
+
 #upcoming_list_box {
 	height:100%;
 	width:100%;
+	padding-bottom: 20px; /* Needs to be size of statusbar */
 	overflow-x: scroll;
 	overflow-y: scroll;
 }
@@ -265,6 +290,7 @@ img.aligntop {
 #hdhr_box {
 	height:100%;
 	width:100%;
+	padding-bottom: 20px; /* Needs to be size of statusbar */
 	overflow-x: auto;
 	overflow-y: auto;
 }
@@ -304,10 +330,9 @@ input[type="text"]:focus {
 	width: 100%;
 	color: @StatusTextColor;
 	text-align: center;
-	overflow-y:auto;
+	overflow-y: auto;
 	max-height: 200px;
-height: 20px;
--webkit-transform: translateZ(0);
+	height: 20px;
 }
 
 
