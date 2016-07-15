@@ -8,7 +8,7 @@ function hideReveal(evt, modal) {
 
 function sleep (time) {
   return new Promise(function(resolve) {
-  						setTimeout(resolve, time);
+  						setTimeout(resolve(), time);
   						}
   					);
 }
@@ -19,7 +19,7 @@ function createRecording(url){
 		var request = new XMLHttpRequest();
 		request.open("GET", url, true);
 		request.send(null);
-		sleep(500).then(function(){		
+		sleep(500).then(function() {		
 			openSearchPage();
 		})
 	}
