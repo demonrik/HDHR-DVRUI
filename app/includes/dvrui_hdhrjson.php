@@ -44,7 +44,6 @@ class DVRUI_HDHRjson {
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
 				$this->storageURL = $hdhr[$this->hdhrkey_storageURL];
-				echo(var_dump($hdhr_info));
 				$this->enginelist[] = array ($this->hdhrkey_storageID => $hdhr[$this->hdhrkey_storageID],
 									$this->hdhrkey_modelName => $hdhr_info[$this->hdhrkey_modelName],
 									$this->hdhrkey_Ver => $hdhr_info[$this->hdhrkey_Ver],
