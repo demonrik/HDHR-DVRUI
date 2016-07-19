@@ -35,7 +35,7 @@ function confirmDeleteRecording(url){
 				openRecordingsPage();
 			}
 			if (request.readyState == 4 && request.status == 400) {
-			   alert("Deletion failed.  Please review the HDHomeRun Record Engine log.");
+			   alert("Deletion failed.  The url was " + url);
 			}
 		};
 		request.open("GET", url, true);
