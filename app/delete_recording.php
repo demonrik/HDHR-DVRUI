@@ -1,7 +1,8 @@
 <?php
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
-	opcache_reset();
-	require_once("hdhr.php");
+	//opcache_reset();
+	require_once("includes/dvrui_hdhrjson.php");
+
 	
 	$cmdURL = base64url_decode($_GET["rec"]);
 	$cmd = $_GET["cmd"];
