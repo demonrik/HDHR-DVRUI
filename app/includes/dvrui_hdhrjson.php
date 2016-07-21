@@ -90,7 +90,10 @@ class DVRUI_HDHRjson {
 	public function engine_count() {
 		return count($this->enginelist);
 	}
-
+	public function get_engine_base_url($pos){
+		$engine = $this->enginelist[$pos];
+		return $engine[$this->hdhrkey_baseURL];
+	}
 	public function get_engine_storage_url($pos){
 		$engine = $this->enginelist[$pos];
 		return $engine[$this->hdhrkey_storageURL];

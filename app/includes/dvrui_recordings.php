@@ -146,8 +146,11 @@ class DVRUI_Recordings {
 			}
 		});
 		return;
-	}
+	}	
 
+	public function getUniqueSeriesID(){
+		return array_unique(array_map(function ($i) { return $i[$this->recording_SeriesID]; }, $this->recordings));
+	} 
 
 	public function getRecordingCount() {
 		return count($this->recordings);
@@ -177,7 +180,6 @@ class DVRUI_Recordings {
 	public function get_CmdURL($pos) {
 		return $this->recordings[$pos][$this->recording_CmdURL];
 	}
-
 	public function getRecordingImage($pos) {
 		return $this->recordings[$pos][$this->recording_ImageURL];
 	}
@@ -231,11 +233,15 @@ class DVRUI_Recordings {
 	}
 
 	public function getDeleteCmdURL($pos) {
-		return $this->recordings[$pos][$this->recording_CmdURL] . '&cmd=delete&rerecord=0';
+		return "delete_recording.php?rec=" .
+		rtrim(strtr(base64_encode($this->recordings[$pos][$this->recording_CmdURL]), '+/', '-_'), '=')  . 
+		'&cmd=delete&rerecord=0';
 	}
 
 	public function getRerecordCmdURL($pos) {
-		return $this->recordings[$pos][$this->recording_CmdURL] . '&cmd=delete&rerecord=1';
+		return "delete_recording.php?rec=" .
+		rtrim(strtr(base64_encode($this->recordings[$pos][$this->recording_CmdURL]), '+/', '-_'), '=')  . 
+		'&cmd=delete&rerecord=1';
 	}
 
 	public function getLinks($pos) {
