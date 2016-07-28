@@ -140,6 +140,11 @@ class DVRUI_HDHRjson {
 		return $this->enginelist[$pos][$this->hdhrkey_discoverURL];
 	}
 
+	public function poke_engine($pos) {
+		$url = $this->enginelist[$pos][$this->hdhrkey_baseURL] . "/recording_events.post?sync";
+		$this->get_url($url);
+	}
+
 	public function get_device_id($pos) {
 		$device = $this->hdhrlist[$pos];
 		return $device[$this->hdhrkey_devID];
