@@ -1,6 +1,6 @@
 <?php
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
-	opcache_reset();
+	//opcache_reset();
 	require_once("includes/dvrui_hdhrjson.php");
 	$baseurl = "http://my.hdhomerun.com/api/";
 
