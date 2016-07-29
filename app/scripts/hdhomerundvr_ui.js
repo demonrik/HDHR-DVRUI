@@ -17,11 +17,17 @@ function createRecording(url){
 	var result = confirm("Are you sure you want to create this rule?");
 	if (result){
 		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200) {
+			   alert("Rule has been successfully created.");
+				openSearchPage();
+			}
+			if (request.readyState == 4 && request.status == 400) {
+			   alert("Rule creation failed.  The url was " + url);
+			}
+		};
 		request.open("GET", url, true);
 		request.send(null);
-		sleep(500).then(function() {		
-			openSearchPage();
-		})
 	}
 }
 
@@ -47,9 +53,17 @@ function confirmDeleteRule(url){
 	var result = confirm("Are you sure you want to delete this rule? ");
 	if (result){
 		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200) {
+			   alert("Rule has been successfully deleted.");
+				openSearchPage();
+			}
+			if (request.readyState == 4 && request.status == 400) {
+			   alert("Rule deletion failed.  The url was " + url);
+			}
+		};
 		request.open("GET", url, true);
 		request.send(null);
-		openSearchPage();
 	}
 }
 
@@ -57,9 +71,17 @@ function confirmDeleteRule2(url){
 	var result = confirm("Are you sure you want to delete this rule? ");
 	if (result){
 		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200) {
+			   alert("Rule has been successfully deleted.");
+				openRulesPage();
+			}
+			if (request.readyState == 4 && request.status == 400) {
+			   alert("Rule deletion failed.  The url was " + url);
+			}
+		};
 		request.open("GET", url, true);
 		request.send(null);
-		openRulesPage();
 	}
 }
 
