@@ -135,10 +135,10 @@ class DVRUI_Search {
 	}
 	
 	public function getRecordRecentURL($pos) {
-		return "https://my.hdhomerun.com/api/recording_rules?DeviceAuth=" . $this->auth . "&SeriesID=" .  $this->searchResults[$pos][$this->search_SeriesID] . '&Cmd=add&RecentOnly=1';
+		return "api.php?api=rules&cmd=create&seriesid=" . $this->searchResults[$pos][$this->search_SeriesID] . '&recentonly=1';
 	}
 	public function getRecordAllURL($pos) {
-		return "https://my.hdhomerun.com/api/recording_rules?DeviceAuth=" . $this->auth . "&SeriesID=" .  $this->searchResults[$pos][$this->search_SeriesID] . '&Cmd=add&RecentOnly=0';
+		return "api.php?api=rules&cmd=create&seriesid=" . $this->searchResults[$pos][$this->search_SeriesID] . '&recentonly=0';
 	}
 }
 ?>

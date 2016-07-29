@@ -220,11 +220,15 @@ class DVRUI_Rules {
 	}
 	
 	public function getRuleDeleteURL($pos) {
-		return $this->recordingsURL 
-			. $this->auth 
-			. $this->recordingCmd_delete
-			. "&RecordingRuleID=" 
-			.  $this->rules[$pos][$this->recording_RecID];
+
+		//return $this->recordingsURL 
+		//	. $this->auth 
+		//	. $this->recordingCmd_delete
+		//	. "&RecordingRuleID=" 
+		//	.  $this->rules[$pos][$this->recording_RecID];
+
+		return "api.php?api=rules&cmd=delete&ruleid=" . $this->rules[$pos][$this->recording_RecID];
+
 	}
 	
 	
