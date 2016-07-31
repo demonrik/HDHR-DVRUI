@@ -24,8 +24,16 @@
 		}elseif ($cmd == "create"){
 			$seriesid = $_GET['seriesid'];
 			$recentonly = $_GET['recentonly'];
+			$startpadding = $_GET['start'];
+			$endpadding = $_GET['end'];
+
 			$url .= "&Cmd=add&SeriesID=" . $seriesid;
 			$url .= "&RecentOnly=" . $recentonly;
+			if(isset($_GET['start'])){ $url .= "&StartPadding=" . $_GET['start']; }
+			if(isset($_GET['end'])){ $url .= "&EndPadding=" . $_GET['end']; }
+			if(isset($_GET['channel'])){ $url .= "&ChannelOnly=" . $_GET['channel']; }
+			if(isset($_GET['recordtime'])){ $url .= "&DateTimeOnly=" . $_GET['recordtime']; }
+			if(isset($_GET['recordafter'])){ $url .= "&AfterOriginalAirdateOnly=" . $_GET['recordafter']; }
 			echo(call_api($url));	
 		}
 	}

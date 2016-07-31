@@ -36,6 +36,7 @@
 		$hdhrSearchResults = new DVRUI_Search($hdhr, $searchString);
 		$numResults = $hdhrSearchResults->getSearchResultCount();
 		$searchData = '';
+
 		for ($i=0; $i < $numResults; $i++) {
 			$searchEntry = file_get_contents('style/search_entry.html');
 			$searchEntry = str_replace('<!-- dvr_search_image -->',$hdhrSearchResults->getSearchResultImage($i),$searchEntry);
@@ -49,6 +50,8 @@
 				$actionLinks = file_get_contents('style/series_actions.html');
 				$actionLinks = str_replace('<!-- dvr_record_recent -->',$hdhrSearchResults->getRecordRecentURL($i),$actionLinks);
 				$actionLinks = str_replace('<!-- dvr_record_all -->',$hdhrSearchResults->getRecordAllURL($i),$actionLinks);
+				$actionLinks = str_replace('<!-- dvr_series_id -->',$hdhrSearchResults->getSearchResultSeriesID($i),$actionLinks);
+				$actionLinks = str_replace('<!-- dvr_series_title -->',$hdhrSearchResults->getSearchResultTitleEscaped($i),$actionLinks);
 				$searchEntry = str_replace('<!-- dvr_series_action_links -->',$actionLinks,$searchEntry);
 			}else{
 				$hdhrRules = new DVRUI_Rules($hdhr);
@@ -62,6 +65,13 @@
 					$rulesEntry = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($j),$rulesEntry);
 					$rulesEntry = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($j),$rulesEntry);
 					$rulesEntry = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($j),$rulesEntry);
+					if(strlen($hdhrRules->getRuleAfterAirDate($j)) > 5 ){
+						$rulesEntry = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($j),$rulesEntry);
+					}
+					if(strlen($hdhrRules->getRuleDateTime($j)) > 5 ){
+						$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $hdhrRules->getRuleDateTime($j),$rulesEntry);
+					}
+					$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',$hdhrRules->getRuleDateTime($j),$rulesEntry);
 					$searchEntry = str_replace('<!-- dvr_series_rule_list -->',$rulesEntry,$searchEntry);
 
 				}
@@ -69,6 +79,7 @@
 			$searchData .= $searchEntry;
 		}
 		$searchList = file_get_contents('style/search_list.html');
+		$searchList .= file_get_contents('style/advancedrule.html');
 		$searchList = str_replace('<!-- dvr_search_count -->','Found: ' . $numResults . ' Results<br/>',$searchList);
 		$searchList = str_replace('<!-- dvr_search_list -->',$searchData,$searchList);
 

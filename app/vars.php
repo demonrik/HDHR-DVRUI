@@ -1,7 +1,7 @@
 <?php
 final class DVRUI_Vars 
 {
-	const DVRUI_version	="0.1.13";
+	const DVRUI_version	="0.2.1";
 	const DVRUI_name	="HDHomeRun DVR UI";
 	const DVRUI_git		="https://github.com/demonrik/HDHR-DVRUI.git";
 	
