@@ -1,0 +1,28 @@
+<div id='AdvancedRuleCreate' class='revealModal'>
+	<div class='revealModal-content'>
+		<span class='revealClose' onclick="hideReveal(event,'AdvancedRuleCreate')">X</span>
+		<h4>Create rule</h4>
+		<p/>
+		<form class="edit_form" onSubmit="return submitCreateRule()">
+		<input type="hidden" id="seriesid">
+		<ul>
+		<li><label for="seriesname"><b>Series Name:</b></label> <input type="text" id="seriesname" readonly style="border:0px; font-size: 14px; width: 300px;"></li>
+		<li><label for="padding"><b>Padding:</b></label>
+			Start: <input type="number" id="paddingstart" size="3" min="0" max="3600" value="30" style="width:50px;"> 
+			End: <input type="number" id="paddingend" size="3" min="0" max="10800" value="30" style="width:50px;"> seconds.    </li>
+		
+		<li><label for="recordtype"><b>Recording Type:</b></label><input type="radio" name="recordtype" id="recordtype" value="all" onClick="handleRecordingType(this)" checked> Record All</li>
+		<li><label for="recordtype"><i>or</i> </label><input type="radio" name="recordtype" id="recordtype" value="recent" onClick="handleRecordingType(this)" > Record Recent Only</li>
+		<li><label for="recordtype"><i>or</i> </label><input type="radio" name="recordtype" id="recordtype" value="time" onClick="handleRecordingType(this)" > Record Specific Time
+				<input type="datetime-local" id="recordtime" style="display:none;"></li>
+		<li><label for="recordtype"><i>or</i> </label><input type="radio" name="recordtype" id="recordtype" value="aftertime" onClick="handleRecordingType(this)" > Record After Original Air Date
+				<input type="date" id="recordafter" style="display:none;"></li>
+		
+		
+		<li><label for="channel"><b>Specific Channel:</b></label><input type="text" id="channel" style="width:50px;"></li>
+		<li><label for="createrule"> </label><button type="submit" class="submit" id="createrule">Create Rule</button></li>
+		</li>
+		</ul>
+		</form>
+	</div>
+</div>
