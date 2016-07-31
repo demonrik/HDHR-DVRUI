@@ -1,7 +1,10 @@
 <?php
 	require_once("includes/dvrui_hdhrjson.php");
+        require_once("includes/dvrui_tz.php");
+
 
 class DVRUI_Rules {
+	//DVRUI_setTZ();
 	/*
 	 * Documentation on How the HDHR system exposes Recording rules is explained
 	 * https://github.com/Silicondust/documentation/wiki/DVR%20Recording%20Rules
@@ -117,11 +120,11 @@ class DVRUI_Rules {
 		$startPad = $rule[$this->recording_StartPad];
 		$endPad = $rule[$this->recording_EndPad];
 		$priority = 'X';
-		$dateTimeOnly = 'X';
+		$dateTimeOnly = '';
 		$channelOnly = 'All Channels';
 		$teamOnly = 'X';
 		$recentOnly = 'X';
-		$airdate = 'X';
+		$airdate = '';
 		$synopsis = "";
 		$image = "";
 	
@@ -173,6 +176,21 @@ class DVRUI_Rules {
 		return $this->auth;
 	}
 	
+	public function getRuleDateTime($pos) {
+		if(strlen($this->rules[$pos][$this->recording_DateTimeOnly]) > 5){
+			return date('D M/d Y @ g:ia', $this->rules[$pos][$this->recording_DateTimeOnly]);
+		}else{
+			return "";
+		}
+	}
+
+	public function getRuleAfterAirDate($pos) {
+		if(strlen($this->rules[$pos][$this->recording_Airdate]) > 5){
+			return date("m/d/Y", $this->rules[$pos][$this->recording_Airdate]);
+		}else{
+			return "";
+		}
+	}
 	public function getRulePriority($pos) {
 		return $this->rules[$pos][$this->recording_Priority];
 	}

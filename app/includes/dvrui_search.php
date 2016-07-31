@@ -107,6 +107,10 @@ class DVRUI_Search {
 	public function getSearchResultTitle($pos) {
 		return $this->searchResults[$pos][$this->search_Title];
 	}
+	public function getSearchResultTitleEscaped($pos) {
+		$cleanstring = str_replace("'","\\'",$this->searchResults[$pos][$this->search_Title]);
+		return $cleanstring;
+	}
 	public function getSearchResultImage($pos) {
 		return $this->searchResults[$pos][$this->search_ImageURL];
 	}
