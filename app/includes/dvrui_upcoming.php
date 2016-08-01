@@ -1,5 +1,6 @@
 <?php
 	require_once("includes/dvrui_rules.php");
+	require_once("includes/dvrui_common.php");
 	require_once("includes/dvrui_tz.php");
 
 
@@ -118,21 +119,8 @@ class DVRUI_Upcoming {
 						$this->auth . 
 						$this->epGuideURL_paramSeries .
 						$this->series_list[$pos][$this->epData_SeriesID];
-			if (in_array('curl', get_loaded_extensions())){
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $seriesURL);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-				$episodes_json = curl_exec($ch);
-				curl_close($ch);
-			} else { 
-				$context = stream_context_create(
-					array('http' => array(
-						'header'=>'Connection: close\r\n',
-						'timeout' => 2.0)));
-				$episodes_json = file_get_contents($seriesURL,false,$context);	
-			}
-			$episodes_info = json_decode($episodes_json, true);
+
+			$episodes_info = getJsonFromUrl($seriesURL);
 
 			for ($i = 0; $i < count($episodes_info); $i++) {
 				if (array_key_exists($this->epData_RecordingRule,$episodes_info[$i])){
@@ -143,7 +131,6 @@ class DVRUI_Upcoming {
 	}
 	
 	public function sortUpcomingByDate(){
-
 		usort($this->upcoming_list, function ($a, $b) {
 			if ($a[$this->epData_StartTime] == $b[$this->epData_StartTime]) {
 				return 0;
@@ -156,6 +143,14 @@ class DVRUI_Upcoming {
 	}
 	
 	public function sortUpcomingByTitle(){
+		usort($this->upcoming_list, function ($a, $b) {
+			if ($a[$this->epData_Title] == $b[$this->epData_Title]) {
+				return 0;
+			}
+			else {
+				return ($a[$this->epData_Title] < $b[$this->epData_Title]) ? -1 : 1;
+			}
+		});
 		return;
 	}
 	
@@ -206,7 +201,6 @@ class DVRUI_Upcoming {
 	}
 	
 	public function getEpEnd($pos) {
-		//date_default_timezone_set('UTC');
 		if ($pos < count($this->upcoming_list)) {
 			return  date('D M/d Y @ g:ia T',$this->upcoming_list[$pos][$this->epData_EndTime]);
 		} else {

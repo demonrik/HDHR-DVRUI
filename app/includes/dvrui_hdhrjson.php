@@ -1,4 +1,5 @@
 <?php
+	require_once("includes/dvrui_common.php");
 
 class DVRUI_HDHRjson {
 	private $myhdhrurl = 'http://ipv4.my.hdhomerun.com/discover';
@@ -24,9 +25,8 @@ class DVRUI_HDHRjson {
 	private $hdhrlist_key_channelcount = 'ChannelCount';
 	
 	public function DVRUI_HDHRjson() {
-		$json = $this->get_url($this->myhdhrurl);
 
-		$hdhr_data = json_decode($json, true);
+		$hdhr_data = getJsonFromUrl($this->myhdhrurl);
 		for ($i=0;$i<count($hdhr_data);$i++) {
 			$hdhr = $hdhr_data[$i];
 			$hdhr_base = $hdhr[$this->hdhrkey_baseURL];
@@ -38,8 +38,7 @@ class DVRUI_HDHRjson {
 				continue;
 			}
 
-			$hdhr_info_json = $this->get_url($hdhr[$this->hdhrkey_discoverURL]);
-			$hdhr_info = json_decode($hdhr_info_json, true);
+			$hdhr_info = getJsonFromUrl($hdhr[$this->hdhrkey_discoverURL]);
 
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
@@ -56,8 +55,7 @@ class DVRUI_HDHRjson {
 				continue;
 			}
 		
-			$hdhr_lineup_json = $this->get_url($hdhr[$this->hdhrkey_lineupURL]);	
-			$hdhr_lineup = json_decode($hdhr_lineup_json, true);
+			$hdhr_lineup = getJsonFromUrl($hdhr[$this->hdhrkey_lineupURL]);	
 		
 			if (array_key_exists($this->hdhrkey_tuners,$hdhr_info)) {
 				$this->hdhrlist[] = array( $this->hdhrkey_devID => $hdhr[$this->hdhrkey_devID],
@@ -142,7 +140,7 @@ class DVRUI_HDHRjson {
 
 	public function poke_engine($pos) {
 		$url = $this->enginelist[$pos][$this->hdhrkey_baseURL] . "/recording_events.post?sync";
-		$this->get_url($url);
+		getJsonFromUrl($url);
 	}
 
 	public function get_device_id($pos) {
@@ -214,24 +212,6 @@ class DVRUI_HDHRjson {
 				return $device[$this->hdhrkey_modelNum];
 		}
 	}
-	
-	private function get_url($url){
-		$content = "";
-		if (in_array('curl', get_loaded_extensions())){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-			$content = curl_exec($ch);
-			curl_close($ch);
-		} else { 
-			$context = stream_context_create(
-				array('http' => array(
-					'header'=>'Connection: close\r\n',
-					'timeout' => 1.0)));
-			$content = file_get_contents($url,false,$context);	
-		}
-		return $content;
-	}
+
 }
 ?>

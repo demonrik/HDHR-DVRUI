@@ -21,43 +21,43 @@
 	padding: 0px;
 }
 button.submit {
-    background-color: #68b12f;
-    background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
-    background: -webkit-linear-gradient(top, #68b12f, #50911e);
-    background: -moz-linear-gradient(top, #68b12f, #50911e);
-    background: -ms-linear-gradient(top, #68b12f, #50911e);
-    background: -o-linear-gradient(top, #68b12f, #50911e);
-    background: linear-gradient(top, #68b12f, #50911e);
-    border: 1px solid #509111;
-    border-bottom: 1px solid #5b992b;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    box-shadow: inset 0 1px 0 0 #9fd574;
-    -webkit-box-shadow: 0 1px 0 0 #9fd574 inset ;
-    -moz-box-shadow: 0 1px 0 0 #9fd574 inset;
-    -ms-box-shadow: 0 1px 0 0 #9fd574 inset;
-    -o-box-shadow: 0 1px 0 0 #9fd574 inset;
-    color: white;
-    font-weight: bold;
-    padding: 6px 20px;
-    text-align: center;
-    text-shadow: 0 -1px 0 #396715;
+	background-color: #68b12f;
+	background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
+	background: -webkit-linear-gradient(top, #68b12f, #50911e);
+	background: -moz-linear-gradient(top, #68b12f, #50911e);
+	background: -ms-linear-gradient(top, #68b12f, #50911e);
+	background: -o-linear-gradient(top, #68b12f, #50911e);
+	background: linear-gradient(top, #68b12f, #50911e);
+	border: 1px solid #509111;
+	border-bottom: 1px solid #5b992b;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	box-shadow: inset 0 1px 0 0 #9fd574;
+	-webkit-box-shadow: 0 1px 0 0 #9fd574 inset ;
+	-moz-box-shadow: 0 1px 0 0 #9fd574 inset;
+	-ms-box-shadow: 0 1px 0 0 #9fd574 inset;
+	-o-box-shadow: 0 1px 0 0 #9fd574 inset;
+	color: white;
+	font-weight: bold;
+	padding: 6px 20px;
+	text-align: center;
+	text-shadow: 0 -1px 0 #396715;
 }
 button.submit:hover {
-    opacity:.85;
-    cursor: pointer; 
+	opacity:.85;
+	cursor: pointer; 
 }
 button.submit:active {
-    border: 1px solid #20911e;
-    box-shadow: 0 0 10px 5px #356b0b inset; 
-    -webkit-box-shadow:0 0 10px 5px #356b0b inset ;
-    -moz-box-shadow: 0 0 10px 5px #356b0b inset;
-    -ms-box-shadow: 0 0 10px 5px #356b0b inset;
-    -o-box-shadow: 0 0 10px 5px #356b0b inset;
-     
+	border: 1px solid #20911e;
+	box-shadow: 0 0 10px 5px #356b0b inset; 
+	-webkit-box-shadow:0 0 10px 5px #356b0b inset ;
+	-moz-box-shadow: 0 0 10px 5px #356b0b inset;
+	-ms-box-shadow: 0 0 10px 5px #356b0b inset;
+	-o-box-shadow: 0 0 10px 5px #356b0b inset;
+	
 }
 #footer {
 	clear: both;
@@ -426,14 +426,14 @@ ul.tabmenu li a:focus, a.active {
 #upcoming_entry, #search_entry, #rule_entry, #recording_entry {
 	border-top: solid 2px @EntryBorderColor;
 	background: @EntryBackgroundColor;
-	height: 100px;
+	height: 132px;
 	position: relative;
 }
 
 #upcoming_img, #search_img, #rule_img, #recording_img {
 	float: left;
-	height: 100px;
-	width: 133px;
+	height: 132px;
+	width: 176px;
 }
 
 #upcoming_select, #search_select, #rule_select, #recordings_select {
@@ -460,14 +460,14 @@ ul.tabmenu li a:focus, a.active {
 #hdhr_entry {
 	border-top: solid 1px @EntryBorderColor;
 	background: @EntryBackgroundColor;
-	height: 100px;
+	height: 130px;
 }
 
 #hdhr_img {
 	display: block;
 	margin: 0 auto;
-	height: 60px;
-	width: 200px;
+	//height: 60px;
+	width: 176px;
 }
 
 #hdhr_img_cnt {
@@ -478,8 +478,8 @@ ul.tabmenu li a:focus, a.active {
 #hdhr_img_flt {
 	float: left;
 	background-color: #FFFFFF;
-	width: 300px;
-	height: 100px;
+	width: 180px;
+	height: 130px;
 	margin: 0 10px 0 0;
 	display: table;
 }
@@ -498,20 +498,25 @@ ul.tabmenu li a:focus, a.active {
 ul.decorator  {
 	list-style-type: none;
 	margin: 0;
+	padding: 0;
 	overflow: hidden;
 	border: none;
 	position: absolute;
-	bottom: 3;
-	padding: 0px 0px 0px 150px;
+	bottom: 0;
+	right: 0;
+	padding: 0px 0px 0px 200px;
 	font-size: 1em;
 }
 
 ul.decorator li  {
 	float: left;
 	margin: 0px 10px;
-	font-size: 1em;
+}
+
+ul.decorator li a{
 	display: inline-block;
-	color: @TabMenuTextColor;
+	color: @DecoratorDefaultTextColor;
+	background-color: @DecoratorDefaultBackgroundColor;
 	text-align: center;
 	padding: 2px 5px;
 	text-decoration: none;
@@ -519,13 +524,6 @@ ul.decorator li  {
 	border: none;
 }
 
-ul.decorator li a{
-	display: inline-block;
-	color: @TabMenuTextColor;
-	text-align: center;
-	text-decoration: none;
-	transition: 0.1s;
-}
 ul.decorator li a:hover {
 	cursor:pointer;
 }
@@ -572,6 +570,7 @@ ul.decorator li.delete a:hover {
 	z-index: 1; /* Bring to top */
 	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.4);
+	padding-top: 20%; /* Offset from the top */
 	color: black;
 	left: 0;
 	top: 0;

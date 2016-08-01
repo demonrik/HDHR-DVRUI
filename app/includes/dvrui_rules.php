@@ -1,6 +1,7 @@
 <?php
 	require_once("includes/dvrui_hdhrjson.php");
-        require_once("includes/dvrui_tz.php");
+	require_once("includes/dvrui_common.php");
+	require_once("includes/dvrui_tz.php");
 
 
 class DVRUI_Rules {
@@ -72,42 +73,14 @@ class DVRUI_Rules {
 	}
 	
 	public function processAllRules() {
-		if (in_array('curl', get_loaded_extensions())){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $this->rulesURL . $this->auth);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-			$rules_json = curl_exec($ch);
-			curl_close($ch);
-		} else { 
-			$context = stream_context_create(
-				array('http' => array(
-					'header'=>'Connection: close\r\n',
-					'timeout' => 2.0)));
-			$rules_json = file_get_contents($this->rulesURL . $this->auth,false,$context);	
-		}
-		$rules_info = json_decode($rules_json, true);
+		$rules_info = getJsonFromUrl($this->rulesURL . $this->auth);
 		for ($i = 0; $i < count($rules_info); $i++) {
 			$this->processRule($rules_info[$i]);
 		}
 	}
 	
 	public function processRuleforSeries($seriesID){
-		if (in_array('curl', get_loaded_extensions())){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $this->rulesURL . $this->auth . '&SeriesID=' . $seriesID);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-			$rules_json = curl_exec($ch);
-			curl_close($ch);
-		} else { 
-			$context = stream_context_create(
-				array('http' => array(
-					'header'=>'Connection: close\r\n',
-					'timeout' => 2.0)));
-			$rules_json = file_get_contents($this->rulesURL . $this->auth . '&SeriesID=' . $seriesID,false,$context);	
-		}
-		$rules_info = json_decode($rules_json, true);
+		$rules_info = getJsonFromUrl($this->rulesURL . $this->auth . '&SeriesID=' . $seriesID);
 		for ($i = 0; $i < count($rules_info); $i++) {
 			$this->processRule($rules_info[$i]);
 		}
@@ -238,24 +211,9 @@ class DVRUI_Rules {
 	}
 
 	public function deleteRule($id){
-
 		$deleteURL = $this->rulesURL . $this->auth;
 		$deleteURL .= "&Cmd=delete&RecordingRuleID=" . $id;
-
-		if (in_array('curl', get_loaded_extensions())){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $deleteURL);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-			$rules_json = curl_exec($ch);
-			curl_close($ch);
-		} else { 
-			$context = stream_context_create(
-				array('http' => array(
-					'header'=>'Connection: close\r\n',
-					'timeout' => 2.0)));
-			$rules_json = file_get_contents($deleteURL,false,$context);	
-		}
+		getJsonFromUrl($deleteURL);
 
 	}
 	

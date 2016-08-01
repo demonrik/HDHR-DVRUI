@@ -48,6 +48,7 @@ function revealRuleForm(evt, modal,seriesid,seriesname){
 	document.getElementById("seriesname").value = seriesname;
 	getSavedPadding();
 }
+
 function handleRecordingType(myRadio){
 	if(myRadio.value == "all"){
 		document.getElementById("recordtime").style = "display: none;";
@@ -241,4 +242,14 @@ function goSearch()
 {
 	var str = document.getElementById('searchString').value;
 	openSearchPage(str);
+}
+
+function deleteRecording(evt, recording_id, reveal) {
+	deleteRecordingByID(recording_id,false);
+	hideReveal(evt, reveal);
+}
+
+function rerecordRecording(evt, recording_id, reveal) {
+	deleteRecordingByID(recording_id,true);
+	hideReveal(evt, reveal);
 }
