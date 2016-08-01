@@ -29,6 +29,11 @@ function getSavedPadding(){
 	}
 }
 
+function deleteRule(evt, rule_id, reveal) {
+	deleteRuleByID(rule_id,false);
+	hideReveal(evt, reveal);
+}
+
 function reveal(evt, modal) {
 	document.getElementById(modal).style.display = "block";
 }
