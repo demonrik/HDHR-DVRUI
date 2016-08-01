@@ -9,7 +9,7 @@ class DVRUI_Rules {
 	 * Documentation on How the HDHR system exposes Recording rules is explained
 	 * https://github.com/Silicondust/documentation/wiki/DVR%20Recording%20Rules
 	 */
-	private $recordingsURL = 'http://my.hdhomerun.com/api/recording_rules?DeviceAuth=';
+	private $rulesURL = 'http://my.hdhomerun.com/api/recording_rules?DeviceAuth=';
 	
 	/*
 	 * The following are the Parameters that can be included in a rule created
@@ -74,7 +74,7 @@ class DVRUI_Rules {
 	public function processAllRules() {
 		if (in_array('curl', get_loaded_extensions())){
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $this->recordingsURL . $this->auth);
+			curl_setopt($ch, CURLOPT_URL, $this->rulesURL . $this->auth);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 			$rules_json = curl_exec($ch);
@@ -84,7 +84,7 @@ class DVRUI_Rules {
 				array('http' => array(
 					'header'=>'Connection: close\r\n',
 					'timeout' => 2.0)));
-			$rules_json = file_get_contents($this->recordingsURL . $this->auth,false,$context);	
+			$rules_json = file_get_contents($this->rulesURL . $this->auth,false,$context);	
 		}
 		$rules_info = json_decode($rules_json, true);
 		for ($i = 0; $i < count($rules_info); $i++) {
@@ -95,7 +95,7 @@ class DVRUI_Rules {
 	public function processRuleforSeries($seriesID){
 		if (in_array('curl', get_loaded_extensions())){
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $this->recordingsURL . $this->auth . '&SeriesID=' . $seriesID);
+			curl_setopt($ch, CURLOPT_URL, $this->rulesURL . $this->auth . '&SeriesID=' . $seriesID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 			$rules_json = curl_exec($ch);
@@ -105,7 +105,7 @@ class DVRUI_Rules {
 				array('http' => array(
 					'header'=>'Connection: close\r\n',
 					'timeout' => 2.0)));
-			$rules_json = file_get_contents($this->recordingsURL . $this->auth . '&SeriesID=' . $seriesID,false,$context);	
+			$rules_json = file_get_contents($this->rulesURL . $this->auth . '&SeriesID=' . $seriesID,false,$context);	
 		}
 		$rules_info = json_decode($rules_json, true);
 		for ($i = 0; $i < count($rules_info); $i++) {
@@ -236,10 +236,32 @@ class DVRUI_Rules {
 		}
 		return $this->rules[$pos][$this->recording_Recent];
 	}
+
+	public function deleteRule($id){
+
+		$deleteURL = $this->rulesURL . $this->auth;
+		$deleteURL .= "&Cmd=delete&RecordingRuleID=" . $id;
+
+		if (in_array('curl', get_loaded_extensions())){
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $deleteURL);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+			$rules_json = curl_exec($ch);
+			curl_close($ch);
+		} else { 
+			$context = stream_context_create(
+				array('http' => array(
+					'header'=>'Connection: close\r\n',
+					'timeout' => 2.0)));
+			$rules_json = file_get_contents($deleteURL,false,$context);	
+		}
+
+	}
 	
 	public function getRuleDeleteURL($pos) {
 
-		//return $this->recordingsURL 
+		//return $this->rulesURL 
 		//	. $this->auth 
 		//	. $this->recordingCmd_delete
 		//	. "&RecordingRuleID=" 
