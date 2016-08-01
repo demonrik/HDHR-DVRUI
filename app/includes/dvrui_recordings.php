@@ -74,8 +74,8 @@ class DVRUI_Recordings {
 		$recID = $this->getRecordingIDfromURL($cmdURL);
 
 
-		if (array_key_exists($this->recording_SeriesID,$recordings_info[$i])){
-			$seriesid = $recordings_info[$i][$this->recording_SeriesID];
+		if (array_key_exists($this->recording_SeriesID,$recording)){
+			$seriesid = $recording[$this->recording_SeriesID];
 		}
 		if (array_key_exists($this->recording_Category,$recording)){
 			$category = $recording[$this->recording_Category];
