@@ -1,5 +1,6 @@
 <?php
 	require_once("includes/dvrui_hdhrjson.php");
+	require_once("includes/dvrui_common.php");
 	require_once("includes/dvrui_tz.php");
 
 class DVRUI_Search {
@@ -32,21 +33,8 @@ class DVRUI_Search {
 		}
 		$this->auth = $auth;
 
-		if (in_array('curl', get_loaded_extensions())){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $this->searchURL . $auth . "&Search=" . $searchString);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-			$search_json = curl_exec($ch);
-			curl_close($ch);
-		} else { 
-			$context = stream_context_create(
-				array('http' => array(
-					'header'=>'Connection: close\r\n',
-					'timeout' => 2.0)));
-			$search_json = file_get_contents($this->searchURL . $auth . "&Search=" . $searchString,false,$context);	
-		}
-		$search_info = json_decode($search_json, true);
+		$search_info = getJsonFromUrl($this->searchURL . $auth . "&Search=" . $searchString);
+
 		for ($i = 0; $i < count($search_info); $i++) {
 			$seriesID = $search_info[$i][$this->search_SeriesID];
 			$image = "";
@@ -74,8 +62,6 @@ class DVRUI_Search {
 			if (array_key_exists($this->search_RecordingRule,$search_info[$i])) {
 				$recordingRule = $search_info[$i][$this->search_RecordingRule];
 			}
-
-
 			
 			$this->searchResults[] = array(
 					$this->search_SeriesID => $seriesID,

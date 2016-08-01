@@ -136,24 +136,6 @@ function createRecording(url){
 	}
 }
 
-function confirmDeleteRecording(url){
-	var result = confirm("Are you sure you want to delete this recording?\nThis action cannot be undone!");
-	if (result){
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = function() {
-			if (request.readyState == 4 && request.status == 200) {
-			   alert("Recording deleted successfully.");
-				openRecordingsPage();
-			}
-			if (request.readyState == 4 && request.status == 400) {
-			   alert("Deletion failed.  The url was " + url);
-			}
-		};
-		request.open("GET", url, true);
-		request.send(null);
-	}
-}
-
 function confirmDeleteRule(url){
 	var result = confirm("Are you sure you want to delete this rule? ");
 	if (result){
