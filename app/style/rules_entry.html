@@ -1,7 +1,7 @@
 <div id='rule_entry' class='rule_entry'>
 	<img src='<!-- dvr_rules_image -->' id='rule_img'/>
 	<span id ='rule_info'>
-	<h4><!-- dvr_rules_title --><input type='checkbox' name='<!-- dvr_rules_id -->' id='rule_select'></h4>
+	<h4><!-- dvr_rules_title --></h4>
 	</span>
 	<p id='rule_synopsis'><!-- dvr_rules_synopsis --></p>
 	<p id='rule_padding'>Priority: <!-- dvr_rules_priority --> Start: <!-- dvr_rules_startpad --> End: <!-- dvr_rules_endpad --></p>
@@ -9,7 +9,7 @@
 		<li class='info'><p><!-- dvr_rules_channels --></p></li>
 		<li class='info'><p><!-- dvr_rules_recent --> <!-- dvr_rules_airdate --> <!-- dvr_rules_datetime --></p></li>
 		<li class='info'><p>Recordings: <!-- dvr_reccount --></p></li>
-		<li class='delete'><a onClick="confirmDeleteRule2('<!-- dvr_rules_delete -->');">DELETE</a></li>
+		<li class='delete'><a onClick="reveal(event,'<!-- dvrui_reveal_delete -->');">DELETE</a></li>
 	</ul>
 	<div id='rule_tools'><!--dvr_rules_tools--></div>
 </div>

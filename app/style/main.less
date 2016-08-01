@@ -577,17 +577,42 @@ ul.decorator li.delete a:hover {
 	top: 0;
 	height: 100%;
 	width: 100%;
+	overflow: auto;
 }
 
 .revealModal-content {
-	background-color: #EEE;
+	background-color: @RevealFooterBackgroundColor;
 	width: 80%;
-	height: 40%;
+	min-height: 162px;
 	padding: 20px;
-	margin: 15% auto;
-	border 1px solid #888;
-	border-radius: 20px;
+	margin: auto;
 }
+
+.revealModal-header {
+	width: 80%;
+	padding: 20px;
+	margin: auto;
+	background-color: @RevealHeaderBackgroundColor;
+	color: @RevealHeaderColor;
+	border 1px solid #888;
+	border-radius: 20px 20px 0 0;
+}
+
+.revealModal-header h4 {
+	color: @RevealHeaderColor;
+}
+
+.revealModal-footer {
+	width: 80%;
+	padding: 15px 20px;
+	margin: auto;
+	background-color: @RevealFooterBackgroundColor;
+	color: @RevealFooterColor;
+	height: 15px;
+	border 1px solid #888;
+	border-radius: 0 0 20px 20px;
+}
+
 
 .revealClose {
 	color: #aaa;
@@ -601,3 +626,44 @@ ul.decorator li.delete a:hover {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+ul.modal_decorator {
+	list-style-type: none;
+	float: right;
+}
+
+ul.modal_decorator li {
+	float: left;
+	margin: 0px 10px;
+}
+
+ul.modal_decorator li p {
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	background-color: @DecoratorDefaultBackgroundColor;
+	text-align: center;
+	padding: 2px 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+}
+
+ul.modal_decorator li a  {
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	background-color: @DecoratorDefaultBackgroundColor;
+	text-align: center;
+	padding: 2px 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+}
+
+ul.modal_decorator li a:hover {
+	cursor:pointer;
+}
+
+ul.modal_decorator li.info p, ul.modal_decorator li.play a, ul.modal_decorator li.record a {
+	background-color: @DecoratorBackgroundColor;
+}
+
