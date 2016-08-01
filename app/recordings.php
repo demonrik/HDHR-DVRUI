@@ -43,6 +43,7 @@
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
 		$hdhrRecordings->deleteRecording($id,$rerecord);
+		$hdhrRecordings->sortRecordingsByTitle();
 
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$htmlStr = processRecordingData($hdhrRecordings, $numRecordings);
