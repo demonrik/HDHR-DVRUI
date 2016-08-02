@@ -1,9 +1,9 @@
 <div id='AdvancedRuleCreate' class='revealModal'>
+	<form class="edit_form" name="edit_form" onSubmit="return submitCreateRule()">
+	<div class='revealModal-header'>
+		<h4>Advanced Rule</h4>
+	</div>
 	<div class='revealModal-content'>
-		<span class='revealClose' onclick="hideReveal(event,'AdvancedRuleCreate')">X</span>
-		<h4>Create rule</h4>
-		<p/>
-		<form class="edit_form" onSubmit="return submitCreateRule()">
 		<input type="hidden" id="seriesid">
 		<ul>
 		<li><label for="seriesname"><b>Series Name:</b></label> <input type="text" id="seriesname" readonly style="border:0px; font-size: 14px; width: 300px;"></li>
@@ -20,9 +20,17 @@
 		
 		
 		<li><label for="channel"><b>Specific Channel:</b></label><input type="text" id="channel" style="width:50px;"></li>
-		<li><label for="createrule"> </label><button type="submit" class="submit" id="createrule">Create Rule</button></li>
+		<!--<li><label for="createrule"> </label><button type="submit" class="submit" id="createrule">Create Rule</button></li>-->
 		</li>
 		</ul>
-		</form>
 	</div>
+        <div class='revealModal-footer'>
+                <ul class="modal_decorator">
+                        <li class='confirm_left'><a onClick="hideReveal(event,'AdvancedRuleCreate')">Cancel</a></li>
+                        <li class='confirm_right'><a onClick="submitCreateRule()">Save</a></li>
+                </ul>
+        </div>
+	</form>
+
+
 </div>
