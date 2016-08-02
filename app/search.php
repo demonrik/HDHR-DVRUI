@@ -30,6 +30,80 @@
 		return $tab->getString();
 	}
 
+	function deleteRuleFromSearch($searchString, $id){
+                // prep
+                ob_start();
+                $tab = new TinyAjaxBehavior();
+
+		// delete the rule
+		$hdhr = new DVRUI_HDHRjson();
+		$hdhrRules = new DVRUI_Rules($hdhr);
+		$hdhrRules->deleteRule($id);	
+
+                // poke each record engine to reload rules from my.hdhomerun.com
+                $engines =  $hdhr->engine_count();
+                for ($i=0; $i < $engines; $i++) {
+                        $hdhr->poke_engine($i);
+                }
+
+                //create output
+                $htmlStr = getSearchResults($searchString);
+
+                //get data
+                $result = ob_get_contents();
+                ob_end_clean();
+
+                // get latest status
+                $statusmsg = getLatestHDHRStatus();
+
+                //display
+                $tab->add(TabInnerHtml::getBehavior("search_box", $htmlStr));
+                if ($result != '' && $result != NULL)
+                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $result));
+                else
+                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $statusmsg));
+                return $tab->getString();
+
+
+	}
+
+        function createRuleFromSearch($searchString, $seriesid, $recentonly, $start, $end, $channel, $recordtime, $recordafter){
+                // prep
+                ob_start();
+                $tab = new TinyAjaxBehavior();
+
+		// create the rule
+		$hdhr = new DVRUI_HDHRjson();
+		$hdhrRules = new DVRUI_Rules($hdhr);
+		$hdhrRules->createRule($seriesid, $recentonly, $start, $end, $channel, $recordtime, $recordafter);	
+
+                // poke each record engine to reload rules from my.hdhomerun.com
+                $engines =  $hdhr->engine_count();
+                for ($i=0; $i < $engines; $i++) {
+                        $hdhr->poke_engine($i);
+                }
+
+                //create output
+                $htmlStr = getSearchResults($searchString);
+
+                //get data
+                $result = ob_get_contents();
+                ob_end_clean();
+
+                // get latest status
+                $statusmsg = getLatestHDHRStatus();
+
+                //display
+                $tab->add(TabInnerHtml::getBehavior("search_box", $htmlStr));
+                if ($result != '' && $result != NULL)
+                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $result));
+                else
+                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $statusmsg));
+                return $tab->getString();
+
+        }
+
+
 	function getSearchResults($searchString) {
 		$searchStr = '';
 		$hdhr = new DVRUI_HDHRjson();
@@ -64,7 +138,7 @@
 					$rulesEntry = str_replace('<!-- dvr_rules_endpad -->',$hdhrRules->getRuleEndPad($j),$rulesEntry);
 					$rulesEntry = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($j),$rulesEntry);
 					$rulesEntry = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($j),$rulesEntry);
-					$rulesEntry = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($j),$rulesEntry);
+					$rulesEntry = str_replace('<!-- dvr_rules_ruleid -->',$hdhrRules->getRuleRecID($j),$rulesEntry);
 					if(strlen($hdhrRules->getRuleAfterAirDate($j)) > 5 ){
 						$rulesEntry = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($j),$rulesEntry);
 					}

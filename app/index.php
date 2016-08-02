@@ -27,7 +27,9 @@
 	$ajax->exportFunction("openUpcomingPage","");
 	$ajax->exportFunction("deleteRecordingByID","id, rerecord");
 	$ajax->exportFunction("deleteRuleByID","id");
-	//$ajax->exportFunction("createRule","id");
+	$ajax->exportFunction("deleteRuleFromSearch","searchstring, id");
+	$ajax->exportFunction("createQuickRuleFromSearch","searchString, seriesid, recentonly");
+	$ajax->exportFunction("createRuleFromSearch","searchString, seriesid, recentonly, start, end, channel, recordtime, recordafter");
 
 	/* GO */
 	$ajax->process(); // Process our callback
