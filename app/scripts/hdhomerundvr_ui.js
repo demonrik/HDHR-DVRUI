@@ -64,111 +64,59 @@ function handleRecordingType(myRadio){
 		document.getElementById("recordafter").style = "display: relative;";
 	}
 }
+function createQRule(seriesid,recentonly){
+	var searchstring = document.getElementById("searchString").value;
+	createRuleFromSearch(searchstring,seriesid,recentonly,"30","30",null,null,null);
+}
+
 function submitCreateRule(){
-	var url = "api.php?api=rules&cmd=create";
+	var searchstring = document.getElementById("searchString").value;
 	var seriesid = document.getElementById("seriesid").value;
-	var paddingstart = document.getElementById("paddingstart").value;
-	var paddingend = document.getElementById("paddingend").value;
+	var pstart = document.getElementById("paddingstart").value;
+	var pend = document.getElementById("paddingend").value;
 	var channel = document.getElementById("channel").value;
-	var recordtype = document.getElementById("recordtype").value;
 	var recordtime = document.getElementById("recordtime").value;
 	var recordafter = document.getElementById("recordafter").value;
 	var radios = document.getElementsByName('recordtype');
+	var recentonly = "";
+	var recordtype = "";
 
-	setCookie("paddingstart",paddingstart,3000);
-	setCookie("paddingend",paddingend,3000);
+	setCookie("paddingstart",pstart,3000);
+	setCookie("paddingend",pend,3000);
+	
 	for (var i = 0, length = radios.length; i < length; i++) {
 	    if (radios[i].checked) {
 		recordtype = radios[i].value;
 		break;
 	    }
 	}
-	url += "&seriesid=" + seriesid;
-	url += "&start=" + paddingstart;
-	url += "&end=" + paddingend;
-	if(channel){
-		url += "&channel=" + channel;
-	}
 	if(recordtype == "all"){
-		url += "&recentonly=0";
-		createRecording(url);
+		createRuleFromSearch(searchstring,seriesid,0,pstart,pend,channel,null,null);
 	}else if(recordtype == "recent"){
-		url += "&recentonly=1";
-		createRecording(url);
+		createRuleFromSearch(searchstring,seriesid,1,pstart,pend,channel,null,null);
 	}else if(recordtype == "time"){
-		url += "&recentonly=0";
 		if(recordtime){
 			recordtime = moment(recordtime).unix();
-			url += "&recordtime=" + recordtime;
-			createRecording(url);
+			createRuleFromSearch(searchstring,seriesid,0,pstart,pend,channel,recordtime,null);
 		}else{
 			alert("specify a valid date/time for this type of recording");
 		}
 	}else if(recordtype == "aftertime"){
-		url += "&recentonly=0";
 		if(recordafter){
 			recordafter = moment(recordafter).unix();
-			url += "&recordafter=" + recordafter;
-			createRecording(url);
+			createRuleFromSearch(searchstring,seriesid,0,pstart,pend,channel,null,recordafter);
 		}else{
 			alert("specify a valid date for this type of recording");
-
 		}
 	}
 	return false;
 }
 
-function createRecording(url){
-	var result = confirm("Are you sure you want to create this rule?");
-	if (result){
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = function() {
-			if (request.readyState == 4 && request.status == 200) {
-			   alert("Rule has been successfully created.");
-				openSearchPage();
-			}
-			if (request.readyState == 4 && request.status == 400) {
-			   alert("Rule creation failed.  The url was " + url);
-			}
-		};
-		request.open("GET", url, true);
-		request.send(null);
-	}
-}
-
-function confirmDeleteRule(url){
+function confirmDeleteRule(ruleID){
+	var searchstring = document.getElementById("searchString").value;
 	var result = confirm("Are you sure you want to delete this rule? ");
 	if (result){
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = function() {
-			if (request.readyState == 4 && request.status == 200) {
-			   alert("Rule has been successfully deleted.");
-				openSearchPage();
-			}
-			if (request.readyState == 4 && request.status == 400) {
-			   alert("Rule deletion failed.  The url was " + url);
-			}
-		};
-		request.open("GET", url, true);
-		request.send(null);
-	}
-}
-
-function confirmDeleteRule2(url){
-	var result = confirm("Are you sure you want to delete this rule? ");
-	if (result){
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = function() {
-			if (request.readyState == 4 && request.status == 200) {
-			   alert("Rule has been successfully deleted.");
-				openRulesPage();
-			}
-			if (request.readyState == 4 && request.status == 400) {
-			   alert("Rule deletion failed.  The url was " + url);
-			}
-		};
-		request.open("GET", url, true);
-		request.send(null);
+		deleteRuleFromSearch(searchstring,ruleID);
 	}
 }
 
