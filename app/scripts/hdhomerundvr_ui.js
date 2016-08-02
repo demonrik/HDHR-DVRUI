@@ -33,6 +33,11 @@ function deleteRule(evt, rule_id, reveal) {
 	deleteRuleByID(rule_id,false);
 	hideReveal(evt, reveal);
 }
+function deleteRule2(evt, rule_id, reveal) {
+	var searchstring = document.getElementById("searchString").value;
+	deleteRuleFromSearch(searchstring,rule_id);
+	hideReveal(evt, reveal);
+}
 
 function reveal(evt, modal) {
 	document.getElementById(modal).style.display = "block";
@@ -110,14 +115,6 @@ function submitCreateRule(){
 		}
 	}
 	return false;
-}
-
-function confirmDeleteRule(ruleID){
-	var searchstring = document.getElementById("searchString").value;
-	var result = confirm("Are you sure you want to delete this rule? ");
-	if (result){
-		deleteRuleFromSearch(searchstring,ruleID);
-	}
 }
 
 function openTab(evt, tabname) {
