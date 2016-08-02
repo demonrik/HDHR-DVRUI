@@ -145,8 +145,40 @@
 					if(strlen($hdhrRules->getRuleDateTime($j)) > 5 ){
 						$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $hdhrRules->getRuleDateTime($j),$rulesEntry);
 					}
+					$revealDelID = 'RulesDel' . $hdhrRules->getRuleRecID($j);
+					$rulesEntry = str_replace('<!-- dvr_reveal_delete -->',$revealDelID,$rulesEntry);
 					$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',$hdhrRules->getRuleDateTime($j),$rulesEntry);
 					$searchEntry = str_replace('<!-- dvr_series_rule_list -->',$rulesEntry,$searchEntry);
+
+					$revealContent = file_get_contents('style/reveal_rule.html');
+					$revealContent = str_replace('<!-- dvr_rules_id -->', 'Rule ' . $j,$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_priority -->',$hdhrRules->getRulePriority($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_title -->',$hdhrRules->getRuleTitle($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_synopsis -->',$hdhrRules->getRuleSynopsis($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_startpad -->',$hdhrRules->getRuleStartPad($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_endpad -->',$hdhrRules->getRuleEndPad($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($j),$revealContent);
+					$revealContent = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($j),$revealContent);
+					if(strlen($hdhrRules->getRuleAfterAirDate($j)) > 5 ){
+						$revealContent = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($j),$revealContent);
+					}
+					if(strlen($hdhrRules->getRuleDateTime($j)) > 5 ){
+						$revealContent = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $hdhrRules->getRuleDateTime($j),$revealContent);
+					}
+
+					$revealDelTitle = 'Delete Permanently ' . $hdhrRules->getRuleTitle($j) . "?";
+					$revealDel = file_get_contents('style/reveal_2btns.html');
+					$revealDel = str_replace('<!-- drvui_reveal_title -->', $revealDelTitle ,$revealDel);
+					$revealDel = str_replace('<!-- drvui_reveal_content -->', $revealContent,$revealDel);
+					$revealDel = str_replace('<!-- dvrui_reveal -->',$revealDelID,$revealDel);
+					$revealDel = str_replace('<!-- dvr_reveal_btn1_title -->','Cancel',$revealDel);
+					$revealDel = str_replace('<!-- dvr_reveal_btn1_func -->',"hideReveal(event,'" . $revealDelID . "');" ,$revealDel);
+					$revealDel = str_replace('<!-- dvr_reveal_btn2_title -->','Delete',$revealDel);
+					$revealDel = str_replace('<!-- dvr_reveal_btn2_func -->',"deleteRule2(event, '" . $hdhrRules->getRuleRecID($j) . "','" . $revealDelID ."')",$revealDel);
+
+					$searchData .= $revealDel;
 
 				}
 			}
