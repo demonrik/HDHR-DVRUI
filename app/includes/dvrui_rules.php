@@ -216,7 +216,17 @@ class DVRUI_Rules {
 		getJsonFromUrl($deleteURL);
 
 	}
-	
+       function createRule($seriesid, $recentonly, $start, $end, $channel, $recordtime, $recordafter){
+		$createURL = $this->rulesURL . $this->auth;
+		$createURL .= "&Cmd=add&SeriesID=" . $seriesid . "&RecentOnly=" . $recentonly;
+		if(strlen($start)>1){ $createURL .= "&StartPadding=" . $start;}
+		if(strlen($end)>1){ $createURL .= "&EndPadding=" . $end;}
+		if(strlen($channel)>1){ $createURL .= "&ChannelOnly=" . $channel;}
+		if(strlen($recordtime)>1){ $createURL .= "&DateTimeOnly=" . $recordtime;}
+		if(strlen($recordafter)>1){ $createURL .= "&AfterOriginalAirdateOnly=" . $recordafter;}
+		getJsonFromUrl($createURL);
+
+	}	
 	public function getRuleDeleteURL($pos) {
 
 		//return $this->rulesURL 
