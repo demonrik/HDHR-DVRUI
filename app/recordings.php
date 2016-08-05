@@ -68,6 +68,7 @@
 		$recordingsData = '';
 		for ($i=0; $i < $numRecordings; $i++) {
 			$recordingsEntry = file_get_contents('style/recordings_entry.html');
+			$recordingsEntry = str_replace('<!-- dvr_recordings_id -->',$hdhrRecordings->getRecordingID($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_image -->',$hdhrRecordings->getRecordingImage($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_episode -->',$hdhrRecordings->getEpisodeNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_show -->',$hdhrRecordings->getEpisodeTitle($i),$recordingsEntry);
@@ -82,54 +83,15 @@
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chnumber -->',$hdhrRecordings->getChannelNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chaffiliate -->',$hdhrRecordings->getChannelAffiliate($i),$recordingsEntry);
 
-			$revealContent = file_get_contents('style/reveal_episode.html');
-			$revealContent = str_replace('<!-- dvr_recordings_image -->',$hdhrRecordings->getRecordingImage($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_episode -->',$hdhrRecordings->getEpisodeNumber($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_show -->',$hdhrRecordings->getEpisodeTitle($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_title -->',$hdhrRecordings->getTitle($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_synopsis -->',$hdhrRecordings->getSynopsis($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_recstart -->',$hdhrRecordings->getRecordStartTime($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_start -->',$hdhrRecordings->getStartTime($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_originaldate -->',$hdhrRecordings->getOriginalAirDate($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_repeat -->',$hdhrRecordings->isRepeat($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_chname -->',$hdhrRecordings->getChannelName($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_chnumber -->',$hdhrRecordings->getChannelNumber($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_recordings_chaffiliate -->',$hdhrRecordings->getChannelAffiliate($i),$revealContent);
 
-			$revealDelID = 'RulesAuth_d' . $i;
-			$recordingsEntry = str_replace('<!-- dvrui_reveal_delete -->',$revealDelID,$recordingsEntry);
-
-			$revealDelTitle = 'Delete Permanently ' . $hdhrRecordings->getTitle($i) . ' ' . $hdhrRecordings->getEpisodeNumber($i) . '?';
-			$revealDel = file_get_contents('style/reveal_2btns.html');
-			$revealDel = str_replace('<!-- drvui_reveal_title -->', $revealDelTitle ,$revealDel);
-			$revealDel = str_replace('<!-- drvui_reveal_content -->', $revealContent,$revealDel);
-			$revealDel = str_replace('<!-- dvrui_reveal -->',$revealDelID,$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn1_title -->','Cancel',$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn1_func -->',"hideReveal(event,'" . $revealDelID . "');" ,$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn2_title -->','Delete',$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn2_func -->',"deleteRecording(event, '" . $hdhrRecordings->getRecordingID($i) . "','" . $revealDelID ."')",$revealDel);
-
-			$revealReRecID = 'RulesAuth_r' . $i;
-			$recordingsEntry = str_replace('<!-- dvrui_reveal_rerecord -->', $revealReRecID, $recordingsEntry);
-
-			$revealReRecTitle = 'Delete & Rerecord ' . $hdhrRecordings->getTitle($i) . ' ' . $hdhrRecordings->getEpisodeNumber($i) . '?';
-			$revealRec = file_get_contents('style/reveal_2btns.html');
-			$revealRec = str_replace('<!-- drvui_reveal_title -->', $revealReRecTitle ,$revealRec);
-			$revealRec = str_replace('<!-- drvui_reveal_content -->', $revealContent,$revealRec);
-			$revealRec = str_replace('<!-- dvrui_reveal -->',$revealReRecID,$revealRec);
-			$revealRec = str_replace('<!-- dvr_reveal_btn1_title -->','Cancel',$revealRec);
-			$revealRec = str_replace('<!-- dvr_reveal_btn1_func -->',"hideReveal(event,'" . $revealReRecID ."');" ,$revealRec);
-			$revealRec = str_replace('<!-- dvr_reveal_btn2_title -->','ReRecord',$revealRec);
-			$revealRec = str_replace('<!-- dvr_reveal_btn2_func -->',"rerecordRecording(event, '" . $hdhrRecordings->getRecordingID($i) . "','" . $revealReRecID ."')",$revealRec);
 
 			$recordingsData .= $recordingsEntry;
-			$recordingsData .= $revealDel;
-			$recordingsData .= $revealRec;
 		}
 		$recordingsList = file_get_contents('style/recordings_list.html');
+		$revealContent = file_get_contents('style/recordingdeletereveal.html');
 		$recordingsList = str_replace('<!-- dvr_recordings_count -->','Found: ' . $numRecordings . ' Recordings<br/>',$recordingsList);
 		$recordingsList = str_replace('<!-- dvr_recordings_list -->',$recordingsData,$recordingsList);
-		
+		$recordingsList .= $revealContent;	
 		return $recordingsList;
 	}
 	

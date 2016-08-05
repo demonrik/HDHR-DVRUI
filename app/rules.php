@@ -108,7 +108,7 @@
 		for ($i=0; $i < $numRules; $i++) {
 			$reccount = $hdhrRecordings->getRecordingCountBySeries($hdhrRules->getRuleSeriesID($i));
 			$rulesEntry = file_get_contents('style/rules_entry.html');
-			$rulesEntry = str_replace('<!-- dvr_rules_id -->', 'Rule ' . $i,$rulesEntry);
+			$rulesEntry = str_replace('<!-- dvr_rules_id -->',$hdhrRules->getRuleRecID($i) ,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_priority -->',$hdhrRules->getRulePriority($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_title -->',$hdhrRules->getRuleTitle($i),$rulesEntry);
@@ -118,7 +118,6 @@
 			$rulesEntry = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_reccount -->',$reccount,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($i),$rulesEntry);
-			$rulesEntry = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($i),$rulesEntry);
 			if(strlen($hdhrRules->getRuleAfterAirDate($i)) > 5 ){
 				$rulesEntry = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($i),$rulesEntry);
 			}
@@ -126,41 +125,7 @@
 				$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $hdhrRules->getRuleDateTime($i),$rulesEntry);
 			}
 
-			$revealContent = file_get_contents('style/reveal_rule.html');
-			$revealContent = str_replace('<!-- dvr_rules_id -->', 'Rule ' . $i,$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_priority -->',$hdhrRules->getRulePriority($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_title -->',$hdhrRules->getRuleTitle($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_synopsis -->',$hdhrRules->getRuleSynopsis($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_startpad -->',$hdhrRules->getRuleStartPad($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_endpad -->',$hdhrRules->getRuleEndPad($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_reccount -->',$reccount,$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($i),$revealContent);
-			$revealContent = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($i),$revealContent);
-			if(strlen($hdhrRules->getRuleAfterAirDate($i)) > 5 ){
-				$revealContent = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($i),$revealContent);
-			}
-			if(strlen($hdhrRules->getRuleDateTime($i)) > 5 ){
-				$revealContent = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $hdhrRules->getRuleDateTime($i),$revealContent);
-			}
-
-			$revealDelID = 'RulesDel' . $i;
-			$rulesEntry = str_replace('<!-- dvrui_reveal_delete -->',$revealDelID,$rulesEntry);
-
-			$revealDelTitle = 'Delete Permanently ' . $hdhrRules->getRuleTitle($i) . "?";
-			$revealDel = file_get_contents('style/reveal_2btns.html');
-			$revealDel = str_replace('<!-- drvui_reveal_title -->', $revealDelTitle ,$revealDel);
-			$revealDel = str_replace('<!-- drvui_reveal_content -->', $revealContent,$revealDel);
-			$revealDel = str_replace('<!-- dvrui_reveal -->',$revealDelID,$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn1_title -->','Cancel',$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn1_func -->',"hideReveal(event,'" . $revealDelID . "');" ,$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn2_title -->','Delete',$revealDel);
-			$revealDel = str_replace('<!-- dvr_reveal_btn2_func -->',"deleteRule(event, '" . $hdhrRules->getRuleRecID($i) . "','" . $revealDelID ."')",$revealDel);
-
-
 			$rulesData .= $rulesEntry;
-			$rulesData .= $revealDel;
 		}
 
 		$authRevealID = 'RulesAuth';
@@ -175,6 +140,7 @@
 		$rulesList = str_replace('<!-- dvr_rules_count -->','Found: ' . $numRules . ' Rules.  ',$rulesList);
 		$rulesList = str_replace('<!-- dvr_rules_list -->',$rulesData,$rulesList);
 		$rulesList .= $authReveal;
+		$rulesList .= file_get_contents('style/ruledeletereveal.html');
 		return $rulesList;
 	}
 ?>
