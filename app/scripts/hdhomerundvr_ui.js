@@ -46,7 +46,28 @@ function reveal(evt, modal) {
 function hideReveal(evt, modal) {
 	document.getElementById(modal).style.display = 'none';
 }
-
+function RuleDeleteReveal(evt, ruleid){
+	document.getElementById("RuleDeleteDetails").innerHTML = document.getElementById(ruleid).innerHTML;
+	document.getElementById("druleid").value = ruleid;
+	reveal(evt, 'RuleDelete');
+}
+function RecordingDeleteReveal(evt, recordingid, rerecord){
+	document.getElementById("RecordingDeleteDetails").innerHTML = document.getElementById(recordingid).innerHTML;
+	document.getElementById("drecordingid").value = recordingid;
+	document.getElementById("drerecord").value = rerecord;
+	reveal(evt, 'RecordingDelete');
+}
+function submitDeleteRule(){
+	rule_id = document.getElementById("druleid").value;
+	deleteRuleByID(rule_id, false);
+	hideReveal(evt, 'RuleDelete');
+}
+function submitDeleteRecording(){
+	recording_id = document.getElementById("drecordingid").value;
+	rerecord = document.getElementById("drerecord").value;
+	deleteRecordingByID(recording_id,true);
+	hideReveal(evt, 'RecordingDelete');
+}
 function revealRuleForm(evt, modal,seriesid,seriesname){
 	reveal(evt, modal);
 	document.getElementById("seriesid").value = seriesid;
