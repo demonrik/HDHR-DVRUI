@@ -113,6 +113,7 @@
 
 		for ($i=0; $i < $numResults; $i++) {
 			$searchEntry = file_get_contents('style/search_entry.html');
+			$searchEntry = str_replace('<!-- dvr_search_seriesid -->',$hdhrSearchResults->getSearchResultSeriesID($i),$searchEntry);
 			$searchEntry = str_replace('<!-- dvr_search_image -->',$hdhrSearchResults->getSearchResultImage($i),$searchEntry);
 			$searchEntry = str_replace('<!-- dvr_search_title -->',$hdhrSearchResults->getSearchResultTitle($i),$searchEntry);
 			$searchEntry = str_replace('<!-- dvr_search_synopsis -->',$hdhrSearchResults->getSearchResultSynopsis($i),$searchEntry);
