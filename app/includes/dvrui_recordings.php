@@ -181,17 +181,40 @@ class DVRUI_Recordings {
 		}
 		return '';
 	}
+	public function sortRecordings($sortby){
+		if($sortby == "T"){
+			$this->sortRecordingsByTitle();
+		}else if($sortby == "DD"){
+			$this->sortRecordingsByDate('D');
+		}else if($sortby == "DA"){
+			$this->sortRecordingsByDate('A');
+		}else{
+			$this->sortRecordingsByDate('D');
+		}
+	}
+	public function sortRecordingsByDate($direction){
+		if($direction == "D"){
+			usort($this->recordings, function ($a, $b) {
+				if ($a[$this->recording_RecordStartTime] == $b[$this->recording_RecordStartTime]) {
+					return 0;
+				}
+				else {
+					return ($a[$this->recording_RecordStartTime] > $b[$this->recording_RecordStartTime]) ? -1 : 1;
+				}
+			});
+			return;
+		}else if($direction == "A"){
+			usort($this->recordings, function ($a, $b) {
+				if ($a[$this->recording_RecordStartTime] == $b[$this->recording_RecordStartTime]) {
+					return 0;
+				}
+				else {
+					return ($a[$this->recording_RecordStartTime] < $b[$this->recording_RecordStartTime]) ? -1 : 1;
+				}
+			});
+			return;
 
-	public function sortRecordingsByDate(){
-		usort($this->recordings, function ($a, $b) {
-			if ($a[$this->recording_RecordStartTime] == $b[$this->recording_RecordStartTime]) {
-				return 0;
-			}
-			else {
-				return ($a[$this->recording_RecordStartTime] > $b[$this->recording_RecordStartTime]) ? -1 : 1;
-			}
-		});
-		return;
+		}
 	}
 	
 	public function sortRecordingsByTitle(){
