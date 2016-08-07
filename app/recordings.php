@@ -4,6 +4,15 @@
 	require_once("statusmessage.php");
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_recordings.php");
+
+	function getSort(){
+		if(isset($_COOKIE['sortby'])){
+			$sortby = $_COOKIE['sortby'];
+		}else{
+			$sortby = "DD";
+		}
+		return $sortby;
+	}
 	
 	function openRecordingsPage() {
 		// prep
@@ -13,11 +22,10 @@
 		//create output
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
-		$hdhrRecordings->sortRecordingsByTitle();
+		$sortby = getSort();
+		$hdhrRecordings->sortRecordings($sortby);
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$htmlStr = processRecordingData($hdhrRecordings, $numRecordings);
-		echo('check'); /*
-		*/
 		//get data
 		$result = ob_get_contents();
 		ob_end_clean();
@@ -43,7 +51,7 @@
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
 		$hdhrRecordings->deleteRecording($id,$rerecord);
-		$hdhrRecordings->sortRecordingsByTitle();
+		$hdhrRecordings->sortRecordings('DD');
 
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$htmlStr = processRecordingData($hdhrRecordings, $numRecordings);
@@ -89,7 +97,7 @@
 		}
 		$recordingsList = file_get_contents('style/recordings_list.html');
 		$revealContent = file_get_contents('style/recordingdeletereveal.html');
-		$recordingsList = str_replace('<!-- dvr_recordings_count -->','Found: ' . $numRecordings . ' Recordings<br/>',$recordingsList);
+		$recordingsList = str_replace('<!-- dvr_recordings_count -->','Found: ' . $numRecordings . ' Recordings',$recordingsList);
 		$recordingsList = str_replace('<!-- dvr_recordings_list -->',$recordingsData,$recordingsList);
 		$recordingsList .= $revealContent;	
 		return $recordingsList;
