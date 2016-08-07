@@ -74,7 +74,10 @@ function revealRuleForm(evt, modal,seriesid,seriesname){
 	document.getElementById("seriesname").value = seriesname;
 	getSavedPadding();
 }
-
+function sortRecordings(sortby){
+	setCookie("sortby",sortby,3000);
+	openRecordingsPage();
+}
 function handleRecordingType(myRadio){
 	if(myRadio.value == "all"){
 		document.getElementById("recordtime").style = "display: none;";
