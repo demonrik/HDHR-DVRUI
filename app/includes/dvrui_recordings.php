@@ -21,9 +21,10 @@ class DVRUI_Recordings {
 	private $recording_RecordSuccess = 'RecordSuccess';
 	private $recording_Synopsis = 'Synopsis';
 	private $recording_Title = 'Title';
-	private $recording_DisplayGroupTitle = 'DisplayGroupTitle';
+	#private $recording_DisplayGroupTitle = 'DisplayGroupTitle';
 	private $recording_PlayURL = 'PlayURL';
 	private $recording_CmdURL = 'CmdURL';
+	private $recording_EpisodesURL = 'EpisodesURL';
 	
 	private $recording_ID = 'RecID';
 	private $recording_StorageID = 'StorageID';
@@ -43,7 +44,14 @@ class DVRUI_Recordings {
 			$storageid = "engine #" . $i . " - " . $hdhr->get_engine_storage_id($i);
 			$recordings_info = getJsonFromUrl($engine);
 			for ($j = 0; $j < count($recordings_info); $j++) {
-				$this->processRecordingData($recordings_info[$j],$storageid);
+				if(array_key_exists($this->recording_EpisodesURL,$recordings_info[$j])){
+					$seriesEpisodes = getJsonFromUrl($recordings_info[$j][$this->recording_EpisodesURL]);
+					for ($k = 0; $k < count($seriesEpisodes); $k++){
+						$this->processRecordingData($seriesEpisodes[$k],$storageid);
+					}
+				}else{
+					$this->processRecordingData($recordings_info[$j],$storageid);
+				}
 			}
 		}
 	}
@@ -51,7 +59,7 @@ class DVRUI_Recordings {
 	private function processRecordingData($recording, $storageID) {
 		$playURL = $recording[$this->recording_PlayURL];
 		$cmdURL = $recording[$this->recording_CmdURL];
-		$displayGroupTitle = $recording[$this->recording_DisplayGroupTitle];
+		#$displayGroupTitle = $recording[$this->recording_DisplayGroupTitle];
 		$category = '';
 		$channelImageURL = '';
 		$channelName = '';
@@ -134,7 +142,7 @@ class DVRUI_Recordings {
 			$this->recording_SeriesID => $seriesid,
 			$this->recording_PlayURL => $playURL,
 			$this->recording_CmdURL => $cmdURL,
-			$this->recording_DisplayGroupTitle => $displayGroupTitle,
+			#$this->recording_DisplayGroupTitle => $displayGroupTitle,
 			$this->recording_Category => $category,
 			$this->recording_ChannelImageURL => $channelImageURL,
 			$this->recording_ChannelName => $channelName,
@@ -271,9 +279,9 @@ class DVRUI_Recordings {
 		return $this->recordings[$pos][$this->recording_ID];
 	}
 
-	public function getDisplayGroupTitle($pos) {
-		return $this->recordings[$pos][$this->recording_DisplayGroupTitle];
-	}
+	#public function getDisplayGroupTitle($pos) {
+	#	return $this->recordings[$pos][$this->recording_DisplayGroupTitle];
+	#}
 
 	public function get_PlayURL($pos) {
 		return $this->recordings[$pos][$this->recording_PlayURL];
