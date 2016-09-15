@@ -37,8 +37,9 @@ class DVRUI_Search {
 
 		// when a series has more than one rule,  then the search result repeats
 		//     seems like a SD bug,  this is the work around
-		$search_info = array_values(array_unique($search_info,SORT_REGULAR));
-;
+		if(count($search_info) > 0){
+			$search_info = array_values(array_unique($search_info,SORT_REGULAR));
+		};
 		for ($i = 0; $i < count($search_info); $i++) {
 			$seriesID = $search_info[$i][$this->search_SeriesID];
 			$image = "";
