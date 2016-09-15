@@ -121,17 +121,20 @@
 			$searchEntry = str_replace('<!-- dvr_search_channelName -->',$hdhrSearchResults->getSearchResultChannelName($i),$searchEntry);
 			$searchEntry = str_replace('<!-- dvr_search_originalAirDate -->',$hdhrSearchResults->getSearchResultOriginalAirDate($i),$searchEntry);
 
-			if($hdhrSearchResults->getSearchResultRecordingRules($i) == 0){
-				$actionLinks = file_get_contents('style/series_actions.html');
-				$actionLinks = str_replace('<!-- dvr_record_recent -->',$hdhrSearchResults->getRecordRecentURL($i),$actionLinks);
-				$actionLinks = str_replace('<!-- dvr_record_all -->',$hdhrSearchResults->getRecordAllURL($i),$actionLinks);
-				$actionLinks = str_replace('<!-- dvr_series_id -->',$hdhrSearchResults->getSearchResultSeriesID($i),$actionLinks);
-				$actionLinks = str_replace('<!-- dvr_series_title -->',$hdhrSearchResults->getSearchResultTitleEscaped($i),$actionLinks);
-				$searchEntry = str_replace('<!-- dvr_series_action_links -->',$actionLinks,$searchEntry);
-			}else{
+			
+			$actionLinks = file_get_contents('style/series_actions.html');
+			$actionLinks = str_replace('<!-- dvr_record_recent -->',$hdhrSearchResults->getRecordRecentURL($i),$actionLinks);
+			$actionLinks = str_replace('<!-- dvr_record_all -->',$hdhrSearchResults->getRecordAllURL($i),$actionLinks);
+			$actionLinks = str_replace('<!-- dvr_series_id -->',$hdhrSearchResults->getSearchResultSeriesID($i),$actionLinks);
+			$actionLinks = str_replace('<!-- dvr_series_title -->',$hdhrSearchResults->getSearchResultTitleEscaped($i),$actionLinks);
+			$searchEntry = str_replace('<!-- dvr_series_action_links -->',$actionLinks,$searchEntry);
+			
+
+			if($hdhrSearchResults->getSearchResultRecordingRules($i) > 0){
 				$hdhrRules = new DVRUI_Rules($hdhr);
 				$hdhrRules->processRuleforSeries($hdhrSearchResults->getSearchResultSeriesID($i));
 				$numRules = $hdhrRules->getRuleCount();
+				$rules = "";
 	      			for ($j=0; $j < $numRules; $j++) {
 					$rulesEntry = file_get_contents('style/rules_entry_small.html');
 					$rulesEntry = str_replace('<!-- dvr_rules_priority -->',$hdhrRules->getRulePriority($j),$rulesEntry);
@@ -149,7 +152,8 @@
 					$revealDelID = 'RulesDel' . $hdhrRules->getRuleRecID($j);
 					$rulesEntry = str_replace('<!-- dvr_reveal_delete -->',$revealDelID,$rulesEntry);
 					$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',$hdhrRules->getRuleDateTime($j),$rulesEntry);
-					$searchEntry = str_replace('<!-- dvr_series_rule_list -->',$rulesEntry,$searchEntry);
+					#$searchEntry = str_replace('<!-- dvr_series_rule_list -->',$rulesEntry,$searchEntry);
+					$rules .= $rulesEntry;
 
 					$revealContent = file_get_contents('style/reveal_rule.html');
 					$revealContent = str_replace('<!-- dvr_rules_id -->', 'Rule ' . $j,$revealContent);
@@ -182,6 +186,7 @@
 					$searchData .= $revealDel;
 
 				}
+				$searchEntry = str_replace('<!-- dvr_series_rule_list -->',$rules,$searchEntry);
 			}
 			$searchData .= $searchEntry;
 		}
