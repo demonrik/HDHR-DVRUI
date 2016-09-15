@@ -39,7 +39,7 @@ class DVRUI_Search {
 		//     seems like a SD bug,  this is the work around
 		if(count($search_info) > 0){
 			$search_info = array_values(array_unique($search_info,SORT_REGULAR));
-		};
+		}
 		for ($i = 0; $i < count($search_info); $i++) {
 			$seriesID = $search_info[$i][$this->search_SeriesID];
 			$image = "";
