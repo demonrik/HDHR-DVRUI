@@ -423,12 +423,23 @@ ul.tabmenu li a:focus, a.active {
 	float:right;
 }
 
-.upcoming_entry, .search_entry, .rule_entry, .recording_entry {
+.upcoming_entry, .rule_entry, .recording_entry {
 	border-top: solid 2px @EntryBorderColor;
 	background: @EntryBackgroundColor;
 	height: 132px;
 	position: relative;
 }
+.search_entry{
+	border-top: solid 2px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 132px;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: none;
+
+}
+
+
 
 #upcoming_img, #search_img, #rule_img, #recording_img {
 	float: left;
@@ -494,18 +505,55 @@ ul.tabmenu li a:focus, a.active {
 	color: @EntryTextColor;
 	font-size: 1em;
 }
-ul.decorator   {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	border: none;
+
+
+
+/* Various buttons to add/change/delete things */
+.actions {
+	text-align: right;
+	margin: 1px;
 	position: absolute;
-	bottom: 2;
-	right: 0;
-	padding: 0px 0px 0px 200px;
-	font-size: 1em;
+	top: 2px;
+	right: 0px;
+
 }
+.inlinerules {
+	text-align: right;
+	margin-right: 30px;
+	margin-bottom: 2px;
+}
+.play, .record, .delete{
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	text-align: center;
+	border-radius: 5px 5px 5px 5px;
+	background-color: @TabMenuHighlightColor;
+	padding: 1px 1px;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+}
+.delete{
+	background-color: #FF0000;
+}
+
+
+
+
+
+
+
+
+
+a:hover {
+	cursor:pointer;
+}
+
+
+
+
+
 ul.sortby   {
 	list-style-type: none;
 	margin: 0;
@@ -519,54 +567,17 @@ ul.sortby   {
 	align: right;
 
 }
-ul.decorator li  {
-	float: left;
-	margin: 0px 5px;
-}
 ul.sortby li  {
 	float: left;
 	margin: 0px 5px;
 }
-ul.decorator li a{
-	display: inline-block;
-	color: @DecoratorDefaultTextColor;
-	background-color: @DecoratorDefaultBackgroundColor;
-	text-align: center;
-	padding: 2px 5px;
-	text-decoration: none;
-	transition: 0.1s;
-	border: none;
-}
 ul.sortby li a{
 	display: inline-block;
 	color: @DecoratorDefaultTextColor;
-	background-color: @DecoratorDefaultBackgroundColor;
 	text-align: center;
-	padding: 1px 1px;
 	text-decoration: none;
 	transition: 0.1s;
 	border: none;
-
-}
-ul.decorator li a:hover, ul.sortby li a:hover {
-	cursor:pointer;
-}
-
-ul.decorator li.info p {
-	background-color: @TabMenuHighlightColor;
-	color: #FFFFFF;
-	font-size: 1em;
-}
-ul.decorator li.delete a {
-	font-size: 14px;
-	border-radius: 5px 5px 5px 5px;
-	background-color: #FF0000;
-	padding: 2px 2px;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: bold;
-}
-ul.sortby li a {
 	font-size: 10px;
 	border-radius: 2px 2px 2px 2px;
 	background-color: @TabMenuHighlightColor;
@@ -575,19 +586,10 @@ ul.sortby li a {
 	font-weight: normal;
 }
 
-ul.decorator li.play a, ul.decorator li.record a {
-	font-size: 14px;
-	border-radius: 5px 5px 5px 5px;
-	background-color: @TabMenuHighlightColor;
-	padding: 2px 2px;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: bold;
-}
 
-ul.decorator li.delete a:hover {
-	cursor:pointer;
-}
+
+
+
 
 /* Auth Reveal Button */
 #AuthReveal {

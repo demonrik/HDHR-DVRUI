@@ -1,6 +1,6 @@
 <div id='<!-- dvr_recordings_id -->' class='recording_entry'>
 	<img src='<!-- dvr_recordings_image -->' id='recording_img'/>
-	<span id ='recording_info'>
+	<span class='recordings_info'>
 	<h4><!-- dvr_recordings_title --></h4>
 	</span>
 	<p id='recording_show'><!-- dvr_recordings_episode --> : <!-- dvr_recordings_show --></p>
@@ -11,9 +11,10 @@
 		Aired At: <!-- dvr_recordings_start --><br/>
 		Recording Started: <!-- dvr_recordings_recstart --><br/>
 		</p>
-	<ul class="decorator">
-		<li class='play'><a href="<!-- dvr_recordings_play -->">Play</a></li>
-		<li class='delete'><a onClick="RecordingDeleteReveal(event,'<!-- dvr_recordings_id -->',false);">Delete</a></li>
-		<li class='delete'><a onClick="RecordingDeleteReveal(event,'<!-- dvr_recordings_id -->',true);">ReRecord</a></li>
-	</ul>
+	<p class="actions">
+		<a href="<!-- dvr_recordings_play -->" class="play">Play</a>
+		<a onClick="RecordingDeleteReveal(event,'<!-- dvr_recordings_id -->',false);" class="delete">Delete</a>
+		<a onClick="RecordingDeleteReveal(event,'<!-- dvr_recordings_id -->',true);" class="delete">ReRecord</a>
+	
+	</p>
 </div>
