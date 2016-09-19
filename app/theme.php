@@ -4,6 +4,15 @@
 	require_once("tools/lessc.inc.php");
 	require_once("includes/Mobile_Detect.php");
 
+	function getThemeName(){
+		if(isset($_COOKIE['theme'])){
+			$theme = $_COOKIE['theme'];
+		}else{
+			$theme = "default";
+		}
+		return $theme;
+	}
+
 	function applyDefaultTheme() {
 		$less = new lessc();
 		try {
@@ -17,11 +26,13 @@
 	function getTheme() {
 		$detect = new Mobile_Detect;
 		applyDefaultTheme();
+		
+		$theme = getThemeName();
 
 		if ($detect->isMobile() && !$detect->isTablet()) {
-			return "themes/default/m_style.css";
+			return "themes/$theme/m_style.css";
 		}else{	
-			return "themes/default/style.css";
+			return "themes/$theme/style.css";
 		}
 	}
 ?>
