@@ -35,7 +35,7 @@
 	$ajax->process(); // Process our callback
 
 	// Apply default Theme */
-	applyDefaultTheme();
+	$stylesheet = getTheme();
 	
 	// Prep data for the page
 	$statusmsg = getLatestHDHRStatus();
@@ -60,6 +60,7 @@
 	// --- include header ---
 	$header = file_get_contents('style/header.html');
 	$pagecontent = str_replace('[[pagetitle]]',$pageName,$header);
+	$pagecontent = str_replace('<!-- stylesheet -->',$stylesheet,$pagecontent);
 	$pagecontent = str_replace('<!-- tinyAjax -->',$ajax->drawJavaScript(false, true),$pagecontent);
 
 	// --- Build Body ---
