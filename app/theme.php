@@ -13,11 +13,11 @@
 		return $theme;
 	}
 
-	function applyDefaultTheme() {
+	function compileTheme($theme) {
 		$less = new lessc();
 		try {
-			$less->checkedCompile("./themes/default/main.less","./themes/default/style.css");
-			$less->checkedCompile("./themes/default/m_main.less","./themes/default/m_style.css");
+			$less->checkedCompile("./themes/$theme/main.less","./themes/$theme/style.css");
+			$less->checkedCompile("./themes/$theme/m_main.less","./themes/$theme/m_style.css");
 		} catch (exception $e) {
 			echo ($e->getMessage());
 		}
@@ -25,10 +25,8 @@
 
 	function getTheme() {
 		$detect = new Mobile_Detect;
-		applyDefaultTheme();
-		
 		$theme = getThemeName();
-
+		compileTheme($theme);
 		if ($detect->isMobile() && !$detect->isTablet()) {
 			return "themes/$theme/m_style.css";
 		}else{	
