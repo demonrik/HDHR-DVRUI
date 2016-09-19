@@ -7,8 +7,8 @@
 	function applyDefaultTheme() {
 		$less = new lessc();
 		try {
-			$less->checkedCompile("./style/main.less","./style/style.css");
-			$less->checkedCompile("./style/m_main.less","./style/m_style.css");
+			$less->checkedCompile("./themes/default/main.less","./themes/default/style.css");
+			$less->checkedCompile("./themes/default/m_main.less","./themes/default/m_style.css");
 		} catch (exception $e) {
 			echo ($e->getMessage());
 		}
@@ -18,10 +18,10 @@
 		$detect = new Mobile_Detect;
 		applyDefaultTheme();
 
-		if ($detect->isMobile()) {
-			return "style/m_style.css";
+		if ($detect->isMobile() && !$detect->isTablet()) {
+			return "themes/default/m_style.css";
 		}else{	
-			return "style/style.css";
+			return "themes/default/style.css";
 		}
 	}
 ?>
