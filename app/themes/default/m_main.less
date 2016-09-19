@@ -73,7 +73,7 @@ button.submit:active {
 
 #header {
 	background: #FFFFFF;
-	height: 60px;
+	height: 120px;
 	position: relative;
 	padding: 5px;
 	border-top: solid 3px #393;
@@ -94,8 +94,8 @@ button.submit:active {
 
 #logo h1 {
 	top: 5px;
-	font-size: 2em;
-	color: #000000;
+	font-size: 4em;
+	color: red;
 	text-shadow: 0 4px 4px #000000;
 	bottom: 5px;
 }
@@ -219,13 +219,11 @@ img.aligntop {
 	min-width: 1080px;
 }
 
-.updatebutton {
+#updateButton {
 	background: @UpdateButtonBackgroundColor;
-	background-size: cover;
-	width: 150px;
-	height: 20px;
 	color: @UpdateButtonTextColor;
 	border: 0px;
+	font-size: 2em;
 }
 
 #hdhr_content {
@@ -404,7 +402,7 @@ ul.tabmenu li a {
 	padding: 5px 20px 5px 20px;
 	text-decoration: none;
 	transition: 0.1s;
-	font-size: 1em;
+	font-size: 2.5em;
 }
 
 ul.tabmenu li a:hover {
@@ -426,21 +424,23 @@ ul.tabmenu li a:focus, a.active {
 .upcoming_entry, .rule_entry, .recording_entry {
 	border-top: solid 2px @EntryBorderColor;
 	background: @EntryBackgroundColor;
-	height: 132px;
+	height: 450px;
 	position: relative;
 }
 .search_entry{
 	border-top: solid 2px @EntryBorderColor;
 	background: @EntryBackgroundColor;
-	height: 132px;
+	height: 500px;
 	position: relative;
 	overflow-y: auto;
 	overflow-x: none;
 
 }
 
+#searchString {
+	font-size:3em;
 
-
+}
 #upcoming_img, #search_img, #rule_img, #recording_img {
 	float: left;
 	height: 132px;
@@ -455,8 +455,13 @@ ul.tabmenu li a:focus, a.active {
 
 .upcoming_entry h4, .search_entry h4, .rule_entry h4, .recording_entry h4 {
 	color: @EntryTextColor;
-	font-size: 1em;
+	font-size: 2.5em;
+	width: 700px;
+	padding: 5px;
 }
+.search_entry h4{
+	padding-top: 70px;
+}	
 
 .upcoming, .search , .recordings, .rules {
 	color: @EntryTextColor;
@@ -465,7 +470,7 @@ ul.tabmenu li a:focus, a.active {
 .upcoming_entry p , .search_entry p, .recording_entry p, .rule_entry p {
 	font-style: italic;
 	color: @EntryTextColor;
-	font-size: 0.75em;
+	font-size: 2em;
 }
 
 #hdhr_entry {
@@ -529,7 +534,7 @@ ul.tabmenu li a:focus, a.active {
 	border-radius: 5px 5px 5px 5px;
 	background-color: @TabMenuHighlightColor;
 	padding: 1px 1px;
-	font-size: 12px;
+	font-size: 1.5em;
 	font-style: normal;
 	font-weight: bold;
 	text-decoration: none;
@@ -551,7 +556,10 @@ a:hover {
 }
 
 
-
+#listheader{
+	font-size: 2.5em;
+	height: 50px;
+}	
 
 
 ul.sortby   {
@@ -563,9 +571,7 @@ ul.sortby   {
 	top: 0px;
 	right: 0px;
 	padding: 1px 1px 1px 1px;
-	font-size: 0.70em;
 	align: right;
-
 }
 ul.sortby li  {
 	float: left;
@@ -578,7 +584,6 @@ ul.sortby li a{
 	text-decoration: none;
 	transition: 0.1s;
 	border: none;
-	font-size: 10px;
 	border-radius: 2px 2px 2px 2px;
 	background-color: @TabMenuHighlightColor;
 	padding: 2px 2px;
@@ -698,5 +703,6 @@ ul.modal_decorator li a:hover {
 
 ul.modal_decorator li.info p, ul.modal_decorator li.play a, ul.modal_decorator li.record a {
 	background-color: @DecoratorBackgroundColor;
+	font-size: 1.5em;
 }
 
