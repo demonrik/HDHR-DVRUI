@@ -57,6 +57,9 @@ button.submit:active {
   -ms-box-shadow: 0 0 10px 5px #356b0b inset;
   -o-box-shadow: 0 0 10px 5px #356b0b inset;
 }
+button {
+  font-size: 3em;
+}
 #footer {
   clear: both;
   margin: 20px 0 20px 0;
@@ -543,14 +546,14 @@ ul.sortby li a {
 }
 .revealModal-content {
   background-color: #EEE;
-  width: 80%;
-  min-height: 162px;
-  padding: 20px;
+  width: 90%;
+  min-height: 700px;
+  padding: 10px;
   margin: auto;
 }
 .revealModal-header {
-  width: 80%;
-  padding: 20px;
+  width: 90%;
+  padding: 10px;
   margin: auto;
   background-color: #000000;
   color: white;
@@ -560,12 +563,12 @@ ul.sortby li a {
   color: white;
 }
 .revealModal-footer {
-  width: 80%;
-  padding: 15px 20px;
+  width: 90%;
+  padding: 10px;
   margin: auto;
   background-color: #EEE;
   color: black;
-  height: 15px;
+  height: 50px;
   border-radius: 0 0 20px 20px;
 }
 .revealClose {
@@ -586,7 +589,7 @@ ul.modal_decorator {
 }
 ul.modal_decorator li {
   float: left;
-  margin: 0px 10px;
+  margin: -30px 10px;
 }
 ul.modal_decorator li p {
   display: inline-block;
@@ -607,6 +610,7 @@ ul.modal_decorator li a {
   text-decoration: none;
   transition: 0.1s;
   border: none;
+  font-size: 3em;
 }
 ul.modal_decorator li a:hover {
   cursor: pointer;
@@ -616,4 +620,7 @@ ul.modal_decorator li.play a,
 ul.modal_decorator li.record a {
   background-color: ;
   font-size: 1.5em;
+}
+#loading {
+  font-size: 2em;
 }
