@@ -57,9 +57,6 @@ button.submit:active {
   -ms-box-shadow: 0 0 10px 5px #356b0b inset;
   -o-box-shadow: 0 0 10px 5px #356b0b inset;
 }
-button {
-  font-size: 3em;
-}
 #footer {
   clear: both;
   margin: 20px 0 20px 0;
@@ -111,6 +108,7 @@ a {
 }
 a:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 html {
   background: #777;
@@ -185,9 +183,6 @@ img.aligntop {
   min-width: 800px;
   display: block;
   background-color: #FFFFFF;
-}
-#search_prompt {
-  padding: 10px 10px 10px 10px;
 }
 .box {
   overflow: hidden;
@@ -348,17 +343,17 @@ ul.tabmenu li a {
   display: inline-block;
   color: white;
   text-align: center;
-  padding: 5px 20px 5px 20px;
+  padding: 15px 20px 15px 20px;
   text-decoration: none;
   transition: 0.1s;
-  font-size: 2.5em;
+  font-size: 2.75em;
 }
 ul.tabmenu li a:hover {
   background-color: #393;
 }
 ul.tabmenu li a:focus,
 a.active {
-  border-bottom: solid 4px #393;
+  border-bottom: solid 12px #393;
   background-color: #000000;
 }
 .tabcontent {
@@ -385,9 +380,6 @@ a.active {
   position: relative;
   overflow-y: auto;
   overflow-x: none;
-}
-#searchString {
-  font-size: 3em;
 }
 #upcoming_img,
 #search_img,
@@ -434,12 +426,13 @@ a.active {
 #hdhr_entry {
   border-top: solid 1px #393;
   background: #DDDDDD;
-  height: 130px;
+  height: 200px;
 }
 #hdhr_img {
   display: block;
   margin: 0 auto;
-  width: 176px;
+  height: 200px;
+  width: 350px;
 }
 #hdhr_img_cnt {
   vertical-align: middle;
@@ -455,12 +448,12 @@ a.active {
 }
 .hdhr_entry h4 {
   color: #000000;
-  font-size: 1.25em;
+  font-size: 2em;
 }
 .hdhr_entry p {
   font-style: italic;
   color: #000000;
-  font-size: 1em;
+  font-size: 1.5em;
 }
 .actions {
   text-align: right;
@@ -491,12 +484,13 @@ a.active {
 .delete {
   background-color: #FF0000;
 }
-a:hover {
-  cursor: pointer;
-}
 #listheader {
   font-size: 2.5em;
-  height: 50px;
+  padding: 20px;
+}
+#searchheader {
+  font-size: 3.5em;
+  padding: 20px;
 }
 ul.sortby {
   list-style-type: none;
@@ -504,9 +498,8 @@ ul.sortby {
   overflow: hidden;
   border: none;
   position: absolute;
-  top: 0px;
+  top: 5px;
   right: 0px;
-  padding: 1px 1px 1px 1px;
   align: right;
 }
 ul.sortby li {
@@ -550,6 +543,7 @@ ul.sortby li a {
   min-height: 700px;
   padding: 10px;
   margin: auto;
+  font-size: 2em;
 }
 .revealModal-header {
   width: 90%;
@@ -561,6 +555,7 @@ ul.sortby li a {
 }
 .revealModal-header h4 {
   color: white;
+  font-size: 2em;
 }
 .revealModal-footer {
   width: 90%;
@@ -582,6 +577,9 @@ ul.sortby li a {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+.AdvancedInput {
+  font-size: 1.5em;
 }
 ul.modal_decorator {
   list-style-type: none;
