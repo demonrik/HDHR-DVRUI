@@ -115,6 +115,8 @@ html {
 body,
 input {
   font-family: Arial, sans-serif;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 br.clearfix {
   clear: both;
