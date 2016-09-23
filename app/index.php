@@ -1,7 +1,7 @@
 <?php
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
 	define('TINYAJAX_PATH', '.');
-	//opcache_reset();
+	// opcache_reset();
 	require_once("TinyAjax.php");
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
@@ -65,17 +65,18 @@
 
 	// --- Build Body ---
 	$indexPage = file_get_contents('style/index_page.html');
-	$topmenu = file_get_contents('style/topmenu.html');
+
+
+
 	$rulesdata = file_get_contents('style/rules.html');
 	$recordingsdata = file_get_contents('style/recordings.html');
 	$hdhrdata = file_get_contents('style/hdhr.html');
 	$updata = file_get_contents('style/upcoming.html');
 	$searchdata = file_get_contents('style/search.html');
 
-	$topmenu = str_replace('[[pagetitle]]',$pageName,$topmenu);
-	$topmenu = str_replace('[[UI-Version]]',$UIVersion,$topmenu);
+	$indexPage = str_replace('[[pagetitle]]',$pageName,$indexPage);
+	$indexPage = str_replace('[[UI-Version]]',$UIVersion,$indexPage);
 
-	$indexPage = str_replace('<!-- dvrui_topmenu -->',$topmenu,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_pagemenu -->',$menu_data,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_ruleslist -->',$rulesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_recordingslist -->',$recordingsdata,$indexPage);
