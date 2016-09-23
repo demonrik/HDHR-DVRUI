@@ -1,3 +1,4 @@
+/* global stuff ------------------------------------------------------------------ */
 * {
   margin: 0;
   padding: 0;
@@ -38,7 +39,7 @@ br.clearfix {
   color: #000000;
   font-size: 1em;
 }
-.series_img {
+#series_img {
   float: left;
   height: 132px;
   width: 176px;
@@ -46,6 +47,7 @@ br.clearfix {
 #loading {
   z-index: 101;
 }
+/* Page Header --------------------------------------------------------------------- */
 #header {
   background: #FFFFFF;
   display: block;
@@ -76,6 +78,7 @@ br.clearfix {
 .tabcontent {
   display: none;
 }
+/* Menu --------------------------------------------------------------------------- */
 ul.tabmenu {
   list-style-type: none;
   margin-top: 60px;
@@ -105,6 +108,7 @@ a.active {
   border-bottom: solid 4px #393;
   background-color: #000000;
 }
+/* Start Page ------------------------------------------------------------------------- */
 #start_page {
   position: relative;
   padding: 0;
@@ -117,6 +121,7 @@ a.active {
 #start_content {
   width: 100%;
 }
+/* HDHR Tab ------------------------------------------------------------------------- */
 #hdhr_page {
   position: relative;
   padding: 0;
@@ -163,6 +168,7 @@ a.active {
   color: #000000;
   font-size: 1em;
 }
+/* Rules Tab -----------------------------------------------------------------------  */
 #rules_page {
   position: relative;
   padding: 0;
@@ -190,6 +196,11 @@ a.active {
   height: 132px;
   position: relative;
 }
+#rule_img {
+  float: left;
+  height: 132px;
+  width: 176px;
+}
 .rule_entry h4 {
   color: #000000;
   font-size: 1em;
@@ -199,6 +210,7 @@ a.active {
   color: #000000;
   font-size: 0.75em;
 }
+/* Recordings Tab ----------------------------------------------------------------- */
 #recordings_page {
   position: relative;
   padding: 0;
@@ -225,6 +237,11 @@ a.active {
   background: #DDDDDD;
   height: 132px;
   position: relative;
+}
+#recording_img {
+  float: left;
+  height: 132px;
+  width: 176px;
 }
 .recording_entry h4 {
   color: #000000;
@@ -265,6 +282,7 @@ ul.sortby li a {
   font-style: normal;
   font-weight: normal;
 }
+/* Upcoming Tab -------------------------------------------------------------------- */
 #upcoming_page {
   position: relative;
   padding: 0;
@@ -292,6 +310,11 @@ ul.sortby li a {
   height: 132px;
   position: relative;
 }
+#upcoming_img {
+  float: left;
+  height: 132px;
+  width: 176px;
+}
 .upcoming_entry h4 {
   color: #000000;
   font-size: 1em;
@@ -301,6 +324,7 @@ ul.sortby li a {
   color: #000000;
   font-size: 0.75em;
 }
+/* Search Tab ---------------------------------------------------------------------- */
 #search_page {
   position: relative;
   padding: 0;
@@ -329,6 +353,11 @@ ul.sortby li a {
   position: relative;
   overflow-y: auto;
 }
+#search_img {
+  float: left;
+  height: 132px;
+  width: 176px;
+}
 .search_entry h4 {
   color: #000000;
   font-size: 1em;
@@ -338,6 +367,7 @@ ul.sortby li a {
   color: #000000;
   font-size: 0.75em;
 }
+/* Advanced Rule Modal Dialog ------------------------------------------------------*/
 .edit_form ul {
   list-style-type: none;
   list-style-position: outside;
@@ -359,6 +389,7 @@ ul.sortby li a {
 .edit_form input {
   padding: 0px;
 }
+/* Various buttons to add/change/delete things --------------------------------------------*/
 .actions {
   text-align: right;
   margin: 1px;
@@ -388,17 +419,21 @@ ul.sortby li a {
 .delete {
   background-color: #FF0000;
 }
+/* Auth Reveal Button */
 #AuthReveal {
   color: white;
   background-color: orange;
 }
+/* Reveal Modal Dialog*/
 .revealModal {
   display: none;
   position: fixed;
   z-index: 1;
+  /* Bring to top */
   background-color: #000000;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   padding-top: 15%;
+  /* Offset from the top */
   color: black;
   left: 0;
   top: 0;
@@ -477,3 +512,5 @@ ul.modal_decorator li a {
   transition: 0.1s;
   border: none;
 }
+
+/*# sourceMappingURL=main.css.map */

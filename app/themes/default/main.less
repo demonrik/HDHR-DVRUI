@@ -1,88 +1,75 @@
 @import "colors.less";
-.edit_form ul {
-	list-style-type:none;
-	list-style-position:outside;
-	margin: 0px;
-	padding: 0px;
+
+
+/* global stuff ------------------------------------------------------------------ */
+
+* {
+	margin: 0;
+	padding: 0;
 }
-.edit_form li{
-	padding: 0px;
-	position: relative;
-}
-.edit_form label{
-	width: 200px;
-	height: 30px;
-	display: inline-block;
-	text-align: right;
-	font-size: 1em;
-	padding: 5px;
-}
-.edit_form input{
-	padding: 0px;
-}
-button.submit {
-	background-color: #68b12f;
-	background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
-	background: -webkit-linear-gradient(top, #68b12f, #50911e);
-	background: -moz-linear-gradient(top, #68b12f, #50911e);
-	background: -ms-linear-gradient(top, #68b12f, #50911e);
-	background: -o-linear-gradient(top, #68b12f, #50911e);
-	background: linear-gradient(top, #68b12f, #50911e);
-	border: 1px solid #509111;
-	border-bottom: 1px solid #5b992b;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-ms-border-radius: 3px;
-	-o-border-radius: 3px;
-	box-shadow: inset 0 1px 0 0 #9fd574;
-	-webkit-box-shadow: 0 1px 0 0 #9fd574 inset ;
-	-moz-box-shadow: 0 1px 0 0 #9fd574 inset;
-	-ms-box-shadow: 0 1px 0 0 #9fd574 inset;
-	-o-box-shadow: 0 1px 0 0 #9fd574 inset;
-	color: white;
-	font-weight: bold;
-	padding: 6px 20px;
-	text-align: center;
-	text-shadow: 0 -1px 0 #396715;
-}
-button.submit:hover {
-	opacity:.85;
-	cursor: pointer; 
-}
-button.submit:active {
-	border: 1px solid #20911e;
-	box-shadow: 0 0 10px 5px #356b0b inset; 
-	-webkit-box-shadow:0 0 10px 5px #356b0b inset ;
-	-moz-box-shadow: 0 0 10px 5px #356b0b inset;
-	-ms-box-shadow: 0 0 10px 5px #356b0b inset;
-	-o-box-shadow: 0 0 10px 5px #356b0b inset;
-	
-}
-#footer {
-	clear: both;
-	margin: 20px 0 20px 0;
-	text-align: center;
-	color: #626E7F;
-	text-shadow: 0 1px 0 #FFFFFF;
+html {
+	background: @BodyBackgroundColor;
 }
 
-#footer a {
-	color: #626E7F;
+body {
+	font-family: Arial, sans-serif;
 }
+a:hover {
+	cursor:pointer;
+}
+br.clearfix {
+	clear: both;
+}
+
+#page {
+	position: relative;
+	padding: 0;
+	width: 100%;
+	border: none;
+	display: hidden;
+	background-color: #FFFFFF;
+	margin-top: 95px;
+}
+.entry {
+	border-top: solid 2px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 132px;
+	position: relative;
+}
+.entry-p{
+    font-style: italic;
+	color: @EntryTextColor;
+	font-size: 0.75em;
+}
+.entry-h4{
+	color: @EntryTextColor;
+	font-size: 1em;
+}   
+.series_img{
+	float: left;
+	height: 132px;
+	width: 176px;
+}	
+#loading{
+ z-index: 101;
+}  
+
+
+/* Page Header --------------------------------------------------------------------- */
 
 #header {
 	background: #FFFFFF;
-	height: 60px;
-	position: relative;
-	padding: 5px;
-	border-top: solid 3px #393;
-}
-#toppage {
-	padding: 0px 0px 0px 0px;
+	display: block;
+	position: fixed;
+	top: 0;
+	margin: auto;
+	border-top: solid 3px #393;	
+	width: 100%;
+	z-index: 100;
 }
 #logo {
 	height: 65px;
+	width: 100%;
 	position: absolute;
 	left: 20px;
 }
@@ -99,300 +86,20 @@ button.submit:active {
 	text-shadow: 0 4px 4px #000000;
 	bottom: 5px;
 }
-
-#logo p {
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	font-size: 0.75em;
-}
-
-
-/* BELOW HERE IS IN USE */
-* {
-	margin: 0;
-	padding: 0;
-}
-
-a {
-	color: #1D68AB;
-	text-decoration: underline;
-}
-
-a:hover {
-	text-decoration: none;
-}
-
-html {
-	background: @BodyBackgroundColor;
-}
-
-body,input {
-	font-family: Arial, sans-serif;
-	
-	overflow-x: auto;
-	overflow-y: hidden;
-}
-
-br.clearfix {
-	clear: both;
-}
-
-strong {
-	color: #333333;
-}
-
-h1,h2,h3 {
-	text-shadow: 0 2px 0 #888888;
-}
-
-h2 {
-	font-size: 2.25em;
-}
-
-h2,h3,h4 {
-	color: #001739;
-}
-
-h3 {
-	font-size: 1.5em;
-}
-
-h4 {
-	font-size: 1.25em;
-}
-
-img.alignleft {
-	margin: 5px 20px 20px 0;
-	float: left;
-}
-img.aligntop {
-	margin: 5px 0 20px 0;
-}
-
-#page {
-	position: relative;
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-}
-
-
-#upcoming_page, #search_page, #recordings_page, #rules_page {
-	position: relative;
-	padding: 0;
-	width: 100%;
-	border: none;
-	display: hidden;
-	background-color: #FFFFFF;
-}
-
-#hdhr_page {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	min-width: 800px;
-	display: hidden;
-	background-color: #FFFFFF;
-}
-
-#start_page {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	min-width: 800px;
-	display: block;
-	background-color: #FFFFFF;
-}
-#search_prompt{
-	padding: 10px 10px 10px 10px;
-}
-
-.box {
-	overflow: hidden;
-	margin: 0 0 0 0;
-}
-
-#wrapper {
-	position: relative;
-	margin: 0 auto 0 auto;
-	padding: 10px 0 0 0;
-	width: 90%;
-	min-width: 1080px;
-}
-
-.updatebutton {
-	background: @UpdateButtonBackgroundColor;
-	background-size: cover;
-	width: 150px;
-	height: 20px;
-	color: @UpdateButtonTextColor;
-	border: 0px;
-}
-
-#hdhr_content {
-	width: 100%;
-	height: 100%;
-}
-
-#search_content {
-	width: 100%;
-	height: 100%;
-}
-
-#rules_content {
-	width: 100%;
-	height: 100%;
-}
-
-#start_content {
-	width: 100%;
-	height: 100%;
-}
-
-#server_content {
-	width: 100%;
-	height: 100%;
-}
-
-#recordings_content {
-	width: 100%;
-	height: 100%;
-}
-
-#upcoming_content {
-	width: 100%;
-	height: 100%;
-}
-
-#search_box {
-	height:100%;
-	width:100%;
-}
-
-#search_list_box {
-	height:100%;
-	width:100%;
-	padding-bottom: 20px; /* Needs to be size of statusbar */
-	overflow-x: scroll;
-	overflow-y: scroll;
-}
-
-#search_list_box::-webkit-scrollbar {
+.tabcontent {
 	display: none;
 }
 
-#rules_box {
-	height:100%;
-	width:100%;
-}
-
-#rules_info {
-	height:100%;
-	width:100%;
-}
-
-#rules_list_box {
-	height:100%;
-	width:100%;
-	padding-bottom: 20px; /* Needs to be size of statusbar */
-	overflow-x: scroll;
-	overflow-y: scroll;
-}
-
-#rules_list_box::-webkit-scrollbar {
-	display: none;
-}
-
-#recordings_box {
-	height:100%;
-	width:100%;
-}
-
-#recordings_info {
-	height:100%;
-	width:100%;
-}
-
-#recordings_list_box {
-	height:100%;
-	width:100%;
-	padding-bottom: 20px; /* Needs to be size of statusbar */
-	overflow-x: scroll;
-	overflow-y: scroll;
-}
-
-#recordings_list_box::-webkit-scrollbar {
-	display: none;
-}
-
-#upcoming_box {
-	height:100%;
-	width:100%;
-}
-
-#upcoming_info {
-	height:100%;
-	width:100%;
-}
-
-#upcoming_list_box {
-	height:100%;
-	width:100%;
-	padding-bottom: 20px; /* Needs to be size of statusbar */
-	overflow-x: scroll;
-	overflow-y: scroll;
-}
-
-#upcoming_list_box::-webkit-scrollbar {
-	display: none;
-}
-
-#hdhr_box {
-	height:100%;
-	width:100%;
-	padding-bottom: 20px; /* Needs to be size of statusbar */
-	overflow-x: auto;
-	overflow-y: auto;
-}
-
-#hdhr_box::-webkit-scrollbar {
-	display: none;
-}
-
-
-#search_count {
-	font-size: 0.75em;
-	font-weight: bold;
-	background-color: #FFFFFF;
-	color: #000000;
-	height: 20px;
-	vertical-align: middle;
-}
-	
-
-#statusMessage {
-	background: @StatusBackgroundColor;
-	position: fixed;
-	bottom: 0px;
-	width: 100%;
-	color: @StatusTextColor;
-	text-align: center;
-	overflow-y: auto;
-	overflow-x: none;
-	max-height: 200px;
-	min-height: 20px;
-}
-
+/* Menu --------------------------------------------------------------------------- */
 
 ul.tabmenu {
 	list-style-type: none;
-	margin: 0;
+	margin-top: 60px;
 	padding: 0;
 	overflow: hidden;
 	border: none;
 	background-color: #000000;
+	
 }
 
 ul.tabmenu li {
@@ -418,69 +125,34 @@ ul.tabmenu li a:focus, a.active {
 	background-color: #000000;
 }
 
-.tabcontent {
-	display: none;
+
+
+
+/* Start Page ------------------------------------------------------------------------- */
+#start_page {
+	#page;
 }
 
-#rules_tools, #recordings_tools, #upcoming_tools, #search_tools {
-	float:right;
+#start_content {
+	width: 100%;
 }
 
-.upcoming_entry, .rule_entry, .recording_entry {
-	border-top: solid 2px @EntryBorderColor;
-	background: @EntryBackgroundColor;
-	height: 132px;
-	position: relative;
-}
-.search_entry{
-	border-top: solid 2px @EntryBorderColor;
-	background: @EntryBackgroundColor;
-	height: 132px;
-	position: relative;
-	overflow-y: auto;
-	overflow-x: none;
+/* HDHR Tab ------------------------------------------------------------------------- */
 
+#hdhr_page {
+	#page;
+}
+#hdhr_content {
+	width: 100%;
+}
+#hdhr_box {
+	width:100%;
 }
 
-
-
-#upcoming_img, #search_img, #rule_img, #recording_img {
-	float: left;
-	height: 132px;
-	width: 176px;
-}
-
-#upcoming_select, #search_select, #rule_select, #recordings_select {
-	height: 20px;
-	width: 20px;
-	float: right;
-}
-
-.upcoming_entry h4, .search_entry h4, .rule_entry h4, .recording_entry h4 {
-	color: @EntryTextColor;
-	font-size: 1em;
-}
-
-.upcoming, .search , .recordings, .rules {
-	color: @EntryTextColor;
-}
-
-.upcoming_entry p , .search_entry p, .recording_entry p, .rule_entry p {
-	font-style: italic;
-	color: @EntryTextColor;
-	font-size: 0.75em;
-}
-
-#hdhr_entry {
-	border-top: solid 1px @EntryBorderColor;
-	background: @EntryBackgroundColor;
-	height: 130px;
-}
 
 #hdhr_img {
 	display: block;
 	margin: 0 auto;
-	//height: 60px;
 	width: 176px;
 }
 
@@ -498,6 +170,12 @@ ul.tabmenu li a:focus, a.active {
 	display: table;
 }
 
+#hdhr_entry {
+	border-top: solid 1px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 130px;
+}
+
 .hdhr_entry h4 {
 	color: @EntryTextColor;
 	font-size: 1.25em;
@@ -511,14 +189,184 @@ ul.tabmenu li a:focus, a.active {
 
 
 
-/* Various buttons to add/change/delete things */
+
+/* Rules Tab -----------------------------------------------------------------------  */
+
+#rules_page {
+	#page;
+}
+#rules_content {
+	width: 100%;
+}
+#rules_box {
+	width:100%;
+}
+#rules_info {
+	width:100%;
+}
+#rules_list_box {
+	width:100%;
+}
+.rule_entry {
+	.entry;
+}
+.rule_entry h4 {
+    .entry-h4;	
+}
+
+.rule_entry p {
+    .entry-p;
+}
+
+
+/* Recordings Tab ----------------------------------------------------------------- */
+
+#recordings_page {
+	#page;
+}
+#recordings_content {
+	width: 100%;
+}
+#recordings_box {
+	width:100%;
+}
+#recordings_info {
+	width:100%;
+}
+#recordings_list_box {
+	width:100%;
+}
+.recording_entry {
+	.entry;
+}
+.recording_entry h4 {
+    .entry-h4;	
+}
+.recording_entry p {
+    .entry-p;
+}
+
+
+ul.sortby  {
+	list-style-type: none;
+	margin: 0;
+	overflow: hidden;
+	border: none;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 1px 1px 1px 1px;
+	font-size: 0.70em;
+	align: right;
+}
+ul.sortby li  {
+	float: left;
+	margin: 0px 5px;
+}
+ul.sortby li a{
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+	font-size: 10px;
+	border-radius: 2px 2px 2px 2px;
+	background-color: @TabMenuHighlightColor;
+	padding: 2px 2px;
+	font-style: normal;
+	font-weight: normal;
+}
+
+
+/* Upcoming Tab -------------------------------------------------------------------- */
+
+#upcoming_page {
+	#page;
+}
+#upcoming_content {
+	width: 100%;
+}
+#upcoming_box {
+	width:100%;
+}
+#upcoming_info {
+	width:100%;
+}
+#upcoming_list_box {
+	width:100%;
+}
+.upcoming_entry {
+	.entry;
+}
+.upcoming_entry h4 {
+    .entry-h4;	
+}
+.upcoming_entry p {
+    .entry-p;
+}
+
+
+/* Search Tab ---------------------------------------------------------------------- */
+
+#search_page {
+	#page;
+}
+#search_content {
+	width: 100%;
+}
+#search_prompt{
+	padding: 10px 10px 10px 10px;
+}
+#search_box {
+	width:100%;
+}
+#search_list_box {
+	width:100%;
+}
+.search_entry{
+	.entry;
+	overflow-y: auto;
+}
+.search_entry h4 {
+    .entry-h4;	
+}
+.search_entry p{
+    .entry-p;
+}
+
+/* Advanced Rule Modal Dialog ------------------------------------------------------*/
+
+.edit_form ul {
+	list-style-type:none;
+	list-style-position:outside;
+	margin: 0px;
+	padding: 0px;
+}
+.edit_form li{
+	padding: 0px;
+	position: relative;
+}
+.edit_form label{
+	width: 200px;
+	height: 30px;
+	display: inline-block;
+	text-align: right;
+	font-size: 1em;
+	padding: 5px;
+}
+.edit_form input{
+	padding: 0px;
+}
+
+
+/* Various buttons to add/change/delete things --------------------------------------------*/
 .actions {
 	text-align: right;
 	margin: 1px;
 	position: absolute;
 	top: 2px;
 	right: 0px;
-
 }
 .inlinerules {
 	text-align: right;
@@ -542,58 +390,6 @@ ul.tabmenu li a:focus, a.active {
 }
 
 
-
-
-
-
-
-
-
-a:hover {
-	cursor:pointer;
-}
-
-
-
-
-
-ul.sortby   {
-	list-style-type: none;
-	margin: 0;
-	overflow: hidden;
-	border: none;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	padding: 1px 1px 1px 1px;
-	font-size: 0.70em;
-	align: right;
-
-}
-ul.sortby li  {
-	float: left;
-	margin: 0px 5px;
-}
-ul.sortby li a{
-	display: inline-block;
-	color: @DecoratorDefaultTextColor;
-	text-align: center;
-	text-decoration: none;
-	transition: 0.1s;
-	border: none;
-	font-size: 10px;
-	border-radius: 2px 2px 2px 2px;
-	background-color: @TabMenuHighlightColor;
-	padding: 2px 2px;
-	font-style: normal;
-	font-weight: normal;
-}
-
-
-
-
-
-
 /* Auth Reveal Button */
 #AuthReveal {
 	color: white;
@@ -606,8 +402,8 @@ ul.sortby li a{
 	position: fixed;
 	z-index: 1; /* Bring to top */
 	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0,0.4);
-	padding-top: 10%; /* Offset from the top */
+	background-color: rgba(0,0,0,0.8);
+	padding-top: 15%; /* Offset from the top */
 	color: black;
 	left: 0;
 	top: 0;
@@ -615,7 +411,6 @@ ul.sortby li a{
 	width: 100%;
 	overflow: auto;
 }
-
 .revealModal-content {
 	background-color: @RevealFooterBackgroundColor;
 	width: 80%;
@@ -623,21 +418,20 @@ ul.sortby li a{
 	padding: 20px;
 	margin: auto;
 }
-
 .revealModal-header {
 	width: 80%;
 	padding: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	margin: auto;
 	background-color: @RevealHeaderBackgroundColor;
 	color: @RevealHeaderColor;
-	border 1px solid #888;
+	border:1px solid #888;
 	border-radius: 20px 20px 0 0;
 }
-
 .revealModal-header h4 {
 	color: @RevealHeaderColor;
 }
-
 .revealModal-footer {
 	width: 80%;
 	padding: 15px 20px;
@@ -645,34 +439,28 @@ ul.sortby li a{
 	background-color: @RevealFooterBackgroundColor;
 	color: @RevealFooterColor;
 	height: 15px;
-	border 1px solid #888;
+	border: 1px solid #888;
 	border-radius: 0 0 20px 20px;
 }
-
-
 .revealClose {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
 }
-
 .revealClose:hover, .revealClose:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
 }
-
 ul.modal_decorator {
 	list-style-type: none;
 	float: right;
 }
-
 ul.modal_decorator li {
 	float: left;
 	margin: 0px 10px;
 }
-
 ul.modal_decorator li p {
 	display: inline-block;
 	color: @DecoratorDefaultTextColor;
@@ -683,7 +471,6 @@ ul.modal_decorator li p {
 	transition: 0.1s;
 	border: none;
 }
-
 ul.modal_decorator li a  {
 	display: inline-block;
 	color: @DecoratorDefaultTextColor;
@@ -695,11 +482,4 @@ ul.modal_decorator li a  {
 	border: none;
 }
 
-ul.modal_decorator li a:hover {
-	cursor:pointer;
-}
-
-ul.modal_decorator li.info p, ul.modal_decorator li.play a, ul.modal_decorator li.record a {
-	background-color: @DecoratorBackgroundColor;
-}
 
