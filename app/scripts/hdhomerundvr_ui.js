@@ -76,8 +76,22 @@ function revealRuleForm(evt, modal,seriesid,seriesname){
 }
 function sortRecordings(sortby){
 	setCookie("sortby",sortby,3000);
-	openRecordingsPage();
+	openRecordingsPage("");
 }
+function selectSeries(seriesID){
+	document.getElementById("series_page").style.display = "none";	
+	openRecordingsPage(seriesID);
+	document.getElementById("recordings_page").style.display = "block";
+
+}
+function selectRule(seriesID){
+	document.getElementById("series_page").style.display = "none";	
+	openRulesPage(seriesID);
+	document.getElementById("rules_page").style.display = "block";
+
+}
+
+
 function handleRecordingType(myRadio){
 	if(myRadio.value == "all"){
 		document.getElementById("recordtime").style = "display: none;";
@@ -104,7 +118,7 @@ function submitCreateRule(){
 	var pstart = document.getElementById("paddingstart").value;
 	var pend = document.getElementById("paddingend").value;
 	var channel = document.getElementById("channel").value;
-	var recordtime = document.getElementById("recordtime").value;
+	var recordtime = document.getElementpageById("recordtime").value;
 	var recordafter = document.getElementById("recordafter").value;
 	var radios = document.getElementsByName('recordtype');
 	var recentonly = "";
@@ -156,11 +170,14 @@ function openTab(evt, tabname) {
 	}
 	
 	// load the page
+	if (tabname == 'series_page') {
+		openSeriesPage("");
+	}
 	if (tabname == 'recordings_page') {
-		openRecordingsPage();
+		openRecordingsPage("");
 	}
 	if (tabname == 'rules_page') {
-		openRulesPage();
+		openRulesPage("");
 	}
 	if (tabname == 'search_page') {
 		openSearchPage();
