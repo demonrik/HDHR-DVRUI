@@ -55,6 +55,11 @@ input {
 	height: 132px;
 	width: 176px;
 }	
+.series_img_lrg{
+	float: left;
+	height: 194px;
+	width: 264px;
+}
 #loading{
  z-index: 101;
  font-size: 2em;
@@ -234,6 +239,32 @@ ul.tabmenu li a:focus, a.active {
     .entry-p;
 }
 
+/* Series Tab ----------------------------------------------------------------- */
+
+#series_page {
+	#page;
+}
+#series_content {
+	width: 100%;
+}
+#series_box {
+	width:100%;
+}
+#series_info {
+	width:100%;
+}
+#series_list_box {
+	width:100%;
+}
+.series_entry {
+	width: 264px;
+	height: 210px;
+	border: solid 2px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	margin: 10px;
+	display:inline-block;
+	font-size: 0.75em;
+}
 
 /* Recordings Tab ----------------------------------------------------------------- */
 
@@ -405,7 +436,7 @@ button{
 	margin-right: 30px;
 	margin-bottom: 2px;
 }
-.play, .record, .delete{
+.play, .record, .delete,  .RecCountButton, .RuleCountButton{
 	display: inline-block;
 	color: @DecoratorDefaultTextColor;
 	text-align: center;
@@ -422,6 +453,24 @@ button{
 	background-color: #FF0000;
 }
 
+.RecCountButton{
+	position: relative;
+	font-size: 14px;
+	top: -30px;
+	margin: 5px;
+	z-index: 99;
+	padding: 3px;
+}	
+.RuleCountButton{
+	background-color: #FF0000;
+	float: right;
+	position: relative;
+	font-size: 14px;
+	margin: 5px;
+	top: -30px;
+	z-index: 99;
+	padding: 3px;
+}
 
 /* Auth Reveal Button */
 #AuthReveal {

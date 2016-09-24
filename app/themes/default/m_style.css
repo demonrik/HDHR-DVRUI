@@ -48,6 +48,11 @@ input {
   height: 132px;
   width: 176px;
 }
+.series_img_lrg {
+  float: left;
+  height: 194px;
+  width: 264px;
+}
 #loading {
   z-index: 101;
   font-size: 2em;
@@ -214,6 +219,36 @@ a.active {
 .rule_entry p {
   font-style: italic;
   color: #000000;
+}
+#series_page {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  border: none;
+  display: hidden;
+  background-color: #FFFFFF;
+  margin-top: 215px;
+}
+#series_content {
+  width: 100%;
+}
+#series_box {
+  width: 100%;
+}
+#series_info {
+  width: 100%;
+}
+#series_list_box {
+  width: 100%;
+}
+.series_entry {
+  width: 264px;
+  height: 210px;
+  border: solid 2px #393;
+  background: #DDDDDD;
+  margin: 10px;
+  display: inline-block;
+  font-size: 0.75em;
 }
 #recordings_page {
   position: relative;
@@ -411,7 +446,9 @@ button {
 }
 .play,
 .record,
-.delete {
+.delete,
+.RecCountButton,
+.RuleCountButton {
   display: inline-block;
   color: white;
   text-align: center;
@@ -426,6 +463,24 @@ button {
 }
 .delete {
   background-color: #FF0000;
+}
+.RecCountButton {
+  position: relative;
+  font-size: 14px;
+  top: -30px;
+  margin: 5px;
+  z-index: 99;
+  padding: 3px;
+}
+.RuleCountButton {
+  background-color: #FF0000;
+  float: right;
+  position: relative;
+  font-size: 14px;
+  margin: 5px;
+  top: -30px;
+  z-index: 99;
+  padding: 3px;
 }
 #AuthReveal {
   color: white;
