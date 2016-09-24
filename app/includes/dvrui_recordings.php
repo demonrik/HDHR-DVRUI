@@ -37,6 +37,9 @@ class DVRUI_Recordings {
 	
 
 	public function DVRUI_Recordings($hdhr) {
+	}	
+
+	public function processAllRecordings($hdhr) {
 		DVRUI_setTZ();
 		$engineCount = $hdhr->engine_count();
 		for ($i=0; $i < $engineCount; $i++) {
@@ -44,18 +47,41 @@ class DVRUI_Recordings {
 			$storageid = "engine #" . $i . " - " . $hdhr->get_engine_storage_id($i);
 			$recordings_info = getJsonFromUrl($engine);
 			for ($j = 0; $j < count($recordings_info); $j++) {
-				if(array_key_exists($this->recording_EpisodesURL,$recordings_info[$j])){
-					$seriesEpisodes = getJsonFromUrl($recordings_info[$j][$this->recording_EpisodesURL]);
-					for ($k = 0; $k < count($seriesEpisodes); $k++){
-						$this->processRecordingData($seriesEpisodes[$k],$storageid);
-					}
-				}else{
-					$this->processRecordingData($recordings_info[$j],$storageid);
-				}
+				$this->processRecordingData($recordings_info[$j],$storageid);
 			}
 		}
 	}
-	
+
+        public function processSeriesRecordings($hdhr, $seriesID) {
+		DVRUI_setTZ();
+		$engineCount = $hdhr->engine_count();
+		for ($i=0; $i < $engineCount; $i++) {
+			$engine = $hdhr->get_engine_storage_url($i) . "?SeriesID=" . $seriesID;
+			$storageid = "engine #" . $i . " - " . $hdhr->get_engine_storage_id($i);
+			$recordings_info = getJsonFromUrl($engine);
+			for ($j = 0; $j < count($recordings_info); $j++) {
+				$this->processRecordingData($recordings_info[$j],$storageid);
+			}
+		}
+	}
+
+        public function processSeriesList($hdhr, $categories) {
+		DVRUI_setTZ();
+		if(strlen($categories) < 3){
+			$categories = "root";
+		}	
+		$engineCount = $hdhr->engine_count();
+		for ($i=0; $i < $engineCount; $i++) {
+			$engine = $hdhr->get_engine_storage_url($i) . "?DisplayGroupID=" . $categories;
+			$storageid = "engine #" . $i . " - " . $hdhr->get_engine_storage_id($i);
+			$recordings_info = getJsonFromUrl($engine);
+			for ($j = 0; $j < count($recordings_info); $j++) {
+				$this->processRecordingData($recordings_info[$j],$storageid);
+			}
+		}
+	}
+
+
 	private function processRecordingData($recording, $storageID) {
 		$playURL = $recording[$this->recording_PlayURL];
 		$cmdURL = $recording[$this->recording_CmdURL];
@@ -264,6 +290,10 @@ class DVRUI_Recordings {
 			}
 		}
 		return $count;
+	}
+
+	public function getSeriesID($pos) {
+		return $this->recordings[$pos][$this->recording_SeriesID];
 	}
 
 	public function getEngineID($pos) {

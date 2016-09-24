@@ -140,7 +140,15 @@ class DVRUI_Rules {
 				$this->recording_Recent => $recentOnly,
 				$this->recording_Airdate => $airdate);
 	}
-	
+	public function getRuleCountBySeries($ID) {
+		$count = 0;
+		foreach($this->rules as $rule){
+			if($rule[$this->recording_SeriesID] == $ID){
+				++$count;
+			}
+		}
+		return $count;
+	}
 	public function getRuleCount() {
 		return count($this->rules);
 	}
