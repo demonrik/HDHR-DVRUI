@@ -14,7 +14,7 @@
 		return $sortby;
 	}
 	
-	function openRecordingsPage() {
+	function openRecordingsPage($seriesid) {
 		// prep
 		ob_start();
 		$tab = new TinyAjaxBehavior();
@@ -22,6 +22,11 @@
 		//create output
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
+		if(strlen($seriesid) > 3){
+			$hdhrRecordings->processSeriesRecordings($hdhr, $seriesid);
+		}else{
+			$hdhrRecordings->processAllRecordings($hdhr);
+		}		
 		$sortby = getSort();
 		$hdhrRecordings->sortRecordings($sortby);
 		$numRecordings = $hdhrRecordings->getRecordingCount();
@@ -51,6 +56,11 @@
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
 		$hdhrRecordings->deleteRecording($id,$rerecord);
+		if(strlen($seriesid) > 3){
+			$hdhrRecordings->processSeriesRecordings($hdhr, $seriesid);
+		}else{
+			$hdhrRecordings->processAllRecordings($hdhr);
+		}
 		$hdhrRecordings->sortRecordings('DD');
 
 		$numRecordings = $hdhrRecordings->getRecordingCount();
@@ -77,6 +87,7 @@
 		for ($i=0; $i < $numRecordings; $i++) {
 			$recordingsEntry = file_get_contents('style/recordings_entry.html');
 			$recordingsEntry = str_replace('<!-- dvr_recordings_id -->',$hdhrRecordings->getRecordingID($i),$recordingsEntry);
+			$recordingsEntry = str_replace('<!-- dvr_series_id -->',$hdhrRecordings->getSeriesID($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_image -->',$hdhrRecordings->getRecordingImage($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_episode -->',$hdhrRecordings->getEpisodeNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_show -->',$hdhrRecordings->getEpisodeTitle($i),$recordingsEntry);

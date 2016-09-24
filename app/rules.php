@@ -6,13 +6,13 @@
 	require_once("includes/dvrui_rules.php");
 	require_once("includes/dvrui_recordings.php");
 	
-	function openRulesPage() {
+	function openRulesPage($seriesid) {
 		// prep
 		ob_start();
 		$tab = new TinyAjaxBehavior();
 
 		//create output
-		$htmlStr = getRecordingRules();
+		$htmlStr = getRecordingRules($seriesid);
 
 		//get data
 		$result = ob_get_contents();
@@ -47,7 +47,7 @@
 		}
 
 		//create output
-		$htmlStr = getRecordingRules();
+		$htmlStr = getRecordingRules("");
 
 		//get data	
 		$result = ob_get_contents();
@@ -77,7 +77,7 @@
 		}
 
 		//create output
-		$htmlStr = getRecordingRules();
+		$htmlStr = getRecordingRules("");
 
 		//get data	
 		$result = ob_get_contents();
@@ -95,14 +95,19 @@
 		return $tab->getString();
 	} 
 
-	function getRecordingRules() {
+	function getRecordingRules($seriesid) {
 		$rulesStr = '';
 		
 		// Discover Recording Rules
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRules = new DVRUI_Rules($hdhr);
 		$hdhrRecordings = new DVRUI_Recordings($hdhr);
-		$hdhrRules->processAllRules();
+		if(strlen($seriesid) > 3){
+			$hdhrRules->processRuleforSeries($seriesid);
+		}else{	
+			$hdhrRules->processAllRules();
+		}	
+		$hdhrRecordings->processAllRecordings($hdhr);
 		$numRules = $hdhrRules->getRuleCount();
 		$rulesData = '';
 		for ($i=0; $i < $numRules; $i++) {

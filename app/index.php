@@ -1,13 +1,14 @@
 <?php
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
 	define('TINYAJAX_PATH', '.');
-	// opcache_reset();
+	//opcache_reset();
 	require_once("TinyAjax.php");
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
 	require_once("statusmessage.php");
 	require_once("rules.php");
 	require_once("recordings.php");
+	require_once("series.php");
 	require_once("hdhr.php");
 	require_once("theme.php");
 	require_once("upcoming.php");
@@ -19,8 +20,9 @@
 	$ajax->showLoading();             // Show loading while callback is in progress
 	
 	/* Export the PHP Interface */
-	$ajax->exportFunction("openRulesPage","");
-	$ajax->exportFunction("openRecordingsPage","");
+	$ajax->exportFunction("openSeriesPage","");
+	$ajax->exportFunction("openRulesPage","seriesid");
+	$ajax->exportFunction("openRecordingsPage","seriesid");
 	$ajax->exportFunction("openHDHRPage","");
 	$ajax->exportFunction("openServerPage","");
 	$ajax->exportFunction("openSearchPage","searchString");
@@ -41,8 +43,8 @@
 	$statusmsg = getLatestHDHRStatus();
 
 	//Build navigation menu for pages
-	$pageTitles = array('HDHRs', 'Rules', 'Recordings', 'Upcoming', 'Search');
-	$pageNames = array('hdhr_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page');
+	$pageTitles = array('Series','Rules', 'Recordings', 'Upcoming', 'Search');
+	$pageNames = array('series_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page');
 	$menu_data = file_get_contents('style/pagemenu.html');
 	$menuEntries = '';
 	for ($i=0; $i < count($pageNames); $i++) {
@@ -70,6 +72,7 @@
 
 	$rulesdata = file_get_contents('style/rules.html');
 	$recordingsdata = file_get_contents('style/recordings.html');
+	$seriesdata = file_get_contents('style/series.html');
 	$hdhrdata = file_get_contents('style/hdhr.html');
 	$updata = file_get_contents('style/upcoming.html');
 	$searchdata = file_get_contents('style/search.html');
@@ -78,6 +81,7 @@
 	$indexPage = str_replace('[[UI-Version]]',$UIVersion,$indexPage);
 
 	$indexPage = str_replace('<!-- dvrui_pagemenu -->',$menu_data,$indexPage);
+	$indexPage = str_replace('<!-- dvrui_serieslist -->',$seriesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_ruleslist -->',$rulesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_recordingslist -->',$recordingsdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_hdhrlist -->',$hdhrdata,$indexPage);
