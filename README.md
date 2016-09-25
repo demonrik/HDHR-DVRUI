@@ -1,7 +1,7 @@
 # *HDHR-DVRUI*
 PHP Server Application for managing your home networks HDHomeRun DVR(s) from SiliconDust
 
-Release binaries are [here](https://github.com/demonrik/HDHR-DVRUI/releases)
+**Release binaries are [here](https://github.com/demonrik/HDHR-DVRUI/releases)**
 
 This project is a spin off of the contributions made to the QNAP installer package for Silicondust DVR located at [dvr_install](https://github.com/Silicondust/dvr_install)
 These contributions were from both [demonrik](https://github.com/demonrik) and [avandeputte](https://github.com/avandeputte)
