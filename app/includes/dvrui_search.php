@@ -122,7 +122,7 @@ class DVRUI_Search {
 		if($this->searchResults[$pos][$this->search_OriginalAirDate] == 0){
 			return "N/A";
 		}else{
-			return date("m/d/Y",$this->searchResults[$pos][$this->search_OriginalAirDate]);
+			return gmdate("m/d/Y",$this->searchResults[$pos][$this->search_OriginalAirDate]);
 		}
 	}
 	public function getSearchResultRecordingRules($pos) {
