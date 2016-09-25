@@ -1,0 +1,28 @@
+HDHR_QPKG_NAME="HDHR-DVRUI"
+HDHR_QPKG_PATH=$SYS_QPKG_DIR
+HDHR_PATH=$SYS_QPKG_DIR/HDHR-DVRUI
+HDHR_UI_PATH=$HDHR_QPKG_PATH/app
+HDHR_LOG_PREFIX="$HDHR_QPKG_NAME:"
+
+
+
+PKG_MAIN_REMOVE="{
+	if [ -e $SYS_WEB_PATH/HDHR-DVRUI ]; then
+		$CMD_RM $SYS_WEB_PATH/HDHR-DVRUI
+	fi
+}"
+
+######################################################################
+pkg_install(){
+	log "$HDHR_LOG_PREFIX Linking the Web UI"
+	if [ ! -e $SYS_WEB_PATH/HDHR-DVRUI ] ; then
+		log "$HDHR_LOG_PREFIX Creating New Web Link"
+		$CMD_LN -s $HDHR_UI_PATH $SYS_WEB_PATH/HDHR-DVRUI
+	else
+		log "$HDHR_LOG_PREFIX Removing Old Web Link"
+		$CMD_RM $SYS_WEB_PATH/HDHR-DVRUI
+		log "$HDHR_LOG_PREFIX Creating New Web Link"
+		$CMD_LN -s $HDHR_UI_PATH $SYS_WEB_PATH/HDHR-DVRUI
+	fi
+}
+
