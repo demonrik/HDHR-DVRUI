@@ -27,7 +27,7 @@
 	$ajax->exportFunction("openServerPage","");
 	$ajax->exportFunction("openSearchPage","searchString");
 	$ajax->exportFunction("openUpcomingPage","");
-	$ajax->exportFunction("deleteRecordingByID","id, rerecord");
+	$ajax->exportFunction("deleteRecordingByID","id, rerecord, seriesid");
 	$ajax->exportFunction("deleteRuleByID","id");
 	$ajax->exportFunction("deleteRuleFromSearch","searchstring, id");
 	$ajax->exportFunction("createQuickRuleFromSearch","searchString, seriesid, recentonly");
