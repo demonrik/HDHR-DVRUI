@@ -41,6 +41,7 @@ class DVRUI_Recordings {
 
 	public function processAllRecordings($hdhr) {
 		DVRUI_setTZ();
+		unset($recordings_info);
 		$engineCount = $hdhr->engine_count();
 		for ($i=0; $i < $engineCount; $i++) {
 			$engine = $hdhr->get_engine_storage_url($i);
@@ -54,6 +55,7 @@ class DVRUI_Recordings {
 
         public function processSeriesRecordings($hdhr, $seriesID) {
 		DVRUI_setTZ();
+		unset($recordings_info);
 		$engineCount = $hdhr->engine_count();
 		for ($i=0; $i < $engineCount; $i++) {
 			$engine = $hdhr->get_engine_storage_url($i) . "?SeriesID=" . $seriesID;
