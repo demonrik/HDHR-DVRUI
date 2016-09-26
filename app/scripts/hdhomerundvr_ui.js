@@ -65,7 +65,8 @@ function submitDeleteRule(){
 function submitDeleteRecording(){
 	recording_id = document.getElementById("drecordingid").value;
 	rerecord = document.getElementById("drerecord").value;
-	deleteRecordingByID(recording_id,true);
+	seriesid = document.getElementById("seriesid").value;
+	deleteRecordingByID(recording_id,rerecord,seriesid);
 	hideReveal(evt, 'RecordingDelete');
 }
 function revealRuleForm(evt, modal,seriesid,seriesname){
