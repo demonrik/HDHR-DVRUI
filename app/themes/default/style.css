@@ -97,10 +97,11 @@ ul.tabmenu li a {
   display: inline-block;
   color: white;
   text-align: center;
-  padding: 5px 20px 5px 20px;
+  padding: 5px 40px 5px 25px;
   text-decoration: none;
   transition: 0.1s;
   font-size: 1em;
+  border-bottom: solid 4px #000000;
 }
 ul.tabmenu li a:hover {
   background-color: #393;
@@ -112,6 +113,30 @@ a.active {
 }
 a.search_page {
   background-image: url("search.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+a.recordings_page {
+  background-image: url("recordings.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+a.rules_page {
+  background-image: url("rules.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+a.series_page {
+  background-image: url("home.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+a.upcoming_page {
+  background-image: url("upcoming.png");
   background-size: 18px;
   background-repeat: no-repeat;
   background-position: left center;
