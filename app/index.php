@@ -43,8 +43,8 @@
 	$statusmsg = getLatestHDHRStatus();
 
 	//Build navigation menu for pages
-	$pageTitles = array('Series','Rules', 'Recordings', 'Upcoming', 'Search');
-	$pageNames = array('series_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page');
+	$pageTitles = array('Series','Rules', 'Recordings', 'Upcoming', 'Search','.');
+	$pageNames = array('series_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page', 'hdhr_page');
 	$menu_data = file_get_contents('style/pagemenu.html');
 	$menuEntries = '';
 	for ($i=0; $i < count($pageNames); $i++) {
