@@ -110,6 +110,24 @@ a.active {
   border-bottom: solid 4px #393;
   background-color: #000000;
 }
+a.search_page {
+  background-image: url("search.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+li.hdhr_page {
+  position: absolute;
+  right: 0;
+}
+a.hdhr_page {
+  text-color: #000000;
+  padding: 5px 5px 5px 5px;
+  background-image: url("gear.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 #start_page {
   position: relative;
   padding: 0;
