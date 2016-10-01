@@ -119,7 +119,7 @@ function submitCreateRule(){
 	var pstart = document.getElementById("paddingstart").value;
 	var pend = document.getElementById("paddingend").value;
 	var channel = document.getElementById("channel").value;
-	var recordtime = document.getElementpageById("recordtime").value;
+	var recordtime = document.getElementById("recordtime").value;
 	var recordafter = document.getElementById("recordafter").value;
 	var radios = document.getElementsByName('recordtype');
 	var recentonly = "";
