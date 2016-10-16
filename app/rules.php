@@ -18,15 +18,9 @@
 		$result = ob_get_contents();
 		ob_end_clean();
 
-		// get latest status	
-		$statusmsg = getLatestHDHRStatus();
-	
 		//display
 		$tab->add(TabInnerHtml::getBehavior("rules_box", $htmlStr));
-		if ($result != '' && $result != NULL)
-			$tab->add(TabInnerHtml::getBehavior("statusMessage", $result));
-		else
-			$tab->add(TabInnerHtml::getBehavior("statusMessage", $statusmsg));
+
 		return $tab->getString();
 	}
 
@@ -52,16 +46,9 @@
 		//get data	
 		$result = ob_get_contents();
 		ob_end_clean();
-	
-		// get latest status	
-		$statusmsg = getLatestHDHRStatus();
-	
+
 		//display
 		$tab->add(TabInnerHtml::getBehavior("rules_box", $htmlStr));
-		if ($result != '' && $result != NULL)
-			$tab->add(TabInnerHtml::getBehavior("statusMessage", $result));
-		else
-			$tab->add(TabInnerHtml::getBehavior("statusMessage", $statusmsg));
 		return $tab->getString();
 	}
 
@@ -83,15 +70,8 @@
 		$result = ob_get_contents();
 		ob_end_clean();
 	
-		// get latest status	
-		$statusmsg = getLatestHDHRStatus();
-	
 		//display
 		$tab->add(TabInnerHtml::getBehavior("rules_box", $htmlStr));
-		if ($result != '' && $result != NULL)
-			$tab->add(TabInnerHtml::getBehavior("statusMessage", $result));
-		else
-			$tab->add(TabInnerHtml::getBehavior("statusMessage", $statusmsg));
 		return $tab->getString();
 	} 
 

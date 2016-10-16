@@ -1,7 +1,7 @@
 <?php
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
 	define('TINYAJAX_PATH', '.');
-	//opcache_reset();
+	opcache_reset();
 	require_once("TinyAjax.php");
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
@@ -39,9 +39,6 @@
 	// Apply default Theme */
 	$stylesheet = getTheme();
 	
-	// Prep data for the page
-	$statusmsg = getLatestHDHRStatus();
-
 	//Build navigation menu for pages
 	$pageTitles = array('Series','Rules', 'Recordings', 'Upcoming', 'Search','.');
 	$pageNames = array('series_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page', 'hdhr_page');
@@ -67,8 +64,6 @@
 
 	// --- Build Body ---
 	$indexPage = file_get_contents('style/index_page.html');
-
-
 
 	$rulesdata = file_get_contents('style/rules.html');
 	$recordingsdata = file_get_contents('style/recordings.html');

@@ -20,6 +20,8 @@ class DVRUI_HDHRjson {
 	private $hdhrkey_storageID = 'StorageID';
 	private $hdhrkey_storageURL = 'StorageURL';
 
+	private $hdhrkey_legacy = 'Legacy';
+
 	private $hdhrlist = array();
 	private $enginelist = array();
 	private $hdhrlist_key_channelcount = 'ChannelCount';
@@ -42,6 +44,16 @@ class DVRUI_HDHRjson {
 
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
+
+				// Need to confirm it's a valid one - After restart of
+				// engine it updates my.hdhomerun.com but sometimes the
+				// old engine config is left behind.
+				$rEngine = getJsonFromUrl($hdhr[$this->hdhrkey_discoverURL]);
+				if (strcmp($rEngine[$this->hdhrkey_storageID],$hdhr[$this->hdhrkey_storageID]) != 0) {
+					//skip, this is not a valid engine
+					continue;
+				}
+				
 				$this->storageURL = $hdhr[$this->hdhrkey_storageURL];
 				$this->enginelist[] = array ($this->hdhrkey_storageID => $hdhr[$this->hdhrkey_storageID],
 									$this->hdhrkey_modelName => $hdhr_info[$this->hdhrkey_modelName],
@@ -54,31 +66,31 @@ class DVRUI_HDHRjson {
 
 				continue;
 			}
+			// ELSE we have a truner
 		
-			$hdhr_lineup = getJsonFromUrl($hdhr[$this->hdhrkey_lineupURL]);	
-		
+			$tuners='unknown';
 			if (array_key_exists($this->hdhrkey_tuners,$hdhr_info)) {
-				$this->hdhrlist[] = array( $this->hdhrkey_devID => $hdhr[$this->hdhrkey_devID],
-											$this->hdhrkey_modelNum => $hdhr_info[$this->hdhrkey_modelNum],
-											$this->hdhrlist_key_channelcount => count($hdhr_lineup),
-											$this->hdhrkey_baseURL => $hdhr_base,
-											$this->hdhrkey_lineupURL => $hdhr[$this->hdhrkey_lineupURL],
-											$this->hdhrkey_modelName =>$hdhr_info[$this->hdhrkey_modelName],
-											$this->hdhrkey_auth =>$hdhr_info[$this->hdhrkey_auth],
-											$this->hdhrkey_fwVer => $hdhr_info[$this->hdhrkey_fwVer],
-											$this->hdhrkey_tuners => $hdhr_info[$this->hdhrkey_tuners],
-											$this->hdhrkey_fwName => $hdhr_info[$this->hdhrkey_fwName]);
-			} else {
-				$this->hdhrlist[] = array( $this->hdhrkey_devID => $hdhr[$this->hdhrkey_devID],
-											$this->hdhrkey_modelNum => $hdhr_info[$this->hdhrkey_modelNum],
-											$this->hdhrlist_key_channelcount => count($hdhr_lineup),
-											$this->hdhrkey_baseURL => $hdhr_base,
-											$this->hdhrkey_lineupURL => $hdhr[$this->hdhrkey_lineupURL],
-											$this->hdhrkey_modelName =>$hdhr_info[$this->hdhrkey_modelName],
-											$this->hdhrkey_auth =>$hdhr_info[$this->hdhrkey_auth],
-											$this->hdhrkey_fwVer => $hdhr_info[$this->hdhrkey_fwVer],
-											$this->hdhrkey_fwName => $hdhr_info[$this->hdhrkey_fwName]);
+				$tuners = $hdhr_info[$this->hdhrkey_tuners];
 			}
+
+			$legacy='No';
+			if (array_key_exists($this->hdhrkey_legacy,$hdhr_info)) {
+				$legacy = $hdhr_info[$this->hdhrkey_legacy];
+			}
+
+			$hdhr_lineup = getJsonFromUrl($hdhr_info[$this->hdhrkey_lineupURL]);	
+
+			$this->hdhrlist[] = array( $this->hdhrkey_devID => $hdhr[$this->hdhrkey_devID],
+										$this->hdhrkey_modelNum => $hdhr_info[$this->hdhrkey_modelNum],
+										$this->hdhrlist_key_channelcount => count($hdhr_lineup),
+										$this->hdhrkey_baseURL => $hdhr_base,
+										$this->hdhrkey_lineupURL => $hdhr_info[$this->hdhrkey_lineupURL],
+										$this->hdhrkey_modelName => $hdhr_info[$this->hdhrkey_modelName],
+										$this->hdhrkey_auth =>$hdhr_info[$this->hdhrkey_auth],
+										$this->hdhrkey_fwVer => $hdhr_info[$this->hdhrkey_fwVer],
+										$this->hdhrkey_tuners => $tuners,
+										$this->hdhrkey_legacy => $legacy,
+										$this->hdhrkey_fwName => $hdhr_info[$this->hdhrkey_fwName]);
 		}
 	}
 	
@@ -182,6 +194,16 @@ class DVRUI_HDHRjson {
 		}
 	}
 
+	public function get_device_legacy($pos) {
+		$device = $this->hdhrlist[$pos];
+		if( $device[$this->hdhrkey_legacy] == 1) {
+			return 'Legacy';
+		}
+		else {
+			return 'HTTP';
+		}
+	}
+
 	public function get_device_auth($pos) {
 		$device = $this->hdhrlist[$pos];
 		if (array_key_exists($this->hdhrkey_auth,$device)) {
@@ -197,19 +219,18 @@ class DVRUI_HDHRjson {
 			case 'HDTC-2US':
 				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/extend-logo-2.png';
 			case 'HDHR3-CC':
-			case 'HDHR3-6CC-3X2':
 				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/prime-logo-2.png';
 			case 'HDHR3-EU':
 			case 'HDHR3-4DC':
 				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/expand-logo-2.png';
 			case 'HDHR3-US':
 			case 'HDHR3-DT':
-				return './images/notsupported.png';
+				return './images/HDHOMERUN_LEGACY.png';
 			case 'HDHR4-2US':
 			case 'HDHR4-2DT':
 				return 'https://www.silicondust.com/wordpress/wp-content/uploads/2016/04/connect-logo.png';
 			default:
-				return $device[$this->hdhrkey_modelNum];
+				return './images/HDHOMERUN_LEGACY.png';
 		}
 	}
 

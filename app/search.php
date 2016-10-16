@@ -31,78 +31,60 @@
 	}
 
 	function deleteRuleFromSearch($searchString, $id){
-                // prep
-                ob_start();
-                $tab = new TinyAjaxBehavior();
+		// prep
+		ob_start();
+		$tab = new TinyAjaxBehavior();
 
 		// delete the rule
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRules = new DVRUI_Rules($hdhr);
 		$hdhrRules->deleteRule($id);	
 
-                // poke each record engine to reload rules from my.hdhomerun.com
-                $engines =  $hdhr->engine_count();
-                for ($i=0; $i < $engines; $i++) {
-                        $hdhr->poke_engine($i);
-                }
+		// poke each record engine to reload rules from my.hdhomerun.com
+		$engines =  $hdhr->engine_count();
+		for ($i=0; $i < $engines; $i++) {
+			$hdhr->poke_engine($i);
+		}
 
-                //create output
-                $htmlStr = getSearchResults($searchString);
+		//create output
+		$htmlStr = getSearchResults($searchString);
 
-                //get data
-                $result = ob_get_contents();
-                ob_end_clean();
+		//get data
+		$result = ob_get_contents();
+		ob_end_clean();
 
-                // get latest status
-                $statusmsg = getLatestHDHRStatus();
-
-                //display
-                $tab->add(TabInnerHtml::getBehavior("search_box", $htmlStr));
-                if ($result != '' && $result != NULL)
-                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $result));
-                else
-                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $statusmsg));
-                return $tab->getString();
-
-
+		//display
+		$tab->add(TabInnerHtml::getBehavior("search_box", $htmlStr));
+		return $tab->getString();
 	}
 
-        function createRuleFromSearch($searchString, $seriesid, $recentonly, $start, $end, $channel, $recordtime, $recordafter){
-                // prep
-                ob_start();
-                $tab = new TinyAjaxBehavior();
+	function createRuleFromSearch($searchString, $seriesid, $recentonly, $start, $end, $channel, $recordtime, $recordafter){
+		// prep
+		ob_start();
+		$tab = new TinyAjaxBehavior();
 
 		// create the rule
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRules = new DVRUI_Rules($hdhr);
 		$hdhrRules->createRule($seriesid, $recentonly, $start, $end, $channel, $recordtime, $recordafter);	
 
-                // poke each record engine to reload rules from my.hdhomerun.com
-                $engines =  $hdhr->engine_count();
-                for ($i=0; $i < $engines; $i++) {
-                        $hdhr->poke_engine($i);
-                }
+		// poke each record engine to reload rules from my.hdhomerun.com
+		$engines =  $hdhr->engine_count();
+		for ($i=0; $i < $engines; $i++) {
+			$hdhr->poke_engine($i);
+		}
 
-                //create output
-                $htmlStr = getSearchResults($searchString);
+		//create output
+		$htmlStr = getSearchResults($searchString);
 
-                //get data
-                $result = ob_get_contents();
-                ob_end_clean();
+		//get data
+		$result = ob_get_contents();
+		ob_end_clean();
 
-                // get latest status
-                $statusmsg = getLatestHDHRStatus();
-
-                //display
-                $tab->add(TabInnerHtml::getBehavior("search_box", $htmlStr));
-                if ($result != '' && $result != NULL)
-                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $result));
-                else
-                        $tab->add(TabInnerHtml::getBehavior("statusMessage", $statusmsg));
-                return $tab->getString();
-
-        }
-
+		//display
+		$tab->add(TabInnerHtml::getBehavior("search_box", $htmlStr));
+		return $tab->getString();
+	}
 
 	function getSearchResults($searchString) {
 		$searchStr = '';
@@ -194,7 +176,6 @@
 		$searchList .= file_get_contents('style/advancedrule.html');
 		$searchList = str_replace('<!-- dvr_search_count -->','Found: ' . $numResults . ' Results<br/>',$searchList);
 		$searchList = str_replace('<!-- dvr_search_list -->',$searchData,$searchList);
-
 		
 		return $searchList;
 	}

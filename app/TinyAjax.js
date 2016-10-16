@@ -76,6 +76,30 @@ function encodeSpecialChars(data)
 }	
 
 var numLoading = 0;
+var spin_opts = {
+  lines: 13 // The number of lines to draw
+, length: 28 // The length of each line
+, width: 14 // The line thickness
+, radius: 42 // The radius of the inner circle
+, scale: 1 // Scales overall size of the spinner
+, corners: 1 // Corner roundness (0..1)
+, color: '#000' // #rgb or #rrggbb or array of colors
+, opacity: 0.25 // Opacity of the lines
+, rotate: 0 // The rotation offset
+, direction: 1 // 1: clockwise, -1: counterclockwise
+, speed: 1 // Rounds per second
+, trail: 60 // Afterglow percentage
+, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+, zIndex: 2e9 // The z-index (defaults to 2000000000)
+, className: 'spinner' // The CSS class to assign to the spinner
+, top: '50%' // Top position relative to parent
+, left: '50%' // Left position relative to parent
+, shadow: false // Whether to render a shadow
+, hwaccel: false // Whether to use hardware acceleration
+, position: 'absolute' // Element positioning
+};
+
+var spinner = new Spinner(spin_opts);
 
 function loading_show()
 {
@@ -85,15 +109,21 @@ function loading_show()
 	{
 		loading = document.createElement('div');
 		loading.id = 'loading';
+/*
 		loading.innerHTML = '<font style="font-family:verdana; font-size:12px; color:white;">Loading...</' + 'font>';
 		loading.style.position = 'absolute';
-		loading.style.top = '4px';
-		loading.style.right = '4px';
+		loading.style.top = '50%';
+		loading.style.right = '50%';
 		loading.style.backgroundColor = 'red';
 		loading.style.width = '65px';
 		loading.style.padding = '2px';
+*/
+		spinner.spin();
+		loading.appendChild(spinner.el);
 		document.getElementsByTagName('body').item(0).appendChild(loading);
 	}
+	spinner.spin();
+	loading.appendChild(spinner.el);
 	loading.style.display = 'block';
 	numLoading++;
 }
@@ -104,6 +134,7 @@ function loading_hide()
 	if(numLoading < 1) {
 		var loading = document.getElementById('loading');
 		if (loading) {
+			spinner.stop();
 			loading.style.display = 'none';
 		}
 	}

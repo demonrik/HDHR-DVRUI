@@ -1,23 +1,25 @@
 function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+d.toUTCString();
+	document.cookie = cname + "=" + cvalue + "; " + expires;
 }
+
 function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
 }
+
 function getSavedPadding(){
 	paddingstart = getCookie("paddingstart");
 	paddingend = getCookie("paddingend");
@@ -33,6 +35,7 @@ function deleteRule(evt, rule_id, reveal) {
 	deleteRuleByID(rule_id,false);
 	hideReveal(evt, reveal);
 }
+
 function deleteRule2(evt, rule_id, reveal) {
 	var searchstring = document.getElementById("searchString").value;
 	deleteRuleFromSearch(searchstring,rule_id);
@@ -46,22 +49,26 @@ function reveal(evt, modal) {
 function hideReveal(evt, modal) {
 	document.getElementById(modal).style.display = 'none';
 }
+
 function RuleDeleteReveal(evt, ruleid){
 	document.getElementById("RuleDeleteDetails").innerHTML = document.getElementById(ruleid).innerHTML;
 	document.getElementById("druleid").value = ruleid;
 	reveal(evt, 'RuleDelete');
 }
+
 function RecordingDeleteReveal(evt, recordingid, rerecord){
 	document.getElementById("RecordingDeleteDetails").innerHTML = document.getElementById(recordingid).innerHTML;
 	document.getElementById("drecordingid").value = recordingid;
 	document.getElementById("drerecord").value = rerecord;
 	reveal(evt, 'RecordingDelete');
 }
+
 function submitDeleteRule(){
 	rule_id = document.getElementById("druleid").value;
 	deleteRuleByID(rule_id, false);
 	hideReveal(evt, 'RuleDelete');
 }
+
 function submitDeleteRecording(){
 	recording_id = document.getElementById("drecordingid").value;
 	rerecord = document.getElementById("drerecord").value;
@@ -69,29 +76,30 @@ function submitDeleteRecording(){
 	deleteRecordingByID(recording_id,rerecord,seriesid);
 	hideReveal(evt, 'RecordingDelete');
 }
+
 function revealRuleForm(evt, modal,seriesid,seriesname){
 	reveal(evt, modal);
 	document.getElementById("seriesid").value = seriesid;
 	document.getElementById("seriesname").value = seriesname;
 	getSavedPadding();
 }
+
 function sortRecordings(sortby){
 	setCookie("sortby",sortby,3000);
 	openRecordingsPage("");
 }
+
 function selectSeries(seriesID){
 	document.getElementById("series_page").style.display = "none";	
 	openRecordingsPage(seriesID);
 	document.getElementById("recordings_page").style.display = "block";
-
 }
+
 function selectRule(seriesID){
 	document.getElementById("series_page").style.display = "none";	
 	openRulesPage(seriesID);
 	document.getElementById("rules_page").style.display = "block";
-
 }
-
 
 function handleRecordingType(myRadio){
 	if(myRadio.value == "all"){
@@ -108,6 +116,7 @@ function handleRecordingType(myRadio){
 		document.getElementById("recordafter").style = "display: relative;";
 	}
 }
+
 function createQRule(seriesid,recentonly){
 	var searchstring = document.getElementById("searchString").value;
 	createRuleFromSearch(searchstring,seriesid,recentonly,"30","30",null,null,null);
