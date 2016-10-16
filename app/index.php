@@ -88,7 +88,6 @@
 
 	// --- include footer ---
 	$footer = file_get_contents('style/footer.html');
-	$footer = str_replace('<!--dvr-statusmsg-->',$statusmsg,$footer);
 	$pagecontent .= $footer;
 	echo($pagecontent);
 ?>
