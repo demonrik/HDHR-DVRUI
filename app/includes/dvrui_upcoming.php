@@ -33,16 +33,26 @@ class DVRUI_Upcoming {
 	private	$upcoming_list = array();
 	private	$series_list = array();
 	private $auth = '';
-
-	public function DVRUI_Upcoming($rules) {
+	public function DVRUI_Upcoming($hdhr) {
 		DVRUI_setTZ();
+                $this->auth = $hdhr->get_auth();
+
+	}
+	public function initByRules($rules) {
 		// only interested in small set of the rules data
-		$this->auth = $rules->getAuth();
 		for ($i=0; $i < $rules->getRuleCount(); $i++) {
 			$this->series_list[] = array(
 				$this->epData_SeriesID => $rules->getRuleSeriesID($i),
 				$this->epData_Title => $rules->getRuleTitle($i));
 		}
+	}
+
+	public function initBySeries($seriesID) {
+		// only interested in one series
+		$this->series_list[] = array(
+			$this->epData_SeriesID => $seriesID,
+			$this->epData_Title => $seriesID);
+		$this->processNext(0);
 	}
 	
 	private function extractEpisodeInfo($episode){
@@ -155,7 +165,6 @@ class DVRUI_Upcoming {
 	}
 	
 	public function getUpcomingEpInfo($pos) {
-		date_default_timezone_set('America/Phoenix');
 		if ($pos < count($this->upcoming_list)) {
 			$episode = $this->upcoming_list[$pos];
 			return 'ProgramID: ' . $episode[$this->epData_ProgramID]

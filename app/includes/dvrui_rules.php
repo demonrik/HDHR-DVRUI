@@ -62,14 +62,7 @@ class DVRUI_Rules {
 	private $auth = '';
 	
 	public function DVRUI_Rules($hdhr) {
-		//build up Auth string
-		$auth='';
-		
-		$devices =  $hdhr->device_count();
-		for ($i=0; $i < $devices; $i++) {
-			$auth .= $hdhr->get_device_auth($i);
-		}
-		$this->auth = $auth;
+		$this->auth = $hdhr->get_auth();;
 	}
 	
 	public function processAllRules() {

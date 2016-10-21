@@ -16,7 +16,7 @@ class DVRUI_HDHRjson {
 	private $hdhrkey_fwName = 'FirmwareName';
 	private $hdhrkey_tuners = 'TunerCount';
 	private $hdhrkey_free = 'FreeSpace';
-
+	private $auth = '';
 	private $hdhrkey_storageID = 'StorageID';
 	private $hdhrkey_storageURL = 'StorageURL';
 
@@ -91,7 +91,12 @@ class DVRUI_HDHRjson {
 										$this->hdhrkey_tuners => $tuners,
 										$this->hdhrkey_legacy => $legacy,
 										$this->hdhrkey_fwName => $hdhr_info[$this->hdhrkey_fwName]);
+			$this->auth .= $hdhr_info[$this->hdhrkey_auth];
 		}
+	}
+
+	public function get_auth() {
+		return $this->auth;
 	}
 	
 	public function device_count() {
