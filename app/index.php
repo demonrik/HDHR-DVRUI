@@ -26,7 +26,7 @@
 	$ajax->exportFunction("openHDHRPage","");
 	$ajax->exportFunction("openServerPage","");
 	$ajax->exportFunction("openSearchPage","searchString");
-	$ajax->exportFunction("openUpcomingPage","");
+	$ajax->exportFunction("openUpcomingPage","seriesid");
 	$ajax->exportFunction("deleteRecordingByID","id, rerecord, seriesid");
 	$ajax->exportFunction("deleteRuleByID","id");
 	$ajax->exportFunction("deleteRuleFromSearch","searchstring, id");

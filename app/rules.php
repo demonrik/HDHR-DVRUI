@@ -103,6 +103,7 @@
 			$rulesEntry = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_reccount -->',$reccount,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($i),$rulesEntry);
+			$rulesEntry = str_replace('<!-- dvr_series_id -->',$hdhrRules->getRuleSeriesID($i),$rulesEntry);
 			if(strlen($hdhrRules->getRuleAfterAirDate($i)) > 5 ){
 				$rulesEntry = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($i),$rulesEntry);
 			}
