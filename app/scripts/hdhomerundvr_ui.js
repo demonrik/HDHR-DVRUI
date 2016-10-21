@@ -100,6 +100,21 @@ function selectRule(seriesID){
 	openRulesPage(seriesID);
 	document.getElementById("rules_page").style.display = "block";
 }
+function selectUpcoming(seriesID){
+	document.getElementById("series_page").style.display = "none";	
+	openUpcomingPage(seriesID);
+	document.getElementById("upcoming_page").style.display = "block";
+}
+function viewUpcomingFromRule(seriesID){
+	document.getElementById("rules_page").style.display = "none";	
+	openUpcomingPage(seriesID);
+	document.getElementById("upcoming_page").style.display = "block";
+}
+function viewUpcomingFromSearch(seriesID){
+	document.getElementById("search_page").style.display = "none";	
+	openUpcomingPage(seriesID);
+	document.getElementById("upcoming_page").style.display = "block";
+}
 
 function handleRecordingType(myRadio){
 	if(myRadio.value == "all"){
@@ -196,7 +211,7 @@ function openTab(evt, tabname) {
 		openHDHRPage();
 	}
 	if (tabname == 'upcoming_page') {
-		openUpcomingPage();
+		openUpcomingPage("");
 	}
 	
 	//show the tablinks
