@@ -1,5 +1,6 @@
 <?php
 	require_once("includes/dvrui_common.php");
+	require_once("vars.php");
 
 class DVRUI_HDHRjson {
 	private $myhdhrurl = 'http://ipv4.my.hdhomerun.com/discover';
@@ -28,7 +29,13 @@ class DVRUI_HDHRjson {
 	
 	public function DVRUI_HDHRjson() {
 
-		$hdhr_data = getJsonFromUrl($this->myhdhrurl);
+		if(DVRUI_Vars::DVRUI_discover_cache != ''){
+			$cachesecs = DVRUI_Vars::DVRUI_discover_cache;
+		}else{
+			$cachesecs = 60;
+		}
+
+		$hdhr_data = getCachedJsonFromUrl($this->myhdhrurl,$cachesecs);
 		for ($i=0;$i<count($hdhr_data);$i++) {
 			$hdhr = $hdhr_data[$i];
 			$hdhr_base = $hdhr[$this->hdhrkey_baseURL];
@@ -40,7 +47,7 @@ class DVRUI_HDHRjson {
 				continue;
 			}
 
-			$hdhr_info = getJsonFromUrl($hdhr[$this->hdhrkey_discoverURL]);
+			$hdhr_info = getCachedJsonFromUrl($hdhr[$this->hdhrkey_discoverURL],$cachesecs);
 
 			if (array_key_exists($this->hdhrkey_storageURL,$hdhr)) {
 				// this is a record engine!
@@ -48,7 +55,7 @@ class DVRUI_HDHRjson {
 				// Need to confirm it's a valid one - After restart of
 				// engine it updates my.hdhomerun.com but sometimes the
 				// old engine config is left behind.
-				$rEngine = getJsonFromUrl($hdhr[$this->hdhrkey_discoverURL]);
+				$rEngine = getCachedJsonFromUrl($hdhr[$this->hdhrkey_discoverURL],$cachesecs);
 				if (strcmp($rEngine[$this->hdhrkey_storageID],$hdhr[$this->hdhrkey_storageID]) != 0) {
 					//skip, this is not a valid engine
 					continue;
@@ -78,7 +85,7 @@ class DVRUI_HDHRjson {
 				$legacy = $hdhr_info[$this->hdhrkey_legacy];
 			}
 
-			$hdhr_lineup = getJsonFromUrl($hdhr_info[$this->hdhrkey_lineupURL]);	
+			$hdhr_lineup = getCachedJsonFromUrl($hdhr_info[$this->hdhrkey_lineupURL],$cachesecs);	
 
 			$this->hdhrlist[] = array( $this->hdhrkey_devID => $hdhr[$this->hdhrkey_devID],
 										$this->hdhrkey_modelNum => $hdhr_info[$this->hdhrkey_modelNum],

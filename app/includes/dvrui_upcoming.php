@@ -29,13 +29,16 @@ class DVRUI_Upcoming {
 	private $epData_ChannelImageURL = 'ChannelImageURL';
 	private $epData_ChannelName = 'ChannelName';
 	private $epData_ChannelNumber = 'ChannelNumber';
-	
+	private $cachesecs = 3600;	
 	private	$upcoming_list = array();
 	private	$series_list = array();
 	private $auth = '';
 	public function DVRUI_Upcoming($hdhr) {
 		DVRUI_setTZ();
                 $this->auth = $hdhr->get_auth();
+		if(DVRUI_Vars::DVRUI_upcoming_cache != ''){
+			$this->cachesecs = DVRUI_Vars::DVRUI_upcoming_cache;
+		}
 
 	}
 	public function initByRules($rules) {
@@ -130,7 +133,7 @@ class DVRUI_Upcoming {
 						$this->epGuideURL_paramSeries .
 						$this->series_list[$pos][$this->epData_SeriesID];
 
-			$episodes_info = getJsonFromUrl($seriesURL);
+			$episodes_info = getCachedJsonFromUrl($seriesURL,$this->cachesecs);
 
 			for ($i = 0; $i < count($episodes_info); $i++) {
 				if (array_key_exists($this->epData_RecordingRule,$episodes_info[$i])){

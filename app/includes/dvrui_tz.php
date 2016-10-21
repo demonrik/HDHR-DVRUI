@@ -3,7 +3,6 @@
 	
 	function DVRUI_setTZ() {
 		if (DVRUI_Vars::DVRUI_TZ != '') {
-			echo('using vars TZ');
 			if (date_default_timezone_set(DVRUI_Vars::DVRUI_TZ)) {
 				return;
 			}
