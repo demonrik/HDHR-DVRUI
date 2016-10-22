@@ -146,12 +146,12 @@ ul.tabmenu li a:focus, a.active {
 }
 
 
-li.hdhr_page{
+li.settings_page{
 	position: absolute;
 	right: 0;
 
 }
-a.hdhr_page{
+a.settings_page{
 	text-color: #000000;
 	background-image: url("gear.png");
 	background-size: 40px;
@@ -171,13 +171,13 @@ a.hdhr_page{
 
 /* HDHR Tab ------------------------------------------------------------------------- */
 
-#hdhr_page {
+#settings_page {
 	#page;
 }
-#hdhr_content {
+#settings_content {
 	width: 100%;
 }
-#hdhr_box {
+#settings_box {
 	width:100%;
 }
 
@@ -449,7 +449,7 @@ button{
 	margin-right: 30px;
 	margin-bottom: 2px;
 }
-.play, .record, .delete, .upcoming,  .RecCountButton, .RuleCountButton, .UpcomingCountButton{
+.play, .record, .delete, .upcoming, .settings, .RecCountButton, .RuleCountButton, .UpcomingCountButton{
 	display: inline-block;
 	color: @DecoratorDefaultTextColor;
 	text-align: center;
@@ -469,6 +469,13 @@ button{
 	background-color: #0000FF;
 }
 
+.settings{
+	position: relative;
+	font-size: 18px;
+	margin: 5px;
+	z-index: 99;
+	padding: 5px;
+}	
 .RecCountButton{
 	position: relative;
 	font-size: 14px;

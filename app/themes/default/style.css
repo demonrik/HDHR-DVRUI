@@ -141,11 +141,11 @@ a.upcoming_page {
   background-repeat: no-repeat;
   background-position: left center;
 }
-li.hdhr_page {
+li.settings_page {
   position: absolute;
   right: 0;
 }
-a.hdhr_page {
+a.settings_page {
   text-color: #000000;
   padding: 5px 5px 5px 5px;
   background-image: url("gear.png");
@@ -165,7 +165,7 @@ a.hdhr_page {
 #start_content {
   width: 100%;
 }
-#hdhr_page {
+#settings_page {
   position: relative;
   padding: 0;
   width: 100%;
@@ -174,10 +174,10 @@ a.hdhr_page {
   background-color: #FFFFFF;
   margin-top: 95px;
 }
-#hdhr_content {
+#settings_content {
   width: 100%;
 }
-#hdhr_box {
+#settings_box {
   width: 100%;
 }
 #hdhr_img {
@@ -459,6 +459,7 @@ ul.sortby li a {
 .record,
 .delete,
 .upcoming,
+.settings,
 .RecCountButton,
 .RuleCountButton,
 .UpcomingCountButton {
@@ -478,6 +479,13 @@ ul.sortby li a {
 }
 .upcoming {
   background-color: #0000FF;
+}
+.settings {
+  position: relative;
+  font-size: 16px;
+  margin: 5px;
+  z-index: 99;
+  padding: 5px;
 }
 .RecCountButton {
   position: relative;

@@ -123,11 +123,11 @@ a.active {
   border-bottom: solid 12px #393;
   background-color: #000000;
 }
-li.hdhr_page {
+li.settings_page {
   position: absolute;
   right: 0;
 }
-a.hdhr_page {
+a.settings_page {
   text-color: #000000;
   background-image: url("gear.png");
   background-size: 40px;
@@ -146,7 +146,7 @@ a.hdhr_page {
 #start_content {
   width: 100%;
 }
-#hdhr_page {
+#settings_page {
   position: relative;
   padding: 0;
   width: 100%;
@@ -155,10 +155,10 @@ a.hdhr_page {
   background-color: #FFFFFF;
   margin-top: 215px;
 }
-#hdhr_content {
+#settings_content {
   width: 100%;
 }
-#hdhr_box {
+#settings_box {
   width: 100%;
 }
 #hdhr_img {
@@ -460,6 +460,7 @@ button {
 .record,
 .delete,
 .upcoming,
+.settings,
 .RecCountButton,
 .RuleCountButton,
 .UpcomingCountButton {
@@ -480,6 +481,13 @@ button {
 }
 .upcoming {
   background-color: #0000FF;
+}
+.settings {
+  position: relative;
+  font-size: 18px;
+  margin: 5px;
+  z-index: 99;
+  padding: 5px;
 }
 .RecCountButton {
   position: relative;
