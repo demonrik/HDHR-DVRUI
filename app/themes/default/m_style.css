@@ -3,7 +3,7 @@
   padding: 0;
 }
 html {
-  background: ;
+  background: #777;
 }
 body {
   font-family: Arial, sans-serif;
@@ -27,18 +27,18 @@ input {
   margin-top: 215px;
 }
 .entry {
-  border-top: solid 2px ;
-  background: ;
+  border-top: solid 2px #393;
+  background: #DDDDDD;
   height: 525px;
   position: relative;
   font-size: 2.25em;
 }
 .entry-p {
   font-style: italic;
-  color: ;
+  color: #000000;
 }
 .entry-h4 {
-  color: ;
+  color: #000000;
   font-size: 1.25em;
   width: 700px;
   padding: 1px;
@@ -75,7 +75,7 @@ input {
 }
 #logo a {
   text-decoration: none;
-  color: ;
+  color: #FFFFFF;
 }
 #logo h1 {
   top: 5px;
@@ -108,7 +108,7 @@ ul.tabmenu li {
 }
 ul.tabmenu li a {
   display: inline-block;
-  color: ;
+  color: #FFFFFF;
   text-align: center;
   padding: 15px 20px 15px 20px;
   text-decoration: none;
@@ -116,7 +116,7 @@ ul.tabmenu li a {
   font-size: 2.5em;
 }
 ul.tabmenu li a:hover {
-  background-color: ;
+  background-color: #393;
 }
 ul.tabmenu li a:focus,
 a.active {
@@ -179,18 +179,18 @@ a.settings_page {
   display: table;
 }
 #hdhr_entry {
-  border-top: solid 1px ;
-  background: ;
+  border-top: solid 1px #393;
+  background: #DDDDDD;
   height: 350px;
   font-size: 2em;
 }
 .hdhr_entry h4 {
-  color: ;
+  color: #000000;
   font-size: 2em;
 }
 .hdhr_entry p {
   font-style: italic;
-  color: ;
+  color: #000000;
   font-size: 1.5em;
 }
 #rules_page {
@@ -215,14 +215,14 @@ a.settings_page {
   width: 100%;
 }
 .rule_entry {
-  border-top: solid 2px ;
-  background: ;
+  border-top: solid 2px #393;
+  background: #DDDDDD;
   height: 525px;
   position: relative;
   font-size: 2.25em;
 }
 .rule_entry h4 {
-  color: ;
+  color: #000000;
   font-size: 1.25em;
   width: 700px;
   padding: 1px;
@@ -230,7 +230,7 @@ a.settings_page {
 }
 .rule_entry p {
   font-style: italic;
-  color: ;
+  color: #000000;
 }
 #series_page {
   position: relative;
@@ -256,8 +256,8 @@ a.settings_page {
 .series_entry {
   width: 264px;
   height: 210px;
-  border: solid 2px ;
-  background: ;
+  border: solid 2px #393;
+  background: #DDDDDD;
   margin: 10px;
   display: inline-block;
   font-size: 0.75em;
@@ -284,21 +284,21 @@ a.settings_page {
   width: 100%;
 }
 .recording_entry {
-  border-top: solid 2px ;
-  background: ;
+  border-top: solid 2px #393;
+  background: #DDDDDD;
   height: 525px;
   position: relative;
   font-size: 2.25em;
 }
 .recording_entry h4 {
-  color: ;
+  color: #000000;
   font-size: 1.25em;
   width: 700px;
   padding: 1px;
 }
 .recording_entry p {
   font-style: italic;
-  color: ;
+  color: #000000;
 }
 ul.sortby {
   list-style-type: none;
@@ -318,13 +318,13 @@ ul.sortby li {
 }
 ul.sortby li a {
   display: inline-block;
-  color: ;
+  color: white;
   text-align: center;
   text-decoration: none;
   transition: 0.1s;
   border: none;
   border-radius: 2px 2px 2px 2px;
-  background-color: ;
+  background-color: #393;
   padding: 2px 2px;
   font-style: normal;
   font-weight: normal;
@@ -351,21 +351,21 @@ ul.sortby li a {
   width: 100%;
 }
 .upcoming_entry {
-  border-top: solid 2px ;
-  background: ;
+  border-top: solid 2px #393;
+  background: #DDDDDD;
   height: 525px;
   position: relative;
   font-size: 2.25em;
 }
 .upcoming_entry h4 {
-  color: ;
+  color: #000000;
   font-size: 1.25em;
   width: 700px;
   padding: 1px;
 }
 .upcoming_entry p {
   font-style: italic;
-  color: ;
+  color: #000000;
 }
 #search_page {
   position: relative;
@@ -392,8 +392,8 @@ ul.sortby li a {
   width: 100%;
 }
 .search_entry {
-  border-top: solid 2px ;
-  background: ;
+  border-top: solid 2px #393;
+  background: #DDDDDD;
   height: 525px;
   position: relative;
   font-size: 2.25em;
@@ -401,7 +401,7 @@ ul.sortby li a {
   overflow-y: auto;
 }
 .search_entry h4 {
-  color: ;
+  color: #000000;
   font-size: 1.25em;
   width: 700px;
   padding: 1px;
@@ -410,7 +410,7 @@ ul.sortby li a {
 }
 .search_entry p {
   font-style: italic;
-  color: ;
+  color: #000000;
   font-size: 14px;
 }
 #searchheader {
@@ -465,10 +465,10 @@ button {
 .RuleCountButton,
 .UpcomingCountButton {
   display: inline-block;
-  color: ;
+  color: white;
   text-align: center;
   border-radius: 5px 5px 5px 5px;
-  background-color: ;
+  background-color: #393;
   padding: 1px 1px;
   spacing: 2px;
   font-size: 42px;
@@ -536,7 +536,7 @@ button {
   overflow: auto;
 }
 .revealModal-content {
-  background-color: ;
+  background-color: #EEE;
   width: 90%;
   min-height: 700px;
   padding: 10px;
@@ -549,21 +549,21 @@ button {
   padding-top: 5px;
   padding-bottom: 5px;
   margin: auto;
-  background-color: ;
-  color: ;
+  background-color: #393;
+  color: white;
   border: 1px solid #888;
   border-radius: 20px 20px 0 0;
 }
 .revealModal-header h4 {
-  color: ;
+  color: white;
   font-size: 2em;
 }
 .revealModal-footer {
   width: 90%;
   padding: 10px;
   margin: auto;
-  background-color: ;
-  color: ;
+  background-color: #EEE;
+  color: black;
   height: 50px;
   border: 1px solid #888;
   border-radius: 0 0 20px 20px;
@@ -590,8 +590,8 @@ ul.modal_decorator li {
 }
 ul.modal_decorator li p {
   display: inline-block;
-  color: ;
-  background-color: ;
+  color: white;
+  background-color: #008800;
   text-align: center;
   padding: 2px 5px;
   text-decoration: none;
@@ -600,8 +600,8 @@ ul.modal_decorator li p {
 }
 ul.modal_decorator li a {
   display: inline-block;
-  color: ;
-  background-color: ;
+  color: white;
+  background-color: #008800;
   text-align: center;
   padding: 2px 5px;
   text-decoration: none;

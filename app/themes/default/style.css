@@ -125,7 +125,7 @@ a.recordings_page {
 }
 a.rules_page {
   background-image: url("rules.png");
-  background-size: 18px;
+  background-size: 16px;
   background-repeat: no-repeat;
   background-position: left center;
 }
@@ -137,7 +137,7 @@ a.series_page {
 }
 a.upcoming_page {
   background-image: url("upcoming.png");
-  background-size: 18px;
+  background-size: 17px;
   background-repeat: no-repeat;
   background-position: left center;
 }
