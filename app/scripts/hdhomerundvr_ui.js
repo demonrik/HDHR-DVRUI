@@ -207,8 +207,8 @@ function openTab(evt, tabname) {
 	if (tabname == 'search_page') {
 		openSearchPage();
 	}
-	if (tabname == 'hdhr_page') {
-		openHDHRPage();
+	if (tabname == 'settings_page') {
+		openSettingsPage();
 	}
 	if (tabname == 'upcoming_page') {
 		openUpcomingPage("");
