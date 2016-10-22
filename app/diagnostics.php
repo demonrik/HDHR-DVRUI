@@ -1,7 +1,8 @@
 <?php
 require_once("includes/dvrui_hdhrjson.php");
+require_once("includes/dvrui_common.php");
 require_once("vars.php");
-
+clearCache();
 echo '<pre>';
 echo "---------- OS and ENV VARIABLES ------------------------------------------------\n";
 echo 'Operating System = ' . php_uname() . "\n";

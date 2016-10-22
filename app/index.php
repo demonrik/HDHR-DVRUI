@@ -9,7 +9,7 @@
 	require_once("rules.php");
 	require_once("recordings.php");
 	require_once("series.php");
-	require_once("hdhr.php");
+	require_once("settings.php");
 	require_once("theme.php");
 	require_once("upcoming.php");
 	require_once("search.php");
@@ -23,7 +23,8 @@
 	$ajax->exportFunction("openSeriesPage","");
 	$ajax->exportFunction("openRulesPage","seriesid");
 	$ajax->exportFunction("openRecordingsPage","seriesid");
-	$ajax->exportFunction("openHDHRPage","");
+	$ajax->exportFunction("openSettingsPage","");
+	$ajax->exportFunction("openClearCache","");
 	$ajax->exportFunction("openServerPage","");
 	$ajax->exportFunction("openSearchPage","searchString");
 	$ajax->exportFunction("openUpcomingPage","seriesid");
@@ -41,7 +42,7 @@
 	
 	//Build navigation menu for pages
 	$pageTitles = array('Series','Rules', 'Recordings', 'Upcoming', 'Search','.');
-	$pageNames = array('series_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page', 'hdhr_page');
+	$pageNames = array('series_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page', 'settings_page');
 	$menu_data = file_get_contents('style/pagemenu.html');
 	$menuEntries = '';
 	for ($i=0; $i < count($pageNames); $i++) {
@@ -68,7 +69,7 @@
 	$rulesdata = file_get_contents('style/rules.html');
 	$recordingsdata = file_get_contents('style/recordings.html');
 	$seriesdata = file_get_contents('style/series.html');
-	$hdhrdata = file_get_contents('style/hdhr.html');
+	$settingsdata = file_get_contents('style/settings.html');
 	$updata = file_get_contents('style/upcoming.html');
 	$searchdata = file_get_contents('style/search.html');
 
@@ -79,7 +80,7 @@
 	$indexPage = str_replace('<!-- dvrui_serieslist -->',$seriesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_ruleslist -->',$rulesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_recordingslist -->',$recordingsdata,$indexPage);
-	$indexPage = str_replace('<!-- dvrui_hdhrlist -->',$hdhrdata,$indexPage);
+	$indexPage = str_replace('<!-- dvrui_settingslist -->',$settingsdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_upcominglist -->',$updata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_searchlist -->',$searchdata,$indexPage);
 
