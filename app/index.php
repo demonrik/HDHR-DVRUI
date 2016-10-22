@@ -54,7 +54,7 @@
 	
 	// --- Build Page Here ---
 	$pageName = DVRUI_Vars::DVRUI_name;
-	$UIVersion = "UI Version:" . DVRUI_Vars::DVRUI_version;
+	$UIVersion = "version " . DVRUI_Vars::DVRUI_version;
 	$pagecontent = "";
 
 	// --- include header ---

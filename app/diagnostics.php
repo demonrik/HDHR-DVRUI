@@ -10,7 +10,7 @@ echo 'HTTP_HOST = ' . getenv('HTTP_HOST') . "\n";
 echo 'SERVER_NAME = ' . getenv('SERVER_NAME') . "\n";
 echo 'SERVER_ADDR = ' . getenv('SERVER_ADDR') . "\n";
 echo 'SERVER_SOFTWARE = ' . getenv('SERVER_SOFTWARE') . "\n";
-echo 'DATE_LOCAL = ' . getenv('DATE_LOCAL') . "\n";
+echo 'SYS TEMP = ' . sys_get_temp_dir() . "\n";
 echo "---------- PHP INFO -------------------------------------------------------------\n";
 echo 'php version = ' . phpversion() . "\n";
 echo 'php.ini file = ' . php_ini_loaded_file() . "\n";
@@ -20,6 +20,8 @@ echo "---------- DVRUI VARS ----------------------------------------------------
 echo 'DVRUI_name = ' . DVRUI_Vars::DVRUI_name . "\n";
 echo 'DVRUI_version = ' . DVRUI_Vars::DVRUI_version . "\n";
 echo 'DVRUI_TZ = ' . DVRUI_Vars::DVRUI_TZ . "\n";
+echo 'DVRUI_discover_cache = ' . DVRUI_Vars::DVRUI_discover_cache . "\n";
+echo 'DVRUI_upcoming_cache = ' . DVRUI_Vars::DVRUI_upcoming_cache . "\n";
 echo "---------- PERMISSIONS -----------------------------------------------------------\n";
 echo 'style = ' . substr(sprintf('%o', fileperms('style')), -4) . "\n";
 echo 'themes = ' . substr(sprintf('%o', fileperms('themes')), -4) . "\n";

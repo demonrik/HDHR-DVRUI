@@ -5,6 +5,7 @@
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_rules.php");
 	require_once("includes/dvrui_recordings.php");
+	require_once("includes/dvrui_upcoming.php");
 	
 	function openRulesPage($seriesid) {
 		// prep
@@ -110,22 +111,29 @@
 			if(strlen($hdhrRules->getRuleDateTime($i)) > 5 ){
 				$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $hdhrRules->getRuleDateTime($i),$rulesEntry);
 			}
+		
+			// get upcoming count	
+			$upcoming = new DVRUI_Upcoming($hdhr);
+			$upcoming->initBySeries($hdhrRules->getRuleSeriesID($i));
+			$upcomingcount = $upcoming->getUpcomingCount();
+
+			if($upcomingcount == 0){
+				$upcomingcount = "no upcoming";
+			}else{
+				$upcomingcount = $upcomingcount . " upcoming";
+			}
+			$rulesEntry = str_replace('<!-- dvr_series_upcoming -->',$upcomingcount,$rulesEntry);
+
+
 
 			$rulesData .= $rulesEntry;
 		}
 
-		$authRevealID = 'RulesAuth';
 		$rulesList = file_get_contents('style/rules_list.html');
-		$authReveal = file_get_contents('style/reveal.html');
-		$authReveal = str_replace('<!-- drvui_reveal_title -->', 'AuthKey Used:',$authReveal);
-		$authReveal = str_replace('<!-- drvui_reveal_content -->', $hdhrRules->getAuth(),$authReveal);
 
-		$rulesList = str_replace('<!-- dvrui_auth_reveal -->',$authRevealID,$rulesList);
-		$authReveal = str_replace('<!-- dvrui_reveal -->',$authRevealID,$authReveal);
 		
 		$rulesList = str_replace('<!-- dvr_rules_count -->','Found: ' . $numRules . ' Rules.  ',$rulesList);
 		$rulesList = str_replace('<!-- dvr_rules_list -->',$rulesData,$rulesList);
-		$rulesList .= $authReveal;
 		$rulesList .= file_get_contents('style/ruledeletereveal.html');
 		return $rulesList;
 	}
