@@ -131,7 +131,7 @@ class DVRUI_Upcoming {
 			$this->auth . 
 			$this->epGuideURL_paramSeries .
 			$seriesid;
-		clearCache($seriesURL);
+		clearCacheFile($seriesURL);
 
 
 	}	

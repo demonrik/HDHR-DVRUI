@@ -4,10 +4,14 @@
 		return json_decode($content, true);
 	}
 
-	function clearCache($url) {
+	function clearCacheFile($url) {
 		$cachefilename = sys_get_temp_dir() . "/hdhrui_" . md5($url);
 		unlink($cachefilename);
 
+	}
+	function clearCache(){
+		$mask = sys_get_temp_dir() . "/hdhrui_*";
+		array_map('unlink', glob($mask));
 	}
 
 	function getCachedJsonFromUrl($url,$maxAgeSeconds) {
