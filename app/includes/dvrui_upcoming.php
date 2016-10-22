@@ -124,7 +124,17 @@ class DVRUI_Upcoming {
 	public function getUpcomingCount() {
 		return count($this->upcoming_list);
 	}
-	
+
+	public function deleteCachedUpcoming($seriesid){
+		$seriesURL = $this->epGuideURL . 
+			$this->epGuideURL_paramAuth . 
+			$this->auth . 
+			$this->epGuideURL_paramSeries .
+			$seriesid;
+		clearCache($seriesURL);
+
+
+	}	
 	public function processNext($pos) {
 		if (count($this->series_list) > 0) {
 			$seriesURL = $this->epGuideURL . 

@@ -4,9 +4,15 @@
 		return json_decode($content, true);
 	}
 
+	function clearCache($url) {
+		$cachefilename = sys_get_temp_dir() . "/hdhrui_" . md5($url);
+		unlink($cachefilename);
+
+	}
+
 	function getCachedJsonFromUrl($url,$maxAgeSeconds) {
 
-		$cachefilename = sys_get_temp_dir() . "/cache_" . md5($url);
+		$cachefilename = sys_get_temp_dir() . "/hdhrui_" . md5($url);
 		if(file_exists($cachefilename)){
 			$current_time = time();
 			$file_time = filemtime($cachefilename);
