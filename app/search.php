@@ -5,6 +5,7 @@
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_search.php");
 	require_once("includes/dvrui_rules.php");
+	require_once("includes/dvrui_upcoming.php");
 	
 	function openSearchPage($searchString) {
 		// prep
@@ -73,6 +74,9 @@
 		for ($i=0; $i < $engines; $i++) {
 			$hdhr->poke_engine($i);
 		}
+		// clear cached episodes
+		$hdhrUpcoming = new DVRUI_Upcoming($hdhr);
+		$hdhrUpcoming->deleteCachedUpcoming($seriesid);
 
 		//create output
 		$htmlStr = getSearchResults($searchString);
