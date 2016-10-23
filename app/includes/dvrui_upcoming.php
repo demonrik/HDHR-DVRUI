@@ -238,6 +238,14 @@ class DVRUI_Upcoming {
 		}
 	}
 	
+	public function getEpChannelName($pos) {
+		if ($pos < count($this->upcoming_list)) {
+			return $this->upcoming_list[$pos][$this->epData_ChannelName];
+		} else {
+			return '';
+		}
+	}
+
 	public function getEpImg($pos) {
 		if ($pos < count($this->upcoming_list)) {
 			return $this->upcoming_list[$pos][$this->epData_ImageURL];
