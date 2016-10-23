@@ -26,27 +26,29 @@ br.clearfix {
 .entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 132px;
+  height: 150px;
   position: relative;
 }
 .entry-p {
   font-style: italic;
   color: #000000;
   font-size: 0.75em;
+  margin-left: 200px;
 }
 .entry-h4 {
   color: #000000;
   font-size: 1em;
+  margin-left: 200px;
 }
 .series_img {
   float: left;
-  height: 132px;
-  width: 176px;
+  max-height: 150px;
+  max-width: 200px;
 }
 .series_img_lrg {
   float: left;
-  height: 240px;
-  width: 300px;
+  max-height: 225px;
+  max-width: 300px;
 }
 #loading {
   z-index: 101;
@@ -235,17 +237,19 @@ a.settings_page {
 .rule_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 132px;
+  height: 150px;
   position: relative;
 }
 .rule_entry h4 {
   color: #000000;
   font-size: 1em;
+  margin-left: 200px;
 }
 .rule_entry p {
   font-style: italic;
   color: #000000;
   font-size: 0.75em;
+  margin-left: 200px;
 }
 #series_page {
   position: relative;
@@ -270,10 +274,10 @@ a.settings_page {
 }
 .series_entry {
   width: 300px;
-  height: 254px;
+  height: 225px;
   border: solid 2px #393;
   background: #DDDDDD;
-  margin: 10px;
+  margin: 5px;
   display: inline-block;
   font-size: 0.75em;
 }
@@ -301,17 +305,19 @@ a.settings_page {
 .recording_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 132px;
+  height: 150px;
   position: relative;
 }
 .recording_entry h4 {
   color: #000000;
   font-size: 1em;
+  margin-left: 200px;
 }
 .recording_entry p {
   font-style: italic;
   color: #000000;
   font-size: 0.75em;
+  margin-left: 200px;
 }
 ul.sortby {
   list-style-type: none;
@@ -367,17 +373,19 @@ ul.sortby li a {
 .upcoming_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 132px;
+  height: 150px;
   position: relative;
 }
 .upcoming_entry h4 {
   color: #000000;
   font-size: 1em;
+  margin-left: 200px;
 }
 .upcoming_entry p {
   font-style: italic;
   color: #000000;
   font-size: 0.75em;
+  margin-left: 200px;
 }
 #search_page {
   position: relative;
@@ -403,18 +411,20 @@ ul.sortby li a {
 .search_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 132px;
+  height: 150px;
   position: relative;
   overflow-y: auto;
 }
 .search_entry h4 {
   color: #000000;
   font-size: 1em;
+  margin-left: 200px;
 }
 .search_entry p {
   font-style: italic;
   color: #000000;
   font-size: 0.75em;
+  margin-left: 200px;
 }
 .edit_form ul {
   list-style-type: none;
@@ -490,7 +500,7 @@ ul.sortby li a {
 .RecCountButton {
   position: relative;
   font-size: 14px;
-  top: -30px;
+  bottom: -195px;
   margin: 5px;
   z-index: 99;
   padding: 3px;
@@ -501,7 +511,7 @@ ul.sortby li a {
   position: relative;
   font-size: 14px;
   margin: 5px;
-  top: -30px;
+  bottom: -195px;
   z-index: 99;
   padding: 3px;
 }
@@ -511,7 +521,7 @@ ul.sortby li a {
   position: relative;
   font-size: 14px;
   margin: 5px;
-  top: -30px;
+  bottom: -195px;
   z-index: 99;
   padding: 3px;
 }
