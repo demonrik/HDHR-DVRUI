@@ -44,7 +44,15 @@
 		
 		$upcoming->sortUpcomingByDate();
 		$numShows = $upcoming->getUpcomingCount();
+		$prevdate = "";
 		for ($i=0; $i < $numShows; $i++) {
+			$newdate = $upcoming->getEpStartShort($i);
+			if($prevdate != $newdate){
+				$entry = file_get_contents('style/upcoming_datebreak.html');
+				$entry = str_replace('<!-- dvr_upcoming_date -->',$newdate,$entry);
+				$entryData .= $entry;
+			}
+
 			$entry = file_get_contents('style/upcoming_entry.html');
 			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($i) . ' : ' . $upcoming->getEpTitle($i),$entry);
@@ -56,6 +64,7 @@
 			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_channel_name -->',$upcoming->getEpChannelName($i),$entry);
 			$entryData .= $entry;
+			$prevdate = $newdate;
 		}
 
 		$htmlStr = file_get_contents('style/upcoming_list.html');
@@ -76,7 +85,14 @@
 		
 		$upcoming->sortUpcomingByDate();
 		$numShows = $upcoming->getUpcomingCount();
+		$prevdate = "";
 		for ($i=0; $i < $numShows; $i++) {
+			$newdate = $upcoming->getEpStartShort($i);
+			if($prevdate != $newdate){
+				$entry = file_get_contents('style/upcoming_datebreak.html');
+				$entry = str_replace('<!-- dvr_upcoming_date -->',$newdate,$entry);
+				$entryData .= $entry;
+			}
 			$entry = file_get_contents('style/upcoming_entry.html');
 			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($i) . ' : ' . $upcoming->getEpTitle($i),$entry);
@@ -88,6 +104,7 @@
 			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_channel_name -->',$upcoming->getEpChannelName($i),$entry);
 			$entryData .= $entry;
+			$prevdate = $newdate;
 		}
 
 		$htmlStr = file_get_contents('style/upcoming_list.html');
