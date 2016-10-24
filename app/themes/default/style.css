@@ -23,6 +23,20 @@ br.clearfix {
   background-color: #FFFFFF;
   margin-top: 95px;
 }
+.upcoming_datebreak {
+  background: #393;
+  background-image: url("upcoming.png");
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  height: 20px;
+  width: 100px;
+  position: relative;
+  color: #FFFFFF;
+  font-size: 1em;
+  padding: 5px 5px 5px 30px;
+  margin-top: 25px;
+}
 .entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
