@@ -23,7 +23,7 @@ class DVRUI_Upcoming {
 	private $epData_EpisodeTitle = 'EpisodeTitle';
 	private $epData_Synopsis = 'Synopsis';
 	private $epData_ImageURL = 'ImageURL';
-	private $epData_OriginalAirDate = 'OriginalAirDate';
+	private $epData_OriginalAirDate = 'OriginalAirdate';
 	private $epData_StartTime = 'StartTime';
 	private $epData_EndTime = 'EndTime';
 	private $epData_ChannelImageURL = 'ChannelImageURL';
@@ -71,6 +71,8 @@ class DVRUI_Upcoming {
 		$channelImageURL = '';
 		$channelName = '';
 		$channelNumber = '';
+		$originalAirDate = '';
+
 		$recordingRule = $episode[$this->epData_RecordingRule];
 
 		if (array_key_exists($this->epData_ProgramID,$episode)){
@@ -78,6 +80,9 @@ class DVRUI_Upcoming {
 		}
 		if (array_key_exists($this->epData_Title,$episode)){
 			$title = $episode[$this->epData_Title];
+		}
+		if (array_key_exists($this->epData_OriginalAirDate,$episode)){
+			$originalAirDate = $episode[$this->epData_OriginalAirDate];
 		}
 		if (array_key_exists($this->epData_EpisodeNumber,$episode)){
 			$episodeNumber = $episode[$this->epData_EpisodeNumber];
@@ -107,6 +112,7 @@ class DVRUI_Upcoming {
 			$this->epData_ProgramID => $programID,
 			$this->epData_Title => $title,
 			$this->epData_EpisodeNumber => $episodeNumber,
+			$this->epData_OriginalAirDate => $originalAirDate,
 			$this->epData_EpisodeTitle => $episodeTitle,
 			$this->epData_StartTime => $startTime,
 			$this->epData_EndTime => $endTime,
@@ -209,6 +215,13 @@ class DVRUI_Upcoming {
 	public function getEpTitle($pos) {
 		if ($pos < count($this->upcoming_list)) {
 			return $this->upcoming_list[$pos][$this->epData_EpisodeTitle];
+		} else {
+			return '';
+		}
+	}
+	public function getEpOriginalAirDate($pos) {
+		if ($pos < count($this->upcoming_list)) {
+			return date('D M/d Y',$this->upcoming_list[$pos][$this->epData_OriginalAirDate]);
 		} else {
 			return '';
 		}
