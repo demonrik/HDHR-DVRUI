@@ -183,20 +183,6 @@ class DVRUI_Upcoming {
 		return;
 	}
 	
-	public function getUpcomingEpInfo($pos) {
-		if ($pos < count($this->upcoming_list)) {
-			$episode = $this->upcoming_list[$pos];
-			return 'ProgramID: ' . $episode[$this->epData_ProgramID]
-				. ' Title: ' . $episode[$this->epData_Title]
-				. ' epNum: ' . $episode[$this->epData_EpisodeNumber]
-				. ' epTitle: ' . $episode[$this->epData_EpisodeTitle]
-				. ' StartTime: ' . date('D M/d Y @ g:ia',$episode[$this->epData_StartTime])
-				. ' EndTime: ' . date('D M/d Y @ g:ia',$episode[$this->epData_EndTime]);
-		} else {
-			return '';
-		}
-	}
-	
 	public function getTitle($pos) {
 		if ($pos < count($this->upcoming_list)) {
 			return $this->upcoming_list[$pos][$this->epData_Title];
@@ -227,6 +213,14 @@ class DVRUI_Upcoming {
 		}
 	}
 	
+	public function getEpStartShort($pos) {
+		if ($pos < count($this->upcoming_list)) {
+			return date('D M d',$this->upcoming_list[$pos][$this->epData_StartTime]);
+		} else {
+			return '';
+		}
+	}
+
 	public function getEpStart($pos) {
 		if ($pos < count($this->upcoming_list)) {
 			return date('D M/d Y @ g:ia T',$this->upcoming_list[$pos][$this->epData_StartTime]);
