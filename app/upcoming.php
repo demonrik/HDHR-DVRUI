@@ -66,8 +66,8 @@
 			$entryData .= $entry;
 			$prevdate = $newdate;
 		}
-
-		$htmlStr = file_get_contents('style/upcoming_list.html');
+		$htmlStr = getCalendar($upcoming);
+		$htmlStr .= file_get_contents('style/upcoming_list.html');
 
 		$htmlStr = str_replace('<!-- dvr_upcoming_count -->','Found: ' . $numShows . ' Shows. ',$htmlStr);
 		$htmlStr = str_replace('<!-- dvr_upcoming_list -->',$entryData,$htmlStr);
@@ -107,12 +107,34 @@
 			$prevdate = $newdate;
 		}
 
-		$htmlStr = file_get_contents('style/upcoming_list.html');
+		$htmlStr = getCalendar($upcoming);
+		$htmlStr .= file_get_contents('style/upcoming_list.html');
 		$htmlStr = str_replace('<!-- dvr_upcoming_count -->','Found: ' . $numShows . ' Shows. ',$htmlStr);
 		$htmlStr = str_replace('<!-- dvr_upcoming_list -->',$entryData,$htmlStr);
 		
 		
 		return $htmlStr;
+	}
+
+
+	function getCalendar($upcoming) {
+		$html = "";
+		for($i=0;$i<14;$i++){
+ 			$interval = 'now +' . $i . ' days';
+			$datearr[] = new DateTime($interval);
+		}
+ 
+
+		$html .= "<div class=datepicker><table class=datepicker>";
+		$html .= "<tr class=datepicker>";
+		for($j=0;$j<14;$j++){
+			$html .= "<div class='date'  onClick=\"goto('" . date_format($datearr[$j],'D M d') . "');\">";
+			$html .= "<p><span>" . date_format($datearr[$j],'M d') . "</span>";
+			$html .= $upcoming->countByDate($datearr[$j]) . "</p></div>";
+		}
+
+		$html .= "</tr></table></div>";
+		return $html;
 	}
 
 ?>
