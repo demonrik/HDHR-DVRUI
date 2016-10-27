@@ -1,3 +1,11 @@
+function goto(eleID) {
+   var e = document.getElementById(eleID);
+   if (!!e && e.scrollIntoView) {
+       e.scrollIntoView(true);
+   	window.scrollBy(0,-100);
+	}
+}
+
 function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
