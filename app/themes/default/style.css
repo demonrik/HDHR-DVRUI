@@ -37,6 +37,7 @@ br.clearfix {
   font-size: 1em;
   padding: 5px 5px 5px 30px;
   margin-top: 25px;
+  cursor: pointer;
 }
 .entry {
   border-top: solid 2px #393;
@@ -632,24 +633,6 @@ ul.modal_decorator li a {
 div.datepicker {
   padding: 10px 10px 0px 5px;
 }
-table.datepicker {
-  border-collapse: collapse;
-}
-td.datepicker {
-  border: 1px solid black;
-  border-radius: 0.6em;
-  text-align: center;
-  padding: 2px;
-  height: 60px;
-  width: 60px;
-  font-size: 12px;
-  border-bottom: solid 2px #393;
-}
-.upcomingcount {
-  display: block;
-  padding: 10px;
-  font-size: 16px;
-}
 .date {
   margin: 1px;
   display: inline-block;
@@ -662,6 +645,7 @@ td.datepicker {
   border-radius: 0px 0px 5px 5px;
   -moz-border-radius: 0px 0px 5px 5px;
   -webkit-border-radius: 0px 0px 5px 5px;
+  cursor: pointer;
 }
 .date p {
   font-family: Helvetica, sans-serif;
