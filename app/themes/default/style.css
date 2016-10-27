@@ -7,6 +7,7 @@ html {
 }
 body {
   font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 a:hover {
   cursor: pointer;
@@ -26,7 +27,7 @@ br.clearfix {
 .upcoming_datebreak {
   background: #393;
   background-image: url("upcoming.png");
-  background-size: 25px;
+  background-size: 20px;
   background-repeat: no-repeat;
   background-position: left center;
   height: 20px;
@@ -627,4 +628,56 @@ ul.modal_decorator li a {
   text-decoration: none;
   transition: 0.1s;
   border: none;
+}
+div.datepicker {
+  padding: 10px 10px 0px 5px;
+}
+table.datepicker {
+  border-collapse: collapse;
+}
+td.datepicker {
+  border: 1px solid black;
+  border-radius: 0.6em;
+  text-align: center;
+  padding: 2px;
+  height: 60px;
+  width: 60px;
+  font-size: 12px;
+  border-bottom: solid 2px #393;
+}
+.upcomingcount {
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+}
+.date {
+  margin: 1px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #fcfcfc;
+  background: linear-gradient(top,#fcfcfc 0%,#dad8d8 100%);
+  background: -moz-linear-gradient(top,#fcfcfc 0%,#dad8d8 100%);
+  background: -webkit-linear-gradient(top,#fcfcfc 0%,#dad8d8 100%);
+  border-radius: 0px 0px 5px 5px;
+  -moz-border-radius: 0px 0px 5px 5px;
+  -webkit-border-radius: 0px 0px 5px 5px;
+}
+.date p {
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: #444444;
+}
+.date p span {
+  background: #393;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  display: block;
+  border-radius: 5px 5px 0px 0px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  padding: 4px 0 4px 0;
 }
