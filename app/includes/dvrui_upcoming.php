@@ -182,6 +182,19 @@ class DVRUI_Upcoming {
 		});
 		return;
 	}
+
+	public function countByDate($timestamp){
+		$epcount = 0;
+		$listcount = count($this->upcoming_list);
+		$selecteddate = date_format($timestamp,'M/d/Y');
+		for($c=0;$c<=$listcount;$c++){
+			$listdate = date('M/d/Y',$this->upcoming_list[$c][$this->epData_StartTime]);
+			if($listdate == $selecteddate){
+				++$epcount;
+			}
+		}
+		return $epcount;
+	}
 	
 	public function getTitle($pos) {
 		if ($pos < count($this->upcoming_list)) {
