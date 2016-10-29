@@ -66,14 +66,14 @@ class DVRUI_Rules {
 	}
 	
 	public function processAllRules() {
-		$rules_info = getJsonFromUrl($this->rulesURL . $this->auth);
+		$rules_info = array_reverse(getJsonFromUrl($this->rulesURL . $this->auth));
 		for ($i = 0; $i < count($rules_info); $i++) {
 			$this->processRule($rules_info[$i]);
 		}
 	}
 	
 	public function processRuleforSeries($seriesID){
-		$rules_info = getJsonFromUrl($this->rulesURL . $this->auth . '&SeriesID=' . $seriesID);
+		$rules_info = array_reverse(getJsonFromUrl($this->rulesURL . $this->auth . '&SeriesID=' . $seriesID));
 		for ($i = 0; $i < count($rules_info); $i++) {
 			$this->processRule($rules_info[$i]);
 		}
@@ -217,6 +217,25 @@ class DVRUI_Rules {
 		getJsonFromUrl($deleteURL);
 
 	}
+	public function changeRulePriority($id, $priority){
+		$afterid = 0;
+		$URL = $this->rulesURL . $this->auth;
+		$URL .= "&Cmd=change&RecordingRuleID=" . $id;
+		if($priority == 0){
+			return;
+		}else if($priority == 1){
+			$afterid = 0;
+		}else{
+			$afterid = $this->rules[$priority-1][$this->recording_RecID];
+		}
+		$URL .= "&AfterRecordingRuleID=" . $afterid;
+		//trigger_error($URL,E_USER_ERROR);
+		getJsonFromUrl($URL);
+	}
+
+
+
+
        function createRule($seriesid, $recentonly, $start, $end, $channel, $recordtime, $recordafter){
 		$createURL = $this->rulesURL . $this->auth;
 		$createURL .= "&Cmd=add&SeriesID=" . $seriesid . "&RecentOnly=" . $recentonly;
@@ -228,18 +247,6 @@ class DVRUI_Rules {
 		getJsonFromUrl($createURL);
 
 	}	
-	public function getRuleDeleteURL($pos) {
-
-		//return $this->rulesURL 
-		//	. $this->auth 
-		//	. $this->recordingCmd_delete
-		//	. "&RecordingRuleID=" 
-		//	.  $this->rules[$pos][$this->recording_RecID];
-
-		return "api.php?api=rules&cmd=delete&ruleid=" . $this->rules[$pos][$this->recording_RecID];
-
-	}
-	
 	
 }
 ?>
