@@ -6,6 +6,11 @@
 	<p>Channel: <!-- dvr_rules_channels --></p>
 	<p>Schedule: <!-- dvr_rules_recent --> <!-- dvr_rules_airdate --> <!-- dvr_rules_datetime --></p>
 	<p>Recordings: <!-- dvr_reccount --></p>
-	<p class="actions"><a onClick="viewUpcomingFromRule('<!-- dvr_series_id -->');" class="upcoming"><!-- dvr_series_upcoming --></A>
-			<a onClick="RuleDeleteReveal(event,'<!-- dvr_rules_id -->');" class="delete">DELETE</a></p>
+<a onClick="viewUpcomingFromRule('<!-- dvr_series_id -->');" class="upcoming"><!-- dvr_series_upcoming --></A>
+
+
+	<p class="actions">
+			<a onClick="changeRulePriority('<!-- dvr_rules_id -->', <!-- dvr_rules_priorityMinus -->);" class="play"><img src="images/down.png" height=16></a>
+			<a onClick="changeRulePriority('<!-- dvr_rules_id -->', <!-- dvr_rules_priorityPlus -->);" class="play"><img src="images/up.png" height=16></a>
+			<a onClick="RuleDeleteReveal(event,'<!-- dvr_rules_id -->');" class="delete"><img src="images/delete.png" height=16></a></p>
 </div>
