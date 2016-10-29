@@ -30,6 +30,7 @@
 	$ajax->exportFunction("openUpcomingPage","seriesid");
 	$ajax->exportFunction("deleteRecordingByID","id, rerecord, seriesid");
 	$ajax->exportFunction("deleteRuleByID","id");
+	$ajax->exportFunction("changeRulePriority","ruleid, changeVal");
 	$ajax->exportFunction("deleteRuleFromSearch","searchstring, id");
 	$ajax->exportFunction("createQuickRuleFromSearch","searchString, seriesid, recentonly");
 	$ajax->exportFunction("createRuleFromSearch","searchString, seriesid, recentonly, start, end, channel, recordtime, recordafter");
