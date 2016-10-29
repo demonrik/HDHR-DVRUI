@@ -151,7 +151,6 @@
 					$revealContent = str_replace('<!-- dvr_rules_endpad -->',$hdhrRules->getRuleEndPad($j),$revealContent);
 					$revealContent = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($j),$revealContent);
 					$revealContent = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($j),$revealContent);
-					$revealContent = str_replace('<!-- dvr_rules_delete -->',$hdhrRules->getRuleDeleteURL($j),$revealContent);
 					if(strlen($hdhrRules->getRuleAfterAirDate($j)) > 5 ){
 						$revealContent = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($j),$revealContent);
 					}
