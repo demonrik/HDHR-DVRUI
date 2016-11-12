@@ -66,14 +66,14 @@ class DVRUI_Rules {
 	}
 	
 	public function processAllRules() {
-		$rules_info = array_reverse(getJsonFromUrl($this->rulesURL . $this->auth));
+		$rules_info = getJsonFromUrl($this->rulesURL . $this->auth);
 		for ($i = 0; $i < count($rules_info); $i++) {
 			$this->processRule($rules_info[$i]);
 		}
 	}
 	
 	public function processRuleforSeries($seriesID){
-		$rules_info = array_reverse(getJsonFromUrl($this->rulesURL . $this->auth . '&SeriesID=' . $seriesID));
+		$rules_info = getJsonFromUrl($this->rulesURL . $this->auth . '&SeriesID=' . $seriesID);
 		for ($i = 0; $i < count($rules_info); $i++) {
 			$this->processRule($rules_info[$i]);
 		}
@@ -218,18 +218,18 @@ class DVRUI_Rules {
 
 	}
 	public function changeRulePriority($id, $priority){
-		$afterid = 0;
 		$URL = $this->rulesURL . $this->auth;
 		$URL .= "&Cmd=change&RecordingRuleID=" . $id;
-		if($priority == 0){
+		if($priority == -2){
 			return;
-		}else if($priority == 1){
+		}else if($priority == count($this->rules)){
+			return;
+		}else if ($priority == -1){
 			$afterid = 0;
 		}else{
-			$afterid = $this->rules[$priority-1][$this->recording_RecID];
+			$afterid = $this->rules[$priority][$this->recording_RecID];
 		}
 		$URL .= "&AfterRecordingRuleID=" . $afterid;
-		//trigger_error($URL,E_USER_ERROR);
 		getJsonFromUrl($URL);
 	}
 
