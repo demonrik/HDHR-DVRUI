@@ -24,6 +24,35 @@
 
 		return $tab->getString();
 	}
+	function changeRulePriority($ruleid, $changeVal){
+               // prep
+                ob_start();
+                $tab = new TinyAjaxBehavior();
+
+                // upgrade the rule
+                $hdhr = new DVRUI_HDHRjson();
+                $hdhrRules = new DVRUI_Rules($hdhr);
+		$hdhrRules->processAllRules();
+                $hdhrRules->changeRulePriority($ruleid, $changeVal);
+
+                // poke each record engine
+                //$engines =  $hdhr->engine_count();
+                //for ($i=0; $i < $engines; $i++) {
+                //        $hdhr->poke_engine($i);
+                //}
+
+                //create output
+                $htmlStr = getRecordingRules('');
+
+                //get data
+                $result = ob_get_contents();
+                ob_end_clean();
+
+                //display
+                $tab->add(TabInnerHtml::getBehavior("rules_box", $htmlStr));
+                return $tab->getString();
+
+	}
 
 	function deleteRuleByID($id){
 		// prep
@@ -42,7 +71,7 @@
 		}
 
 		//create output
-		$htmlStr = getRecordingRules("");
+		$htmlStr = getRecordingRules($seriesid);
 
 		//get data	
 		$result = ob_get_contents();
@@ -97,6 +126,8 @@
 			$rulesEntry = str_replace('<!-- dvr_rules_id -->',$hdhrRules->getRuleRecID($i) ,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_priority -->',$hdhrRules->getRulePriority($i),$rulesEntry);
+			$rulesEntry = str_replace('<!-- dvr_rules_priorityPlus -->',$i-2,$rulesEntry);
+			$rulesEntry = str_replace('<!-- dvr_rules_priorityMinus -->',$i+1,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_title -->',$hdhrRules->getRuleTitle($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_synopsis -->',$hdhrRules->getRuleSynopsis($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_startpad -->',$hdhrRules->getRuleStartPad($i),$rulesEntry);
