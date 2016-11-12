@@ -14,7 +14,7 @@ case "$1" in
 
 	clean)
 		# Remove the copied app folder
-		$CMD_RM $APP_DIR $SHARED_DIR/app
+		$CMD_RM $SHARED_DIR/app
 	;;
 
 	*)
