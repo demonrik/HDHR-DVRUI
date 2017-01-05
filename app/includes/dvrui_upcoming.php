@@ -42,11 +42,15 @@ class DVRUI_Upcoming {
 
 	}
 	public function initByRules($rules) {
+		$series = array();
 		// only interested in small set of the rules data
 		for ($i=0; $i < $rules->getRuleCount(); $i++) {
-			$this->series_list[] = array(
-				$this->epData_SeriesID => $rules->getRuleSeriesID($i),
-				$this->epData_Title => $rules->getRuleTitle($i));
+			if(!isset($series[$rules->getRuleSeriesID($i)])){
+				$series[$rules->getRuleSeriesID($i)] = $rules->getRuleSeriesID($i);
+				$this->series_list[] = array(
+					$this->epData_SeriesID => $rules->getRuleSeriesID($i),
+					$this->epData_Title => $rules->getRuleTitle($i));
+			}
 		}
 	}
 
