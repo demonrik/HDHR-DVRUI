@@ -36,7 +36,7 @@ input {
   width: 200px;
   position: relative;
   color: #FFFFFF;
-  font-size: 20px;
+  font-size: 30px;
   padding: 5px 5px 5px 60px;
   margin-top: 25px;
   cursor: pointer;
@@ -44,9 +44,9 @@ input {
 .entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 525px;
+  height: 560px;
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .entry-p {
   font-style: italic;
@@ -232,9 +232,9 @@ a.settings_page {
 .rule_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 525px;
+  height: 560px;
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .rule_entry h4 {
   color: #000000;
@@ -301,9 +301,9 @@ a.settings_page {
 .recording_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 525px;
+  height: 560px;
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .recording_entry h4 {
   color: #000000;
@@ -368,9 +368,9 @@ ul.sortby li a {
 .upcoming_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 525px;
+  height: 560px;
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .upcoming_entry h4 {
   color: #000000;
@@ -409,9 +409,9 @@ ul.sortby li a {
 .search_entry {
   border-top: solid 2px #393;
   background: #DDDDDD;
-  height: 525px;
+  height: 560px;
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
   font-size: 1.5em;
   overflow-y: auto;
 }
