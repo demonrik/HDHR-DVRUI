@@ -11,7 +11,7 @@ class DVRUI_Upcoming {
 	 * Note: At this time the guide APIs are not published, so these are likely
 	 *       to change at some point in the future
 	 */
-	private $epGuideURL = 'http://my.hdhomerun.com/api/episodes?';
+	private $epGuideURL =  DVRUI_Vars::DVRUI_apiurl . 'api/episodes?';
 	private $epGuideURL_paramAuth = 'DeviceAuth=';
 	private $epGuideURL_paramSeries = '&SeriesID=';
 	
