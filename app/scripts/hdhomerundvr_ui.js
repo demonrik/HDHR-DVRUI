@@ -227,18 +227,6 @@ function openTab(evt, tabname) {
 	evt.currentTarget.className += " active";
 }
 
-/* Set the status message */
-function setStatus(msg)
-{
-	isStatusIdle = 0;
-	if(msg == '' || msg == null || msg == undefined)
-	{
-		isStatusIdle = 1;
-		msg = "Idle.";
-	}
-	document.getElementById('statusMessage').innerHTML = msg;
-}
-
 function goSearch()
 {
 	var str = document.getElementById('searchString').value;

@@ -1,7 +1,6 @@
 <?php
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
-	require_once("statusmessage.php");
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_recordings.php");
 	require_once("includes/dvrui_rules.php");
@@ -49,7 +48,7 @@
 				$reccount = $reccount . " recordings";
 			}	
 			if($rulecount > 0){
-				$upcoming = new DVRUI_Upcoming($hdhr);
+				$upcoming = new DVRUI_Upcoming($hdhr,$hdhrRecordings);
 				$upcoming->initBySeries($hdhrSeries->getSeriesID($i));
 				$upcomingcount = $upcoming->getUpcomingCount();
 

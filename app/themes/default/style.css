@@ -21,11 +21,11 @@ br.clearfix {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 .upcoming_datebreak {
-  background: #393;
+  background: #111;
   background-image: url("upcoming.png");
   background-size: 20px;
   background-repeat: no-repeat;
@@ -33,14 +33,14 @@ br.clearfix {
   height: 20px;
   width: 100px;
   position: relative;
-  color: #FFFFFF;
+  color: #777;
   font-size: 1em;
   padding: 5px 5px 5px 30px;
   margin-top: 25px;
   cursor: pointer;
 }
 .entry {
-  border-top: solid 2px #393;
+  border-top: solid 2px #111;
   background: #DDDDDD;
   height: 150px;
   position: relative;
@@ -70,12 +70,11 @@ br.clearfix {
   z-index: 101;
 }
 #header {
-  background: #FFFFFF;
+  background: #777;
   display: block;
   position: fixed;
   top: 0;
   margin: auto;
-  border-top: solid 3px #393;
   width: 100%;
   z-index: 100;
 }
@@ -131,31 +130,31 @@ a.active {
 }
 a.search_page {
   background-image: url("search.png");
-  background-size: 18px;
+  background-size: 14px;
   background-repeat: no-repeat;
   background-position: left center;
 }
 a.recordings_page {
   background-image: url("recordings.png");
-  background-size: 18px;
+  background-size: 14px;
   background-repeat: no-repeat;
   background-position: left center;
 }
 a.rules_page {
   background-image: url("rules.png");
-  background-size: 16px;
+  background-size: 14px;
   background-repeat: no-repeat;
   background-position: left center;
 }
 a.series_page {
   background-image: url("home.png");
-  background-size: 18px;
+  background-size: 14px;
   background-repeat: no-repeat;
   background-position: left center;
 }
 a.upcoming_page {
   background-image: url("upcoming.png");
-  background-size: 17px;
+  background-size: 14px;
   background-repeat: no-repeat;
   background-position: left center;
 }
@@ -177,7 +176,7 @@ a.settings_page {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 #start_content {
@@ -189,7 +188,7 @@ a.settings_page {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 #settings_content {
@@ -216,7 +215,7 @@ a.settings_page {
   display: table;
 }
 #hdhr_entry {
-  border-top: solid 1px #393;
+  border-top: solid 1px #111;
   background: #DDDDDD;
   height: 130px;
 }
@@ -235,7 +234,7 @@ a.settings_page {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 #rules_content {
@@ -251,7 +250,7 @@ a.settings_page {
   width: 100%;
 }
 .rule_entry {
-  border-top: solid 2px #393;
+  border-top: solid 2px #111;
   background: #DDDDDD;
   height: 150px;
   position: relative;
@@ -273,7 +272,7 @@ a.settings_page {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 #series_content {
@@ -291,8 +290,9 @@ a.settings_page {
 .series_entry {
   width: 300px;
   height: 225px;
-  border: solid 2px #393;
+  border: solid 1px #111;
   background: #DDDDDD;
+  box-shadow: 5px 5px 5px #000;
   margin: 5px;
   display: inline-block;
   font-size: 0.75em;
@@ -303,7 +303,7 @@ a.settings_page {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 #recordings_content {
@@ -319,7 +319,7 @@ a.settings_page {
   width: 100%;
 }
 .recording_entry {
-  border-top: solid 2px #393;
+  border-top: solid 2px #111;
   background: #DDDDDD;
   height: 150px;
   position: relative;
@@ -371,7 +371,7 @@ ul.sortby li a {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 #upcoming_content {
@@ -387,7 +387,7 @@ ul.sortby li a {
   width: 100%;
 }
 .upcoming_entry {
-  border-top: solid 2px #393;
+  border-top: solid 2px #111;
   background: #DDDDDD;
   height: 150px;
   position: relative;
@@ -409,7 +409,7 @@ ul.sortby li a {
   width: 100%;
   border: none;
   display: hidden;
-  background-color: #FFFFFF;
+  background: #777;
   margin-top: 95px;
 }
 #search_content {
@@ -425,7 +425,7 @@ ul.sortby li a {
   width: 100%;
 }
 .search_entry {
-  border-top: solid 2px #393;
+  border-top: solid 2px #111;
   background: #DDDDDD;
   height: 150px;
   position: relative;
@@ -492,13 +492,13 @@ ul.sortby li a {
   display: inline-block;
   color: white;
   text-align: center;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 2px;
   background-color: #393;
   padding: 1px 1px;
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
-  font-weight: bold;
   text-decoration: none;
+  z-index: 99;
 }
 .delete {
   background-color: #FF0000;
@@ -514,31 +514,25 @@ ul.sortby li a {
   padding: 5px;
 }
 .RecCountButton {
+  bottom: -200px;
   position: relative;
-  font-size: 14px;
-  bottom: -195px;
   margin: 5px;
-  z-index: 99;
   padding: 3px;
 }
 .RuleCountButton {
+  bottom: -200px;
   background-color: #FF0000;
   float: right;
   position: relative;
-  font-size: 14px;
   margin: 5px;
-  bottom: -195px;
-  z-index: 99;
   padding: 3px;
 }
 .UpcomingCountButton {
-  background-color: #0000FF;
+  bottom: -200px;
   float: right;
+  background-color: #0000FF;
   position: relative;
-  font-size: 14px;
   margin: 5px;
-  bottom: -195px;
-  z-index: 99;
   padding: 3px;
 }
 #AuthReveal {
@@ -638,10 +632,10 @@ div.datepicker {
   display: inline-block;
   width: 50px;
   height: 50px;
-  background: #fcfcfc;
-  background: linear-gradient(top,#fcfcfc 0%,#dad8d8 100%);
-  background: -moz-linear-gradient(top,#fcfcfc 0%,#dad8d8 100%);
-  background: -webkit-linear-gradient(top,#fcfcfc 0%,#dad8d8 100%);
+  background: #777;
+  background: linear-gradient(top,#777 0%,#dad8d8 100%);
+  background: -moz-linear-gradient(top,#777 0%,#dad8d8 100%);
+  background: -webkit-linear-gradient(top,#777 0%,#dad8d8 100%);
   border-radius: 0px 0px 5px 5px;
   -moz-border-radius: 0px 0px 5px 5px;
   -webkit-border-radius: 0px 0px 5px 5px;

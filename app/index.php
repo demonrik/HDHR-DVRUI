@@ -1,11 +1,17 @@
 <?php
+/*
+	// UNCOMMENT FOR DEBUGGING
+	opcache_reset();
+	ini_set("log_errors", 1);
+	ini_set("error_log", "/tmp/php-dvrui.log");
+	error_log( "======= Debug Log START =========" );
+*/
+
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
 	define('TINYAJAX_PATH', '.');
-	//opcache_reset();
 	require_once("TinyAjax.php");
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
-	require_once("statusmessage.php");
 	require_once("rules.php");
 	require_once("recordings.php");
 	require_once("series.php");
@@ -42,8 +48,8 @@
 	$stylesheet = getTheme();
 	
 	//Build navigation menu for pages
-	$pageTitles = array('Series','Rules', 'Recordings', 'Upcoming', 'Search','.');
-	$pageNames = array('series_page', 'rules_page', 'recordings_page', 'upcoming_page', 'search_page', 'settings_page');
+	$pageTitles = array('Series', 'Recordings', 'Upcoming','Rules', 'Search','.');
+	$pageNames = array('series_page', 'recordings_page', 'upcoming_page', 'rules_page',  'search_page', 'settings_page');
 	$menu_data = file_get_contents('style/pagemenu.html');
 	$menuEntries = '';
 	for ($i=0; $i < count($pageNames); $i++) {
@@ -55,7 +61,7 @@
 	
 	// --- Build Page Here ---
 	$pageName = DVRUI_Vars::DVRUI_name;
-	$UIVersion = "version " . DVRUI_Vars::DVRUI_version;
+	$UIVersion = "version: " . DVRUI_Vars::DVRUI_version;
 	$pagecontent = "";
 
 	// --- include header ---
@@ -79,12 +85,12 @@
 
 	$indexPage = str_replace('<!-- dvrui_pagemenu -->',$menu_data,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_serieslist -->',$seriesdata,$indexPage);
-	$indexPage = str_replace('<!-- dvrui_ruleslist -->',$rulesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_recordingslist -->',$recordingsdata,$indexPage);
-	$indexPage = str_replace('<!-- dvrui_settingslist -->',$settingsdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_upcominglist -->',$updata,$indexPage);
+	$indexPage = str_replace('<!-- dvrui_ruleslist -->',$rulesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_searchlist -->',$searchdata,$indexPage);
-
+	$indexPage = str_replace('<!-- dvrui_settingslist -->',$settingsdata,$indexPage);
+	
 	// -- Attach the Index to the Page
 	$pagecontent .= $indexPage;
 
@@ -92,5 +98,7 @@
 	$footer = file_get_contents('style/footer.html');
 	$pagecontent .= $footer;
 	echo($pagecontent);
+
+//	error_log( "======= Debug Log END =========" );
 ?>
 

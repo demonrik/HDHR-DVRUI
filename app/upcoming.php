@@ -1,7 +1,6 @@
 <?php
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
-	require_once("statusmessage.php");
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_rules.php");
 	require_once("includes/dvrui_upcoming.php");
@@ -35,7 +34,9 @@
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrRules = new DVRUI_Rules($hdhr);
 		$hdhrRules->processAllRules();
-		$upcoming = new DVRUI_Upcoming($hdhr);
+		$hdhrRecordings = new DVRUI_Recordings($hdhr);
+		$hdhrRecordings->processAllRecordings($hdhr);
+		$upcoming = new DVRUI_Upcoming($hdhr,$hdhrRecordings);
 		$upcoming->initByRules($hdhrRules);
 		$numRules = $upcoming->getSeriesCount();
 		for ($i=0; $i < $numRules; $i++) {
@@ -80,7 +81,9 @@
 		$htmlStr = '';
 		$entryData = '';
 		$hdhr = new DVRUI_HDHRjson();
-		$upcoming = new DVRUI_Upcoming($hdhr);
+		$hdhrRecordings = new DVRUI_Recordings($hdhr);
+		$hdhrRecordings->processAllRecordings($hdhr);
+		$upcoming = new DVRUI_Upcoming($hdhr,$hdhrRecordings);
 		$upcoming->initBySeries($seriesid);
 		
 		$upcoming->sortUpcomingByDate();
@@ -119,7 +122,7 @@
 
 	function getCalendar($upcoming) {
 		$html = "";
-		for($i=0;$i<14;$i++){
+		for($i=0;$i<21;$i++){
  			$interval = 'now +' . $i . ' days';
 			$datearr[] = new DateTime($interval);
 		}
@@ -127,7 +130,7 @@
 
 		$html .= "<div class=datepicker><table class=datepicker>";
 		$html .= "<tr class=datepicker>";
-		for($j=0;$j<14;$j++){
+		for($j=0;$j<21;$j++){
 			$html .= "<div class='date'  onClick=\"goto('" . date_format($datearr[$j],'D M d') . "');\">";
 			$html .= "<p><span>" . date_format($datearr[$j],'M d') . "</span>";
 			$html .= $upcoming->countByDate($datearr[$j]) . "</p></div>";

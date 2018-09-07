@@ -32,10 +32,13 @@ class DVRUI_Upcoming {
 	private $cachesecs = 3600;	
 	private	$upcoming_list = array();
 	private	$series_list = array();
+	private	$recordings = NULL;
 	private $auth = '';
-	public function DVRUI_Upcoming($hdhr) {
+	
+	public function DVRUI_Upcoming($hdhr, $recordings) {
 		DVRUI_setTZ();
-                $this->auth = $hdhr->get_auth();
+    $this->auth = $hdhr->get_auth();
+    $this->recordings = $recordings;
 		if(DVRUI_Vars::DVRUI_upcoming_cache != ''){
 			$this->cachesecs = DVRUI_Vars::DVRUI_upcoming_cache;
 		}
@@ -138,9 +141,28 @@ class DVRUI_Upcoming {
 			$this->epGuideURL_paramSeries .
 			$seriesid;
 		clearCacheFile($seriesURL);
-
-
 	}	
+	
+	private function isDuplicate($episode) {
+		for ($i=0; $i < count($this->upcoming_list); $i++) {
+			if ($this->upcoming_list[$i][$this->epData_ProgramID] == $episode[$this->epData_ProgramID]) {
+				return TRUE;
+			}
+		}
+		return FALSE;
+	}
+	
+	private function alreadyExists($episode) {
+		if ($this->recordings != NULL) {
+			return $this->recordings->verifyExistsByProgramID($episode[$this->epData_ProgramID]);
+		}
+		return FALSE;	
+	}
+
+	private function isIgnoredByRule($rule,$episode) {
+		return FALSE;	
+	}
+	
 	public function processNext($pos) {
 		if (count($this->series_list) > 0) {
 			$seriesURL = $this->epGuideURL . 
@@ -150,10 +172,12 @@ class DVRUI_Upcoming {
 						$this->series_list[$pos][$this->epData_SeriesID];
 
 			$episodes_info = getCachedJsonFromUrl($seriesURL,$this->cachesecs);
-
 			for ($i = 0; $i < count($episodes_info); $i++) {
 				if (array_key_exists($this->epData_RecordingRule,$episodes_info[$i])){
-					$this->extractEpisodeInfo($episodes_info[$i]);
+					if ((!$this->isDuplicate($episodes_info[$i])) 
+						&& (!$this->alreadyExists($episodes_info[$i]))){
+							$this->extractEpisodeInfo($episodes_info[$i]);
+						}
 				}
 			}
 		}
@@ -187,7 +211,7 @@ class DVRUI_Upcoming {
 		$epcount = 0;
 		$listcount = count($this->upcoming_list);
 		$selecteddate = date_format($timestamp,'M/d/Y');
-		for($c=0;$c<=$listcount;$c++){
+		for($c = 0; $c < $listcount; $c++){
 			$listdate = date('M/d/Y',$this->upcoming_list[$c][$this->epData_StartTime]);
 			if($listdate == $selecteddate){
 				++$epcount;

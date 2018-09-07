@@ -21,7 +21,6 @@ class DVRUI_Recordings {
 	private $recording_RecordSuccess = 'RecordSuccess';
 	private $recording_Synopsis = 'Synopsis';
 	private $recording_Title = 'Title';
-	#private $recording_DisplayGroupTitle = 'DisplayGroupTitle';
 	private $recording_PlayURL = 'PlayURL';
 	private $recording_CmdURL = 'CmdURL';
 	private $recording_EpisodesURL = 'EpisodesURL';
@@ -29,6 +28,7 @@ class DVRUI_Recordings {
 	private $recording_ID = 'RecID';
 	private $recording_StorageID = 'StorageID';
 	private $recording_SeriesID  = 'SeriesID';
+	private $recording_ProgramID = 'ProgramID';
 	
 	private $recordings_list = array();
 	
@@ -53,7 +53,7 @@ class DVRUI_Recordings {
 		}
 	}
 
-        public function processSeriesRecordings($hdhr, $seriesID) {
+	public function processSeriesRecordings($hdhr, $seriesID) {
 		DVRUI_setTZ();
 		unset($recordings_info);
 		$engineCount = $hdhr->engine_count();
@@ -67,7 +67,7 @@ class DVRUI_Recordings {
 		}
 	}
 
-        public function processSeriesList($hdhr, $categories) {
+	public function processSeriesList($hdhr, $categories) {
 		DVRUI_setTZ();
 		if(strlen($categories) < 3){
 			$categories = "root";
@@ -83,11 +83,9 @@ class DVRUI_Recordings {
 		}
 	}
 
-
 	private function processRecordingData($recording, $storageID) {
-		$playURL = $recording[$this->recording_PlayURL];
-		$cmdURL = $recording[$this->recording_CmdURL];
-		#$displayGroupTitle = $recording[$this->recording_DisplayGroupTitle];
+		$playURL = '';
+		$cmdURL = '';
 		$category = '';
 		$channelImageURL = '';
 		$channelName = '';
@@ -106,12 +104,22 @@ class DVRUI_Recordings {
 		$synopsis = '';
 		$title = '';
 		$seriesid = '';
+		$programid = '';
 
 		$recID = $this->getRecordingIDfromURL($cmdURL);
 
 
+		if (array_key_exists($this->recording_PlayURL,$recording)){
+			$playURL = $recording[$this->recording_PlayURL];
+		}
+		if (array_key_exists($this->recording_CmdURL,$recording)){
+			$cmdURL = $recording[$this->recording_CmdURL];
+		}
 		if (array_key_exists($this->recording_SeriesID,$recording)){
 			$seriesid = $recording[$this->recording_SeriesID];
+		}
+		if (array_key_exists($this->recording_ProgramID,$recording)){
+			$programid = $recording[$this->recording_ProgramID];
 		}
 		if (array_key_exists($this->recording_Category,$recording)){
 			$category = $recording[$this->recording_Category];
@@ -168,9 +176,9 @@ class DVRUI_Recordings {
 		$this->recordings[] = array(
 			$this->recording_StorageID => $storageID,
 			$this->recording_SeriesID => $seriesid,
+			$this->recording_ProgramID => $programid,
 			$this->recording_PlayURL => $playURL,
 			$this->recording_CmdURL => $cmdURL,
-			#$this->recording_DisplayGroupTitle => $displayGroupTitle,
 			$this->recording_Category => $category,
 			$this->recording_ChannelImageURL => $channelImageURL,
 			$this->recording_ChannelName => $channelName,
@@ -311,9 +319,6 @@ class DVRUI_Recordings {
 		return $this->recordings[$pos][$this->recording_ID];
 	}
 
-	#public function getDisplayGroupTitle($pos) {
-	#	return $this->recordings[$pos][$this->recording_DisplayGroupTitle];
-	#}
 
 	public function get_PlayURL($pos) {
 		return $this->recordings[$pos][$this->recording_PlayURL];
@@ -422,6 +427,14 @@ class DVRUI_Recordings {
 	public function getRerecordCmdURL($pos) {
 		return $this->recordings[$pos][$this->recording_CmdURL] . '&cmd=delete&rerecord=1';
 	}
-	
+
+	public function verifyExistsByProgramID($PID) {
+		for ($i = 0; $i < count($this->recordings) ; $i++) {
+			if ($this->recordings[$i][$this->recording_ProgramID] == $PID) {
+				return TRUE;
+			}
+		}
+		return FALSE;
+	}	
 }
 ?>

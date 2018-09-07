@@ -1,7 +1,6 @@
 <?php
 	require_once("TinyAjaxBehavior.php");
 	require_once("vars.php");
-	require_once("statusmessage.php");
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_common.php");
 
