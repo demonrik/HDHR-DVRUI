@@ -19,7 +19,6 @@
 	require_once("theme.php");
 	require_once("upcoming.php");
 	require_once("search.php");
-
 	/* Prepare Ajax */
 	$ajax = new TinyAjax();
 	$ajax->setRequestType("POST");    // Change request-type from GET to POST
@@ -63,7 +62,6 @@
 	$pageName = DVRUI_Vars::DVRUI_name;
 	$UIVersion = "version: " . DVRUI_Vars::DVRUI_version;
 	$pagecontent = "";
-
 	// --- include header ---
 	$header = file_get_contents('style/header.html');
 	$pagecontent = str_replace('[[pagetitle]]',$pageName,$header);

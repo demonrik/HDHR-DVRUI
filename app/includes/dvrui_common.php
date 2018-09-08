@@ -1,4 +1,9 @@
 <?php
+
+	function file_get_contents_utf8($fn) { 
+	     $content = file_get_contents($fn); 
+	      return mb_convert_encoding($content, 'UTF-8'); 
+	} 
 	function getJsonFromUrl($url) {
 		$content = getURL($url);
 		return json_decode($content, true);
@@ -21,7 +26,7 @@
 			$current_time = time();
 			$file_time = filemtime($cachefilename);
 			if ($current_time - $maxAgeSeconds < $file_time){
-				$content = file_get_contents($cachefilename);
+				$content = file_get_contents_utf8($cachefilename);
 			}else{
 				unlink($cachefilename);
 				$content = getURL($url);
@@ -40,6 +45,7 @@
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 			$content = curl_exec($ch);
 			curl_close($ch);
 		} else { 

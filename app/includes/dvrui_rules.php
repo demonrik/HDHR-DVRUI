@@ -10,7 +10,7 @@ class DVRUI_Rules {
 	 * Documentation on How the HDHR system exposes Recording rules is explained
 	 * https://github.com/Silicondust/documentation/wiki/DVR%20Recording%20Rules
 	 */
-	private $rulesURL = 'http://my.hdhomerun.com/api/recording_rules?DeviceAuth=';
+	private $rulesURL =  DVRUI_Vars::DVRUI_apiurl . 'api/recording_rules?DeviceAuth=';
 	
 	/*
 	 * The following are the Parameters that can be included in a rule created

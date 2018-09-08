@@ -36,17 +36,23 @@ input {
   width: 200px;
   position: relative;
   color: #FFFFFF;
-  font-size: 20px;
+  font-size: 30px;
   padding: 5px 5px 5px 60px;
   margin-top: 25px;
   cursor: pointer;
 }
 .entry {
+<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
   height: 525px;
+=======
+  border-top: solid 2px #393;
+  background: #DDDDDD;
+  height: 560px;
+>>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .entry-p {
   font-style: italic;
@@ -230,11 +236,17 @@ a.settings_page {
   width: 100%;
 }
 .rule_entry {
+<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
   height: 525px;
+=======
+  border-top: solid 2px #393;
+  background: #DDDDDD;
+  height: 560px;
+>>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .rule_entry h4 {
   color: ;
@@ -299,11 +311,17 @@ a.settings_page {
   width: 100%;
 }
 .recording_entry {
+<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
   height: 525px;
+=======
+  border-top: solid 2px #393;
+  background: #DDDDDD;
+  height: 560px;
+>>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .recording_entry h4 {
   color: ;
@@ -366,11 +384,17 @@ ul.sortby li a {
   width: 100%;
 }
 .upcoming_entry {
+<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
   height: 525px;
+=======
+  border-top: solid 2px #393;
+  background: #DDDDDD;
+  height: 560px;
+>>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
 }
 .upcoming_entry h4 {
   color: ;
@@ -407,11 +431,17 @@ ul.sortby li a {
   width: 100%;
 }
 .search_entry {
+<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
   height: 525px;
+=======
+  border-top: solid 2px #393;
+  background: #DDDDDD;
+  height: 560px;
+>>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
-  font-size: 2.25em;
+  font-size: 2em;
   font-size: 1.5em;
   overflow-y: auto;
 }

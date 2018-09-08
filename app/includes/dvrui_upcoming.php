@@ -11,7 +11,7 @@ class DVRUI_Upcoming {
 	 * Note: At this time the guide APIs are not published, so these are likely
 	 *       to change at some point in the future
 	 */
-	private $epGuideURL = 'http://my.hdhomerun.com/api/episodes?';
+	private $epGuideURL =  DVRUI_Vars::DVRUI_apiurl . 'api/episodes?';
 	private $epGuideURL_paramAuth = 'DeviceAuth=';
 	private $epGuideURL_paramSeries = '&SeriesID=';
 	
@@ -45,11 +45,15 @@ class DVRUI_Upcoming {
 
 	}
 	public function initByRules($rules) {
+		$series = array();
 		// only interested in small set of the rules data
 		for ($i=0; $i < $rules->getRuleCount(); $i++) {
-			$this->series_list[] = array(
-				$this->epData_SeriesID => $rules->getRuleSeriesID($i),
-				$this->epData_Title => $rules->getRuleTitle($i));
+			if(!isset($series[$rules->getRuleSeriesID($i)])){
+				$series[$rules->getRuleSeriesID($i)] = $rules->getRuleSeriesID($i);
+				$this->series_list[] = array(
+					$this->epData_SeriesID => $rules->getRuleSeriesID($i),
+					$this->epData_Title => $rules->getRuleTitle($i));
+			}
 		}
 	}
 

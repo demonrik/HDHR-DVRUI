@@ -38,9 +38,11 @@ for ($i=0; $i < $devices; $i++) {
 	echo 'tuner(' . $i . ') model: ' . $hdhr->get_device_model($i) . "\n";
 	echo 'tuner(' . $i . ') firmware: ' . $hdhr->get_device_firmware($i) . "\n";
 	echo 'tuner(' . $i . ') baseurl: ' . $hdhr->get_device_baseurl($i) . "\n";
+	echo 'tuner(' . $i . ') auth: ' . $hdhr->get_device_auth($i) . "\n";
 }
 
 echo "---------- HDHR DVR ENGINES------------------------------------------------------\n";
+	echo ' auth: ' . $hdhr->get_auth() . "\n";
 $engines = $hdhr->engine_count();
 for ($i=0; $i < $engines; $i++) {
 	echo 'dvr(' . $i . ') name: ' . $hdhr->get_engine_name($i) . "\n";
