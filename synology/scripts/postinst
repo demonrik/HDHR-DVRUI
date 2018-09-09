@@ -1,0 +1,8 @@
+#!/bin/sh
+
+package_path=$(dirname "$0")
+. $package_path/common
+
+create_web_ui
+
+exit 0

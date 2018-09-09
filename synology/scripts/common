@@ -1,0 +1,31 @@
+#!/bin/sh
+
+### This script will be executed when package installed and upgraded.
+### Actions after package installed.
+### ex. create database, create symbolic link...
+
+
+#Useful Environment Variables
+# SYNOPKG_PKGNAME     - Package Name from INFO
+# SYNOPKG_PKGVER      - Package Version from INFO
+# SYNOPKG_PKGDEST     - Target directory for storage of the package
+# SYNOPKG_PKGDEST_VOL - Target Volume where package is stored
+# SYNOPKG_PKGPORT     - Admin Port as defined in INFO
+
+# SYNOPKG_TEMP_UPGRADE_FOLDER - Temp folder for moving data to/from between preupgrade and postupgrade
+# SYNOPKG_TEMP_LOGFILE        - Temporary logfile for scripts to log to
+
+hdhr_web_path="$SYNOPKG_PKGDEST/web"
+http_user="http:http"
+hdhr_user="http"
+
+create_web_ui() {
+	cp -R $hdhr_web_path $syno_web_path
+	chown -R http:http $syno_web_path
+	chmod -R 755 $syno_web_path
+}
+
+delete_web_ui() {
+	rm -rf $syno_web_path
+}
+
