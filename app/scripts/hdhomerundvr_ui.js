@@ -71,13 +71,13 @@ function RecordingDeleteReveal(evt, recordingid, rerecord){
 	reveal(evt, 'RecordingDelete');
 }
 
-function submitDeleteRule(){
+function submitDeleteRule(evt){
 	rule_id = document.getElementById("druleid").value;
 	deleteRuleByID(rule_id, false);
 	hideReveal(evt, 'RuleDelete');
 }
 
-function submitDeleteRecording(){
+function submitDeleteRecording(evt){
 	recording_id = document.getElementById("drecordingid").value;
 	rerecord = document.getElementById("drerecord").value;
 	seriesid = document.getElementById("seriesid").value;

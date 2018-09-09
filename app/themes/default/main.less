@@ -45,27 +45,31 @@ br.clearfix {
 	margin-top: 25px;
 	cursor: pointer;
 }
+
 .entry {
-	border-top: solid 2px @EntryBorderColor;
+	width: 300px;
+	height: 300px;
+	border: solid 1px @EntryBorderColor;
 	background: @EntryBackgroundColor;
-	height: 150px;
-	position: relative;
+	Text-color: @EntryTextColor;
+	box-shadow: 5px 5px 5px #000;
+	margin: 5px;
+	display:inline-block;
+	font-size: 0.75em;
 }
+
 .entry-p{
-    font-style: italic;
+  font-style: italic;
 	color: @EntryTextColor;
 	font-size: 0.75em;
-	margin-left: 200px;
 }
 .entry-h4{
 	color: @EntryTextColor;
 	font-size: 1em;
-	margin-left: 200px;
 }   
 .series_img{
-	float: left;
-	max-height: 150px;
-	max-width: 200px;
+	max-height: 225px;
+	max-width: 300px;
 }	
 .series_img_lrg{
 	float: left;
@@ -223,22 +227,15 @@ a.settings_page{
 
 #hdhr_img_cnt {
 	vertical-align: middle;
-	display: table-cell;
 }
 
 #hdhr_img_flt {
-	float: left;
-	background-color: #FFFFFF;
-	width: 180px;
-	height: 130px;
-	margin: 0 10px 0 0;
-	display: table;
+	text-align: center;
+	background-color: #444;
 }
 
 #hdhr_entry {
-	border-top: solid 1px @EntryBorderColor;
-	background: @EntryBackgroundColor;
-	height: 130px;
+	.entry;
 }
 
 .hdhr_entry h4 {
@@ -251,7 +248,14 @@ a.settings_page{
 	color: @EntryTextColor;
 	font-size: 1em;
 }
+	
+.hdhr_entry a:visited {
+	color: @HDHRLink_Visited;
+}
 
+.hdhr_entry a {
+	color: @HDHRLink;
+}
 
 
 
@@ -276,7 +280,8 @@ a.settings_page{
 	.entry;
 }
 .rule_entry h4 {
-    .entry-h4;	
+	color: @EntryTextColor;
+	font-size: 1em;
 }
 
 .rule_entry p {
@@ -331,10 +336,10 @@ a.settings_page{
 	.entry;
 }
 .recording_entry h4 {
-    .entry-h4;	
+	.entry-h4;
 }
 .recording_entry p {
-    .entry-p;
+  .entry-p;
 }
 
 
@@ -455,9 +460,6 @@ ul.sortby li a{
 .actions {
 	text-align: right;
 	margin: 1px;
-	position: absolute;
-	top: 2px;
-	right: 0px;
 }
 .inlinerules {
 	text-align: right;

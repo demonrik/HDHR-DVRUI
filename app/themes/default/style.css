@@ -40,26 +40,28 @@ br.clearfix {
   cursor: pointer;
 }
 .entry {
-  border-top: solid 2px #111;
-  background: #DDDDDD;
-  height: 150px;
-  position: relative;
+  width: 300px;
+  height: 300px;
+  border: solid 1px #111;
+  background: #333;
+  Text-color: #DDD;
+  box-shadow: 5px 5px 5px #000;
+  margin: 5px;
+  display: inline-block;
+  font-size: 0.75em;
 }
 .entry-p {
   font-style: italic;
-  color: #000000;
+  color: #DDD;
   font-size: 0.75em;
-  margin-left: 200px;
 }
 .entry-h4 {
-  color: #000000;
+  color: #DDD;
   font-size: 1em;
-  margin-left: 200px;
 }
 .series_img {
-  float: left;
-  max-height: 150px;
-  max-width: 200px;
+  max-height: 225px;
+  max-width: 300px;
 }
 .series_img_lrg {
   float: left;
@@ -204,29 +206,36 @@ a.settings_page {
 }
 #hdhr_img_cnt {
   vertical-align: middle;
-  display: table-cell;
 }
 #hdhr_img_flt {
-  float: left;
-  background-color: #FFFFFF;
-  width: 180px;
-  height: 130px;
-  margin: 0 10px 0 0;
-  display: table;
+  text-align: center;
+  background-color: #444;
 }
 #hdhr_entry {
-  border-top: solid 1px #111;
-  background: #DDDDDD;
-  height: 130px;
+  width: 300px;
+  height: 300px;
+  border: solid 1px #111;
+  background: #333;
+  Text-color: #DDD;
+  box-shadow: 5px 5px 5px #000;
+  margin: 5px;
+  display: inline-block;
+  font-size: 0.75em;
 }
 .hdhr_entry h4 {
-  color: #000000;
+  color: #DDD;
   font-size: 1.25em;
 }
 .hdhr_entry p {
   font-style: italic;
-  color: #000000;
+  color: #DDD;
   font-size: 1em;
+}
+.hdhr_entry a:visited {
+  color: cyan;
+}
+.hdhr_entry a {
+  color: yellow;
 }
 #rules_page {
   position: relative;
@@ -250,21 +259,24 @@ a.settings_page {
   width: 100%;
 }
 .rule_entry {
-  border-top: solid 2px #111;
-  background: #DDDDDD;
-  height: 150px;
-  position: relative;
+  width: 300px;
+  height: 300px;
+  border: solid 1px #111;
+  background: #333;
+  Text-color: #DDD;
+  box-shadow: 5px 5px 5px #000;
+  margin: 5px;
+  display: inline-block;
+  font-size: 0.75em;
 }
 .rule_entry h4 {
-  color: #000000;
+  color: #DDD;
   font-size: 1em;
-  margin-left: 200px;
 }
 .rule_entry p {
   font-style: italic;
-  color: #000000;
+  color: #DDD;
   font-size: 0.75em;
-  margin-left: 200px;
 }
 #series_page {
   position: relative;
@@ -291,7 +303,7 @@ a.settings_page {
   width: 300px;
   height: 225px;
   border: solid 1px #111;
-  background: #DDDDDD;
+  background: #333;
   box-shadow: 5px 5px 5px #000;
   margin: 5px;
   display: inline-block;
@@ -319,21 +331,24 @@ a.settings_page {
   width: 100%;
 }
 .recording_entry {
-  border-top: solid 2px #111;
-  background: #DDDDDD;
-  height: 150px;
-  position: relative;
+  width: 300px;
+  height: 300px;
+  border: solid 1px #111;
+  background: #333;
+  Text-color: #DDD;
+  box-shadow: 5px 5px 5px #000;
+  margin: 5px;
+  display: inline-block;
+  font-size: 0.75em;
 }
 .recording_entry h4 {
-  color: #000000;
+  color: #DDD;
   font-size: 1em;
-  margin-left: 200px;
 }
 .recording_entry p {
   font-style: italic;
-  color: #000000;
+  color: #DDD;
   font-size: 0.75em;
-  margin-left: 200px;
 }
 ul.sortby {
   list-style-type: none;
@@ -387,21 +402,24 @@ ul.sortby li a {
   width: 100%;
 }
 .upcoming_entry {
-  border-top: solid 2px #111;
-  background: #DDDDDD;
-  height: 150px;
-  position: relative;
+  width: 300px;
+  height: 300px;
+  border: solid 1px #111;
+  background: #333;
+  Text-color: #DDD;
+  box-shadow: 5px 5px 5px #000;
+  margin: 5px;
+  display: inline-block;
+  font-size: 0.75em;
 }
 .upcoming_entry h4 {
-  color: #000000;
+  color: #DDD;
   font-size: 1em;
-  margin-left: 200px;
 }
 .upcoming_entry p {
   font-style: italic;
-  color: #000000;
+  color: #DDD;
   font-size: 0.75em;
-  margin-left: 200px;
 }
 #search_page {
   position: relative;
@@ -425,22 +443,25 @@ ul.sortby li a {
   width: 100%;
 }
 .search_entry {
-  border-top: solid 2px #111;
-  background: #DDDDDD;
-  height: 150px;
-  position: relative;
+  width: 300px;
+  height: 300px;
+  border: solid 1px #111;
+  background: #333;
+  Text-color: #DDD;
+  box-shadow: 5px 5px 5px #000;
+  margin: 5px;
+  display: inline-block;
+  font-size: 0.75em;
   overflow-y: auto;
 }
 .search_entry h4 {
-  color: #000000;
+  color: #DDD;
   font-size: 1em;
-  margin-left: 200px;
 }
 .search_entry p {
   font-style: italic;
-  color: #000000;
+  color: #DDD;
   font-size: 0.75em;
-  margin-left: 200px;
 }
 .edit_form ul {
   list-style-type: none;
@@ -466,9 +487,6 @@ ul.sortby li a {
 .actions {
   text-align: right;
   margin: 1px;
-  position: absolute;
-  top: 2px;
-  right: 0px;
 }
 .inlinerules {
   text-align: right;

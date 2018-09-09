@@ -1,7 +1,8 @@
 <?php
-/*
+
 	// UNCOMMENT FOR DEBUGGING
 	opcache_reset();
+/*
 	ini_set("log_errors", 1);
 	ini_set("error_log", "/tmp/php-dvrui.log");
 	error_log( "======= Debug Log START =========" );

@@ -83,7 +83,6 @@
 			$recordingsEntry = str_replace('<!-- dvr_recordings_episode -->',$hdhrRecordings->getEpisodeNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_show -->',$hdhrRecordings->getEpisodeTitle($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_title -->',$hdhrRecordings->getTitle($i),$recordingsEntry);
-			$recordingsEntry = str_replace('<!-- dvr_recordings_synopsis -->',$hdhrRecordings->getSynopsis($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_play -->',$hdhrRecordings->get_PlayURL($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_recstart -->',$hdhrRecordings->getRecordStartTime($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_start -->',$hdhrRecordings->getStartTime($i),$recordingsEntry);

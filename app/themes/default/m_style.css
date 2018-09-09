@@ -42,15 +42,9 @@ input {
   cursor: pointer;
 }
 .entry {
-<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
-  height: 525px;
-=======
-  border-top: solid 2px #393;
-  background: #DDDDDD;
   height: 560px;
->>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
   font-size: 2em;
 }
@@ -236,15 +230,9 @@ a.settings_page {
   width: 100%;
 }
 .rule_entry {
-<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
-  height: 525px;
-=======
-  border-top: solid 2px #393;
-  background: #DDDDDD;
   height: 560px;
->>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
   font-size: 2em;
 }
@@ -311,15 +299,9 @@ a.settings_page {
   width: 100%;
 }
 .recording_entry {
-<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
-  height: 525px;
-=======
-  border-top: solid 2px #393;
-  background: #DDDDDD;
   height: 560px;
->>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
   font-size: 2em;
 }
@@ -384,15 +366,9 @@ ul.sortby li a {
   width: 100%;
 }
 .upcoming_entry {
-<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
-  height: 525px;
-=======
-  border-top: solid 2px #393;
-  background: #DDDDDD;
   height: 560px;
->>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
   font-size: 2em;
 }
@@ -431,15 +407,9 @@ ul.sortby li a {
   width: 100%;
 }
 .search_entry {
-<<<<<<< HEAD
   border-top: solid 2px ;
   background: ;
-  height: 525px;
-=======
-  border-top: solid 2px #393;
-  background: #DDDDDD;
   height: 560px;
->>>>>>> 0e90ad1da1d6abadd260bef20b3a83fed278c41f
   position: relative;
   font-size: 2em;
   font-size: 1.5em;

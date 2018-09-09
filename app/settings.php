@@ -32,7 +32,7 @@
 		// Discover HDHR Devices
 		$hdhr = new DVRUI_HDHRjson();
 		$devices =  $hdhr->device_count();
-		$hdhr_data = '';
+		$hdhr_data = "<br/><h2>HDHomeRun Devices found.</h2><br/>";
 		for ($i=0; $i < $devices; $i++) {
 			$hdhrEntry = file_get_contents('style/hdhrlist_entry.html');
 			$hdhr_device_data = "<a href=" . $hdhr->get_device_baseurl($i) . ">" . $hdhr->get_device_id($i) . "</a>";
@@ -47,7 +47,7 @@
 			$hdhr_data .= $hdhrEntry ;	
 		}
 		$engines =  $hdhr->engine_count();
-		$hdhr_data .= $engines . " recording engines found.";	
+		$hdhr_data .= "<br/><h2>DVR Record Engines found:</h2><br/>";	
 		for ($i=0; $i < $engines; $i++) {
 			$engineEntry = file_get_contents('style/recordenginelist_entry.html');
 			$engineEntry = str_replace('<!--rec_image-->',$hdhr->get_engine_image($i),$engineEntry);
