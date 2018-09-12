@@ -71,6 +71,11 @@ br.clearfix {
 #loading {
   z-index: 101;
 }
+.logo_image {
+  width: 64ps;
+  height: 64px;
+  float: left;
+}
 #header {
   background: #777;
   display: block;
@@ -81,7 +86,7 @@ br.clearfix {
   z-index: 100;
 }
 #logo {
-  height: 65px;
+  height: 85px;
   width: 100%;
   position: absolute;
   left: 20px;
@@ -92,7 +97,7 @@ br.clearfix {
 }
 #logo h1 {
   top: 5px;
-  font-size: 2em;
+  font-size: 2.25em;
   color: #000000;
   text-shadow: 0 4px 4px #000000;
   bottom: 5px;
