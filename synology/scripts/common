@@ -16,6 +16,7 @@
 # SYNOPKG_TEMP_LOGFILE        - Temporary logfile for scripts to log to
 
 hdhr_web_path="$SYNOPKG_PKGDEST/web"
+syno_web_path="/var/services/web/$SYNOPKG_PKGNAME"
 http_user="http:http"
 hdhr_user="http"
 
