@@ -52,4 +52,14 @@ for ($i=0; $i < $engines; $i++) {
 	echo 'dvr(' . $i . ') storage ID: ' . $hdhr->get_engine_storage_id($i) . "\n";
 	echo 'dvr(' . $i . ') local IP: ' . $hdhr->get_engine_local_ip($i) . "\n";
 
+	echo "------------DVR $i Series ----- -------------------------------------------------\n";
+        $seriesURL = $hdhr->get_engine_storage_url($i) . '?DisplayGroupID=root';
+	echo $seriesURL;
+	$seriesjson = getJsonFromURL($seriesURL);
+	echo print_r($seriesjson); 
 }
+echo "---------- Rules -----------------------------------------------------------------\n";
+$rulesURL = "http://api.hdhomerun.com/api/recording_rules?DeviceAuth=" . $hdhr->get_auth();
+$rulesjson = getJsonFromURL($rulesURL);
+echo print_r($rulesjson);
+
