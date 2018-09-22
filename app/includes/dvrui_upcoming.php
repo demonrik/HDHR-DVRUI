@@ -71,7 +71,7 @@ class DVRUI_Upcoming {
 		$episodeNumber = '';
 		$episodeTitle = '';
 		$synopsis = '';
-		$imageURL = '';
+		$imageURL = NO_IMAGE;
 		$originalAirDate = '';
 		$startTime = '';
 		$endTime = '';
@@ -112,7 +112,7 @@ class DVRUI_Upcoming {
 		if (array_key_exists($this->epData_Synopsis,$episode)){
 			$synopsis = $episode[$this->epData_Synopsis];
 		}
-		if (array_key_exists($this->epData_ImageURL,$episode)){
+		if (array_key_exists($this->epData_ImageURL,$episode)) {
 			$imageURL = $episode[$this->epData_ImageURL];
 		}
 		$this->upcoming_list[] = array(

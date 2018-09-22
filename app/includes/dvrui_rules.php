@@ -92,8 +92,8 @@ class DVRUI_Rules {
 		$recentOnly = 'X';
 		$airdate = '';
 		$synopsis = "";
-		$image = "";
-	
+		$image = NO_IMAGE;
+			
 		if (array_key_exists($this->recording_ImageURL,$rule)){
 			$image = $rule[$this->recording_ImageURL];
 		}

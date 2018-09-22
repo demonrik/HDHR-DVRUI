@@ -92,7 +92,7 @@ class DVRUI_Recordings {
 		$channelNumber = '';
 		$channelAffiliate = '';
 		$episodeNumber = 'X';
-		$imageURL = '';
+		$imageURL = NO_IMAGE;
 		$episodeTitle = 'X';
 		$originalAirDate = '';
 		$recordStartTime = '';

@@ -42,12 +42,12 @@ class DVRUI_Search {
 		}
 		for ($i = 0; $i < count($search_info); $i++) {
 			$seriesID = $search_info[$i][$this->search_SeriesID];
-			$image = "";
+			$image = NO_IMAGE;
 			$title = $search_info[$i][$this->search_Title];
 			$originalAirDate = 0;	
 			$recordingRule = 0;	
-			if (array_key_exists($this->search_ImageURL,$search_info[$i])){
-				$image = $search_info[$i][$this->search_ImageURL];
+			if (array_key_exists($this->search_ImageURL,$search_info[$i])) {
+						$image = $search_info[$i][$this->search_ImageURL];
 			}
 			if (array_key_exists($this->search_Synopsis,$search_info[$i])){
 				$synopsis = $search_info[$i][$this->search_Synopsis];

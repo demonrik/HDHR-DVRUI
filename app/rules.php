@@ -123,7 +123,12 @@
 			$reccount = $hdhrRecordings->getRecordingCountBySeries($hdhrRules->getRuleSeriesID($i));
 			$rulesEntry = file_get_contents('style/rules_entry.html');
 			$rulesEntry = str_replace('<!-- dvr_rules_id -->',$hdhrRules->getRuleRecID($i) ,$rulesEntry);
-			$rulesEntry = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$rulesEntry);
+			if (URLExists($hdhrRules->getRuleImage($i))) {
+				$rulesEntry = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$rulesEntry);
+			} else {
+				$rulesEntry = str_replace('<!-- dvr_rules_image -->',NO_IMAGE,$rulesEntry);
+			}
+			
 			$rulesEntry = str_replace('<!-- dvr_rules_priority -->',$hdhrRules->getRulePriority($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_priorityPlus -->',$i-2,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_priorityMinus -->',$i+1,$rulesEntry);
@@ -143,7 +148,7 @@
 			}
 		
 			// get upcoming count	
-			$upcoming = new DVRUI_Upcoming($hdhr);
+			$upcoming = new DVRUI_Upcoming($hdhr, NULL);
 			$upcoming->initBySeries($hdhrRules->getRuleSeriesID($i));
 			$upcomingcount = $upcoming->getUpcomingCount();
 

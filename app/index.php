@@ -1,11 +1,17 @@
 <?php
-
+/*
 	// UNCOMMENT FOR DEBUGGING
-/*	opcache_reset();
+	opcache_reset();
 	ini_set("log_errors", 1);
 	ini_set("error_log", "/tmp/php-dvrui.log");
 	error_log( "======= Debug Log START =========" );
 */
+	if (PHP_MAJOR_VERSION >= 7) {
+		error_log( "PHP > 7 detected" );
+    set_error_handler(function ($errno, $errstr) {
+       return strpos($errstr, 'Declaration of') === 0;
+    }, E_WARNING);
+	}
 
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
 	define('TINYAJAX_PATH', '.');
@@ -19,12 +25,14 @@
 	require_once("theme.php");
 	require_once("upcoming.php");
 	require_once("search.php");
+	require_once("dashboard.php");
 	/* Prepare Ajax */
 	$ajax = new TinyAjax();
 	$ajax->setRequestType("POST");    // Change request-type from GET to POST
 	$ajax->showLoading();             // Show loading while callback is in progress
 	
 	/* Export the PHP Interface */
+	$ajax->exportFunction("openDashboardPage","");
 	$ajax->exportFunction("openSeriesPage","");
 	$ajax->exportFunction("openRulesPage","seriesid");
 	$ajax->exportFunction("openRecordingsPage","seriesid");
@@ -47,8 +55,8 @@
 	$stylesheet = getTheme();
 	
 	//Build navigation menu for pages
-	$pageTitles = array('Series', 'Recordings', 'Upcoming','Rules', 'Search','.');
-	$pageNames = array('series_page', 'recordings_page', 'upcoming_page', 'rules_page',  'search_page', 'settings_page');
+	$pageTitles = array('Dashboard', 'Series', 'Recordings', 'Upcoming','Rules', 'Search','.');
+	$pageNames = array('dashboard_page', 'series_page', 'recordings_page', 'upcoming_page', 'rules_page',  'search_page', 'settings_page');
 	$menu_data = file_get_contents('style/pagemenu.html');
 	$menuEntries = '';
 	for ($i=0; $i < count($pageNames); $i++) {
@@ -71,6 +79,7 @@
 	// --- Build Body ---
 	$indexPage = file_get_contents('style/index_page.html');
 
+	$dashboarddata = file_get_contents('style/dashboard.html');
 	$rulesdata = file_get_contents('style/rules.html');
 	$recordingsdata = file_get_contents('style/recordings.html');
 	$seriesdata = file_get_contents('style/series.html');
@@ -82,6 +91,7 @@
 	$indexPage = str_replace('[[UI-Version]]',$UIVersion,$indexPage);
 
 	$indexPage = str_replace('<!-- dvrui_pagemenu -->',$menu_data,$indexPage);
+	$indexPage = str_replace('<!-- dvrui_dashboard -->',$dashboarddata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_serieslist -->',$seriesdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_recordingslist -->',$recordingsdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_upcominglist -->',$updata,$indexPage);

@@ -203,6 +203,9 @@ function openTab(evt, tabname) {
 	}
 	
 	// load the page
+	if (tabname == 'dashboard_page') {
+		openDashboardPage();
+	}
 	if (tabname == 'series_page') {
 		openSeriesPage("");
 	}

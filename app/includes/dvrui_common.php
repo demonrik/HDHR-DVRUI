@@ -1,4 +1,5 @@
 <?php
+	define('NO_IMAGE','images/no-preview.png');
 
 	function file_get_contents_utf8($fn) { 
 	     $content = file_get_contents($fn); 
@@ -57,5 +58,30 @@
 		}
 		return $content;
 
+	}
+	
+	function URLExists($url) {
+		$exists   = false;
+
+		if (!$exists && in_array('curl', get_loaded_extensions())) {
+			$ch = curl_init();   
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			curl_exec($ch);
+			$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			if ($response === 200) $exists = true;
+				curl_close($ch);
+		}
+		if (!$exists && function_exists('get_headers')) {
+			$headers = @get_headers($robots);
+			if ($headers) {
+				if (strpos($headers[0], '404') !== false) {
+					$exists = true;
+				}
+			}		
+		}
+		return $exists;
 	}
 ?>
