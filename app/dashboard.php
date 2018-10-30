@@ -51,13 +51,14 @@
 	}
 	
 	function getDashboardHardware($hdhr) {
-		// Discover HDHR Devices
 		$devices =  $hdhr->device_count();
+		$engines =  $hdhr->engine_count();
+
 		$hdhr_data = '';
 		for ($i=0; $i < $devices; $i++) {
 			$hdhrEntry = file_get_contents('style/hdhrlist_entry.html');
-			$hdhr_device_data = "<a href=" . $hdhr->get_device_baseurl($i) . ">" . $hdhr->get_device_id($i) . "</a>";
-			$hdhr_lineup_data = "<a href=" . $hdhr->get_device_lineup($i) . ">" . $hdhr->get_device_channels($i) . " Channels</a>";
+			$hdhr_device_data = "<a href=\"" . $hdhr->get_device_baseurl($i) . "\">" . $hdhr->get_device_id($i) . "</a>";
+			$hdhr_lineup_data = "<a href=\"" . $hdhr->get_device_lineup($i) . "\">" . $hdhr->get_device_channels($i) . " Channels</a>";
 			$hdhrEntry = str_replace('<!--hdhr_device-->',$hdhr_device_data,$hdhrEntry);
 			$hdhrEntry = str_replace('<!--hdhr_channels-->',$hdhr_lineup_data,$hdhrEntry);
 			$hdhrEntry = str_replace('<!--hdhr_model-->',$hdhr->get_device_model($i),$hdhrEntry);
@@ -65,19 +66,16 @@
 			$hdhrEntry = str_replace('<!--hdhr_firmware-->',$hdhr->get_device_firmware($i),$hdhrEntry);
 			$hdhrEntry = str_replace('<!--hdhr_legacy-->',$hdhr->get_device_legacy($i),$hdhrEntry);
 			$hdhrEntry = str_replace('<!--hdhr_image-->',$hdhr->get_device_image($i),$hdhrEntry);
-			$hdhr_data .= $hdhrEntry ;	
+			$hdhr_data .= $hdhrEntry ;
 		}
-		$engines =  $hdhr->engine_count();
 		for ($i=0; $i < $engines; $i++) {
 			$engineEntry = file_get_contents('style/recordenginelist_entry.html');
 			$engineEntry = str_replace('<!--rec_image-->',$hdhr->get_engine_image($i),$engineEntry);
 			$engineEntry = str_replace('<!--rec_name-->',$hdhr->get_engine_name($i),$engineEntry);
 			$engineEntry = str_replace('<!--rec_version-->',$hdhr->get_engine_version($i),$engineEntry);
 			$engineEntry = str_replace('<!--rec_freespace-->',$hdhr->get_engine_space($i),$engineEntry);
-			$engine_discover_data = "<a href=" . $hdhr->get_engine_discoverURL($i) . ">" . $hdhr->get_engine_local_ip($i) . "</a>";
+			$engine_discover_data = "<a href=\"" . $hdhr->get_engine_discoverURL($i) . "\">" . $hdhr->get_engine_local_ip($i) . "</a>";
 			$engineEntry = str_replace('<!--rec_localip-->',$engine_discover_data,$engineEntry);
-			$engine_storage_data = "<a href=" . $hdhr->get_engine_storage_url($i) . ">" . $hdhr->get_engine_storage_id($i) . "</a>";
-			$engineEntry = str_replace('<!--rec_storageid-->',$engine_storage_data,$engineEntry);
 			$hdhr_data .= $engineEntry;
 		}
 		return $hdhr_data;
@@ -92,18 +90,15 @@
 		
 		$recordingsData = '';
 		for ($i=0; $i < $numRecordings; $i++) {
-			$recordingsEntry = file_get_contents('style/recordings_entry.html');
+			$recordingsEntry = file_get_contents('style/recordings_entry_nodecorators.html');
 			$recordingsEntry = str_replace('<!-- dvr_recordings_id -->',$hdhrRecordings->getRecordingID($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_series_id -->',$hdhrRecordings->getSeriesID($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_image -->',$hdhrRecordings->getRecordingImage($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_episode -->',$hdhrRecordings->getEpisodeNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_show -->',$hdhrRecordings->getEpisodeTitle($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_title -->',$hdhrRecordings->getTitle($i),$recordingsEntry);
-			$recordingsEntry = str_replace('<!-- dvr_recordings_play -->',$hdhrRecordings->get_PlayURL($i),$recordingsEntry);
-			$recordingsEntry = str_replace('<!-- dvr_recordings_recstart -->',$hdhrRecordings->getRecordStartTime($i),$recordingsEntry);
-			$recordingsEntry = str_replace('<!-- dvr_recordings_start -->',$hdhrRecordings->getStartTime($i),$recordingsEntry);
-			$recordingsEntry = str_replace('<!-- dvr_recordings_originaldate -->',$hdhrRecordings->getOriginalAirDate($i),$recordingsEntry);
-			$recordingsEntry = str_replace('<!-- dvr_recordings_repeat -->',$hdhrRecordings->isRepeat($i),$recordingsEntry);
+			$recordingsEntry = str_replace('<!-- dvr_recordings_start -->',$hdhrRecordings->getShortStartTime($i),$recordingsEntry);
+			$recordingsEntry = str_replace('<!-- dvr_recordings_originaldate -->',$hdhrRecordings->getShortOriginalAirDate($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chname -->',$hdhrRecordings->getChannelName($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chnumber -->',$hdhrRecordings->getChannelNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chaffiliate -->',$hdhrRecordings->getChannelAffiliate($i),$recordingsEntry);
@@ -136,7 +131,6 @@
 			$entry = str_replace('<!-- dvr_upcoming_original_airdate -->',$upcoming->getEpOriginalAirDate($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_image -->',$upcoming->getEpImg($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_start -->',$upcoming->getEpStart($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_stop -->',$upcoming->getEpEnd($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_channel_name -->',$upcoming->getEpChannelName($i),$entry);
 			$soonStr .= $entry;

@@ -3,7 +3,7 @@
 	require_once("vars.php");
 
 class DVRUI_HDHRjson {
-	private $myhdhrurl = DVRUI_Vars::DVRUI_apiurl . 'discover';
+	private $myhdhrurl = "";
 	private $hdhrkey_devID = 'DeviceID';
 	private $hdhrkey_localIP = 'LocalIP';
 	private $hdhrkey_baseURL = 'BaseURL';
@@ -29,6 +29,8 @@ class DVRUI_HDHRjson {
 	
 	public function DVRUI_HDHRjson() {
 
+		$this->myhdhrurl = DVRUI_Vars::DVRUI_apiurl . 'discover';
+		
 		if(DVRUI_Vars::DVRUI_discover_cache != ''){
 			$cachesecs = DVRUI_Vars::DVRUI_discover_cache;
 		}else{

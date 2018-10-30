@@ -18,10 +18,12 @@ class DVRUI_Search {
 	private $search_list = array();
 
 	private $auth = '';
-	private $searchURL =  DVRUI_Vars::DVRUI_apiurl . "api/search?DeviceAuth=";
+	private $searchURL =  '';
 	
 	public function DVRUI_Search($hdhr, $searchStr) {
 		DVRUI_setTZ();
+		$this->searchURL =  DVRUI_Vars::DVRUI_apiurl . "api/search?DeviceAuth=";
+		
 		$searchString = rawurlencode($searchStr);
 
 		//build up Auth string

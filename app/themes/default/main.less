@@ -6,6 +6,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 html {
 	background: @BodyBackgroundColor;
 }
@@ -48,7 +49,7 @@ br.clearfix {
 }
 
 .entry {
-	width: 300px;
+	width: 250px;
 	height: 300px;
 	border: solid 1px @EntryBorderColor;
 	background: @EntryBackgroundColor;
@@ -62,15 +63,24 @@ br.clearfix {
 .entry-p{
   font-style: italic;
 	color: @EntryTextColor;
-	font-size: 0.75em;
+	font-size: 1.2em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .entry-h4{
 	color: @EntryTextColor;
-	font-size: 1em;
+	font-size: 1.7em;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }   
+
+
 .series_img{
-	max-height: 225px;
-	max-width: 300px;
+	max-height: 200px;
+	max-width: 250px;
 }	
 .series_img_lrg{
 	float: left;
@@ -235,10 +245,16 @@ a.settings_page{
 	height: 350px;
 }
 
-#dashboard_hwlist, #recent_recordings_list, #soon_list_box {
+#recent_recordings_list, #soon_list_box {
 	#dashboard_scroll;
 }
 
+#dashboard_hwlist {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+	height: 220px;
+}
 
 
 /* HDHR Tab ------------------------------------------------------------------------- */
@@ -257,7 +273,7 @@ a.settings_page{
 #hdhr_img {
 	display: block;
 	margin: 0 auto;
-	width: 176px;
+	height: 75px;
 }
 
 #hdhr_img_cnt {
@@ -270,7 +286,15 @@ a.settings_page{
 }
 
 #hdhr_entry {
-	.entry;
+	width: 200px;
+	height: 180px;
+	border: solid 1px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	color: @EntryTextColor;
+	box-shadow: 5px 5px 5px #000;
+	margin: 5px;
+	display: inline-block;
+	font-size: 0.75em;
 }
 
 .hdhr_entry h4 {
@@ -282,6 +306,7 @@ a.settings_page{
 	font-style: italic;
 	color: @EntryTextColor;
 	font-size: 1em;
+	margin: 5px;
 }
 	
 .hdhr_entry a:visited {
@@ -315,13 +340,24 @@ a.settings_page{
 	.entry;
 }
 .rule_entry h4 {
-	color: @EntryTextColor;
-	font-size: 1em;
+	.entry-h4;
 }
 
 .rule_entry p {
-    .entry-p;
+	.entry-p;
 }
+
+.rule_hints {
+	width: 100%;
+	color: @EntryTextColor;
+}
+
+.rule_recording_count {
+	width: 50%;
+	text-align: left;
+}
+
+
 /* Series Tab ----------------------------------------------------------------- */
 
 #series_page {
@@ -493,9 +529,10 @@ ul.sortby li a{
 
 /* Various buttons to add/change/delete things --------------------------------------------*/
 .actions {
-	text-align: right;
 	margin: 1px;
+	width: 100%;
 }
+
 .inlinerules {
 	text-align: right;
 	margin-right: 30px;
@@ -507,25 +544,20 @@ ul.sortby li a{
 	padding: 0;
 	font-style: normal;
 }
-.play, .record, .delete, .upcoming, .settings, .RecCountButton, .RuleCountButton, .UpcomingCountButton{
+.play, .record, .delete, .rerecord, .upcoming, .settings, .RecCountButton, .RuleCountButton, .UpcomingCountButton{
 	display: inline-block;
 	color: @DecoratorDefaultTextColor;
 	text-align: center;
 	border-radius: 2px;
-	background-color: @TabMenuHighlightColor;
 	padding: 1px 1px;
-	font-size: 10px;
 	font-style: normal;
 	text-decoration: none;
+	background-color: rgba(3,3,3,0.3);
 	z-index: 99;
 }
 
-.delete{
-	background-color: #FF0000;
-}
-
-.upcoming{
-	background-color: #0000FF;
+.play, .delete, .rerecord, .upcoming {
+	width: 30%;
 }
 
 .settings{
@@ -542,18 +574,19 @@ ul.sortby li a{
 	margin: 5px;
 	padding: 3px;
 }	
+
 .RuleCountButton{
 	bottom: -200px;
-	background-color: #FF0000;
 	float: right;
+	width: 30%;
 	position: relative;
 	margin: 5px;
 	padding: 3px;
 }
+
 .UpcomingCountButton{
 	bottom: -200px;
 	float: right;
-	background-color: #0000FF;
 	position: relative;
 	margin: 5px;
 	padding: 3px;

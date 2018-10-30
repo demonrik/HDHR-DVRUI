@@ -92,8 +92,6 @@
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chnumber -->',$hdhrRecordings->getChannelNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chaffiliate -->',$hdhrRecordings->getChannelAffiliate($i),$recordingsEntry);
 
-
-
 			$recordingsData .= $recordingsEntry;
 		}
 		$recordingsList = file_get_contents('style/recordings_list.html');

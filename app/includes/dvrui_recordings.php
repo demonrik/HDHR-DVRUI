@@ -106,14 +106,12 @@ class DVRUI_Recordings {
 		$seriesid = '';
 		$programid = '';
 
-		$recID = $this->getRecordingIDfromURL($cmdURL);
-
-
 		if (array_key_exists($this->recording_PlayURL,$recording)){
 			$playURL = $recording[$this->recording_PlayURL];
 		}
 		if (array_key_exists($this->recording_CmdURL,$recording)){
 			$cmdURL = $recording[$this->recording_CmdURL];
+			$recID = $this->getRecordingIDfromURL($cmdURL);
 		}
 		if (array_key_exists($this->recording_SeriesID,$recording)){
 			$seriesid = $recording[$this->recording_SeriesID];
@@ -395,6 +393,11 @@ class DVRUI_Recordings {
 	public function getStartTime($pos) {
 		return date('D M/d Y @ g:ia',$this->recordings[$pos][$this->recording_StartTime]);
 	}
+
+	public function getShortStartTime($pos) {
+		return gmdate('m/d/y @ g:ia',$this->recordings[$pos][$this->recording_StartTime]);
+	}
+
 
 	public function getEndTime($pos) {
 		return date('D M/d Y @ g:ia',$this->recordings[$pos][$this->recording_EndTime]);

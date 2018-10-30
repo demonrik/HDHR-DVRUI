@@ -10,8 +10,7 @@ class DVRUI_Rules {
 	 * Documentation on How the HDHR system exposes Recording rules is explained
 	 * https://github.com/Silicondust/documentation/wiki/DVR%20Recording%20Rules
 	 */
-	private $rulesURL =  DVRUI_Vars::DVRUI_apiurl . 'api/recording_rules?DeviceAuth=';
-	
+	private $rulesURL = '';	
 	/*
 	 * The following are the Parameters that can be included in a rule created
 	 * on the SiliconDust HDHR DVR
@@ -62,6 +61,7 @@ class DVRUI_Rules {
 	private $auth = '';
 	
 	public function DVRUI_Rules($hdhr) {
+		$this->rulesURL =  DVRUI_Vars::DVRUI_apiurl . 'api/recording_rules?DeviceAuth=';
 		$this->auth = $hdhr->get_auth();;
 	}
 	

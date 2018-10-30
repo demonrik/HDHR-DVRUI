@@ -1,11 +1,12 @@
 <?php
-/*
-	// UNCOMMENT FOR DEBUGGING
+
+	/* UNCOMMENT FOR DEBUGGING
 	opcache_reset();
 	ini_set("log_errors", 1);
 	ini_set("error_log", "/tmp/php-dvrui.log");
 	error_log( "======= Debug Log START =========" );
-*/
+	*/
+	
 	if (PHP_MAJOR_VERSION >= 7) {
 		error_log( "PHP > 7 detected" );
     set_error_handler(function ($errno, $errstr) {
@@ -26,6 +27,7 @@
 	require_once("upcoming.php");
 	require_once("search.php");
 	require_once("dashboard.php");
+	
 	/* Prepare Ajax */
 	$ajax = new TinyAjax();
 	$ajax->setRequestType("POST");    // Change request-type from GET to POST

@@ -11,7 +11,7 @@ class DVRUI_Upcoming {
 	 * Note: At this time the guide APIs are not published, so these are likely
 	 *       to change at some point in the future
 	 */
-	private $epGuideURL =  DVRUI_Vars::DVRUI_apiurl . 'api/episodes?';
+	private $epGuideURL =  '';
 	private $epGuideURL_paramAuth = 'DeviceAuth=';
 	private $epGuideURL_paramSeries = '&SeriesID=';
 	
@@ -37,6 +37,7 @@ class DVRUI_Upcoming {
 	
 	public function DVRUI_Upcoming($hdhr, $recordings) {
 		DVRUI_setTZ();
+		$this->epGuideURL =  DVRUI_Vars::DVRUI_apiurl . 'api/episodes?';
     $this->auth = $hdhr->get_auth();
     $this->recordings = $recordings;
 		if(DVRUI_Vars::DVRUI_upcoming_cache != ''){
