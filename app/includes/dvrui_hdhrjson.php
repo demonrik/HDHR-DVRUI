@@ -242,7 +242,7 @@ class DVRUI_HDHRjson {
 				return './images/HDHR3-US.png';
 			case 'HDHR4-2US':
 			case 'HDHR4-2DT':
-				return './images/HDHR4-US.png';
+				return './images/HDHR4-2US.png';
 			case 'HDHR5-DT':
 			case 'HDHR5-2US':
 			case 'HDHR5-4DC':
