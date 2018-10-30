@@ -1,0 +1,658 @@
+@import "colors.less";
+
+
+/* global stuff ------------------------------------------------------------------ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	background: @BodyBackgroundColor;
+}
+
+body {
+	font-family: Arial, sans-serif;
+}
+a:hover {
+	cursor:pointer;
+}
+br.clearfix {
+	clear: both;
+}
+input {
+	font-size: 32px;
+}	
+#page {
+	position: relative;
+	padding: 0;
+	width: 100%;
+	border: none;
+	display: hidden;
+	background-color: #FFFFFF;
+	margin-top: 130px;
+}
+.upcoming_datebreak {
+	background: @EntryBorderColor;
+	background-image: url("upcoming.png");
+	background-size: 40px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 40px;
+	width: 200px;
+	position: relative;
+	color: #FFFFFF;
+	font-size: 30px;
+	padding: 5px 5px 5px 60px ;
+	margin-top: 25px;
+	cursor: pointer;
+}
+.entry {
+	border-top: solid 2px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 560px;
+	position: relative;
+	font-size: 2em;
+
+}
+.entry-p{
+    font-style: italic;
+	color: @EntryTextColor;
+}
+.entry-h4{
+	color: @EntryTextColor;
+	font-size: 1.25em;
+	width: 700px;
+	padding: 1px;
+}   
+.series_img{
+	float: left;
+	max-height: 132px;
+	max-width: 176px;
+}	
+.series_img_lrg{
+	float: left;
+	height: 194px;
+	max-width: 264px;
+}
+#loading{
+ z-index: 101;
+ font-size: 2em;
+}  
+
+
+/* Page Header --------------------------------------------------------------------- */
+
+#header {
+	background: #FFFFFF;
+	display: block;
+	position: fixed;
+	top: 0;
+	margin: auto;
+	border-top: solid 3px #393;	
+	width: 100%;
+	z-index: 100;
+}
+#logo {
+	height: 75px;
+	width: 100%;
+	position: absolute;
+	left: 20px;
+}
+
+#logo a {
+	text-decoration: none;
+	color: @LogoMainTextColor;
+}
+
+#logo h1 {
+	top: 5px;
+	font-size: 26px;
+	color: #000000;
+	text-shadow: 0 4px 4px #000000;
+	bottom: 5px;
+}
+
+.logo_image {
+	width: 64ps;
+	height: 64px;
+	float: left;
+}
+                                                                                                         
+.tabcontent {
+	display: none;
+}
+
+#listheader{
+	font-size: 2.5em;
+	padding: 10px;
+}	
+	
+
+/* Menu --------------------------------------------------------------------------- */
+
+ul.tabmenu {
+	list-style-type: none;
+	margin: 0px;
+	margin-top: 75px;
+	padding: 0;
+	overflow: hidden;
+	border: none;
+	background-color: #000000;
+	
+}
+
+ul.tabmenu li {
+	float: left;
+	background-color: #000000;
+	padding: 0px;
+	margin: 0px;
+}
+
+ul.tabmenu li a {
+	display: inline-block;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 10px 15px 10px 15px;
+	text-decoration: none;
+	transition: 0.1s;
+	font-size: 32px;
+}
+
+ul.tabmenu li a:hover {
+	background-color: @TabMenuHighlightColor;}
+
+ul.tabmenu li a:focus, a.active {
+	border-bottom: solid 12px #393;
+	background-color: #000000;
+}
+
+
+li.settings_page{
+	position: absolute;
+	right: 0;
+
+}
+a.settings_page{
+	text-color: #000000;
+	background-image: url("gear.png");
+	background-size: 40px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+
+/* Start Page ------------------------------------------------------------------------- */
+#start_page {
+	#page;
+}
+
+#start_content {
+	width: 100%;
+}
+
+/* HDHR Tab ------------------------------------------------------------------------- */
+
+#settings_page {
+	#page;
+}
+#settings_content {
+	width: 100%;
+}
+#settings_box {
+	width:100%;
+}
+
+
+#hdhr_img {
+	display: block;
+	margin: 0 auto;
+	width: 325px;
+}
+
+#hdhr_img_cnt {
+	vertical-align: middle;
+	display: table-cell;
+}
+
+#hdhr_img_flt {
+	float: left;
+	background-color: #FFFFFF;
+	width: 180px;
+	height: 130px;
+	margin: 0 10px 0 0;
+	display: table;
+}
+
+#hdhr_entry {
+	border-top: solid 1px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 350px;
+	font-size: 2em;
+}
+
+.hdhr_entry h4 {
+	color: @EntryTextColor;
+	font-size: 2em;
+}
+
+.hdhr_entry p {
+	font-style: italic;
+	color: @EntryTextColor;
+	font-size: 1.5em;
+}
+
+
+
+
+/* Rules Tab -----------------------------------------------------------------------  */
+
+#rules_page {
+	#page;
+}
+#rules_content {
+	width: 100%;
+}
+#rules_box {
+	width:100%;
+}
+#rules_info {
+	width:100%;
+}
+#rules_list_box {
+	width:100%;
+}
+.rule_entry {
+	.entry;
+}
+.rule_entry h4 {
+    .entry-h4;	
+    padding-top: 70px;
+}
+
+.rule_entry p {
+    .entry-p;
+}
+
+/* Series Tab ----------------------------------------------------------------- */
+
+#series_page {
+	#page;
+}
+#series_content {
+	width: 100%;
+}
+#series_box {
+	width:100%;
+}
+#series_info {
+	width:100%;
+}
+#series_list_box {
+	width:100%;
+}
+.series_entry {
+	width: 300px;
+	height: 225px;
+	border: solid 2px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	margin: 5px;
+	display:inline-block;
+	font-size: 0.75em;
+}
+
+/* Recordings Tab ----------------------------------------------------------------- */
+
+#recordings_page {
+	#page;
+}
+#recordings_content {
+	width: 100%;
+}
+#recordings_box {
+	width:100%;
+}
+#recordings_info {
+	width:100%;
+}
+#recordings_list_box {
+	width:100%;
+}
+.recording_entry {
+	.entry;
+}
+.recording_entry h4 {
+    .entry-h4;	
+}
+.recording_entry p {
+    .entry-p;
+}
+
+
+ul.sortby  {
+	list-style-type: none;
+	margin: 0;
+	overflow: hidden;
+	border: none;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 1px 1px 1px 1px;
+	font-size: 0.70em;
+	align: right;
+}
+ul.sortby li  {
+	float: left;
+	margin: 0px 5px;
+}
+ul.sortby li a{
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+	border-radius: 2px 2px 2px 2px;
+	background-color: @TabMenuHighlightColor;
+	padding: 2px 2px;
+	font-style: normal;
+	font-weight: normal;
+}
+
+
+/* Upcoming Tab -------------------------------------------------------------------- */
+
+#upcoming_page {
+	#page;
+}
+#upcoming_content {
+	width: 100%;
+}
+#upcoming_box {
+	width:100%;
+}
+#upcoming_info {
+	width:100%;
+}
+#upcoming_list_box {
+	width:100%;
+}
+.upcoming_entry {
+	.entry;
+}
+.upcoming_entry h4 {
+    .entry-h4;	
+}
+.upcoming_entry p {
+    .entry-p;
+}
+
+
+/* Search Tab ---------------------------------------------------------------------- */
+
+#search_page {
+	#page;
+}
+#search_content {
+	width: 100%;
+}
+#search_prompt{
+	padding: 10px 10px 10px 10px;
+}
+#search_box {
+	width:100%;
+}
+#search_info {
+	width: 100%;
+}	
+#search_list_box {
+	width:100%;
+}
+.search_entry{
+	.entry;
+	font-size: 1.5em;
+	overflow-y: auto;
+}
+.search_entry h4 {
+    .entry-h4;	
+    font-size: 2em;
+    padding-top: 70px;
+}
+.search_entry p{
+    .entry-p;
+    font-size: 14px;
+}
+#searchheader{
+	padding: 20px;
+	font-size:2em;
+}	
+#searchString{
+	font-size:1.25em;
+}
+button{
+	font-size:1.25em;
+}	
+
+/* Advanced Rule Modal Dialog ------------------------------------------------------*/
+
+.edit_form ul {
+	list-style-type:none;
+	list-style-position:outside;
+	margin: 0px;
+	padding: 0px;
+}
+.edit_form li{
+	padding: 0px;
+	position: relative;
+	font-size: 1.25em;
+}
+.edit_form label{
+	width: 200px;
+	display: inline-block;
+	text-align: right;
+	padding: 5px;
+}
+.edit_form input{
+	padding: 0px;
+	font-size: 28px;
+}
+
+
+/* Various buttons to add/change/delete things --------------------------------------------*/
+.actions {
+	text-align: right;
+	margin: 1px;
+	position: absolute;
+	top: 2px;
+	right: 0px;
+}
+.inlinerules {
+	text-align: right;
+	margin-right: 30px;
+	margin-bottom: 2px;
+}
+.play, .record, .delete, .upcoming, .settings, .RecCountButton, .RuleCountButton, .UpcomingCountButton{
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	text-align: center;
+	border-radius: 5px 5px 5px 5px;
+	background-color: @TabMenuHighlightColor;
+	padding: 1px 1px;
+	spacing: 2px;
+	font-size: 42px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+}
+.delete{
+	background-color: #FF0000;
+}
+.upcoming {
+	background-color: #0000FF;
+}
+
+.settings{
+	position: relative;
+	font-size: 18px;
+	margin: 5px;
+	z-index: 99;
+	padding: 5px;
+}	
+.RecCountButton{
+	position: relative;
+	font-size: 14px;
+	bottom: -195px;
+	margin: 5px;
+	z-index: 99;
+	padding: 3px;
+}	
+.RuleCountButton{
+	background-color: #FF0000;
+	float: right;
+	position: relative;
+	font-size: 14px;
+	margin: 5px;
+	bottom: -195px;
+	z-index: 99;
+	padding: 3px;
+}
+.UpcomingCountButton{
+        background-color: #0000FF;
+        float: right;
+        position: relative;
+        font-size: 14px;
+        margin: 5px;
+        bottom: -195px;
+        z-index: 99;
+        padding: 3px;
+}
+
+
+
+/* Auth Reveal Button */
+#AuthReveal {
+	color: white;
+	background-color: orange;
+}
+
+/* Reveal Modal Dialog*/
+.revealModal {
+	display: none;
+	position: fixed;
+	z-index: 110; /* Bring to top */
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.8);
+	padding-top: 15%; /* Offset from the top */
+	color: black;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+}
+.revealModal-content {
+	background-color: @RevealFooterBackgroundColor;
+	width: 90%;
+	min-height: 700px;
+	padding: 10px;
+	margin: auto;
+	font-size: 2em;
+}
+.revealModal-header {
+	width: 90%;
+	padding: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: auto;
+	background-color: @RevealHeaderBackgroundColor;
+	color: @RevealHeaderColor;
+	border:1px solid #888;
+	border-radius: 20px 20px 0 0;
+}
+.revealModal-header h4 {
+	color: @RevealHeaderColor;
+	font-size: 2em;
+}
+.revealModal-footer {
+	width: 90%;
+	padding: 10px;
+	margin: auto;
+	background-color: @RevealFooterBackgroundColor;
+	color: @RevealFooterColor;
+	height: 50px;
+	border: 1px solid #888;
+	border-radius: 0 0 20px 20px;
+}
+.revealClose {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+.revealClose:hover, .revealClose:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+ul.modal_decorator {
+	list-style-type: none;
+	float: right;
+}
+ul.modal_decorator li {
+	float: left;
+	margin: -30px 10px;
+}
+ul.modal_decorator li p {
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	background-color: @DecoratorDefaultBackgroundColor;
+	text-align: center;
+	padding: 2px 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+}
+ul.modal_decorator li a  {
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	background-color: @DecoratorDefaultBackgroundColor;
+	text-align: center;
+	padding: 2px 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+	font-size: 3em;
+}
+ul.modal_decorator li.info p, ul.modal_decorator li.play a, ul.modal_decorator li.record a {
+	background-color: @DecoratorBackgroundColor;
+	font-size: 1.5em;
+}
+
+.date {
+        margin: 1px;
+        display: inline-block;
+        width: 65px;
+        height: 65px;
+        background: #fcfcfc;
+        background: linear-gradient(top, #fcfcfc 0%,#dad8d8 100%);
+        background: -moz-linear-gradient(top, #fcfcfc 0%, #dad8d8 100%);
+        background: -webkit-linear-gradient(top, #fcfcfc 0%,#dad8d8 100%);
+        border-radius: 0px 0px 5px 5px;
+        -moz-border-radius: 0px 0px 5px 5px;
+        -webkit-border-radius: 0px 0px 5px 5px;
+	cursor: pointer;
+}
+.date p {
+        font-family: Helvetica, sans-serif;
+        font-size: 26px; text-align: center; color: #444444;
+}
+.date p span {
+        background: #393;
+        font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase;
+        display: block;
+        border-radius: 5px 5px 0px 0px;
+        -moz-border-radius: 5px 5px 0px 0px;
+        -webkit-border-radius: 5px 5px 0px 0px;
+        padding: 2px 0 2px 0;
+}
+

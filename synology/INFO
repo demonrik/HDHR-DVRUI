@@ -1,5 +1,5 @@
 package="HDHR-DVRUI"
-version="0.6.3"
+version="0.6.4"
 maintainer="rik.dunphy@gmail.com"
 arch="noarch"
 startable="no"
