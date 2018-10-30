@@ -62,8 +62,7 @@
 	
 	function URLExists($url) {
 		$exists   = false;
-
-		if (!$exists && in_array('curl', get_loaded_extensions())) {
+		if (in_array('curl', get_loaded_extensions())) {
 			$ch = curl_init();   
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -73,11 +72,10 @@
 			$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			if ($response === 200) $exists = true;
 				curl_close($ch);
-		}
-		if (!$exists && function_exists('get_headers')) {
-			$headers = @get_headers($robots);
+		} elseif (function_exists('get_headers')) {
+			$headers = @get_headers($url);
 			if ($headers) {
-				if (strpos($headers[0], '404') !== false) {
+				if (strpos($headers[0], '404') == false) {
 					$exists = true;
 				}
 			}		
