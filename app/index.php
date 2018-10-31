@@ -1,11 +1,14 @@
 <?php
-/*
-	// UNCOMMENT FOR DEBUGGING
-	opcache_reset();
-	ini_set("log_errors", 1);
+
+	require_once("vars.php");
+	if (function_exists('opcache_reset') && DVRUI_Vars::DVRUI_DEBUG) {
+		opcache_reset();
+	}
+
+	ini_set("log_errors", DVRUI_Vars::DVRUI_DEBUG);
 	ini_set("error_log", "/tmp/php-dvrui.log");
+	ini_set('log_errors_max_len', 1024);
 	error_log( "======= Debug Log START =========" );
-*/	
 	
 	if (PHP_MAJOR_VERSION >= 7) {
 		error_log( "PHP > 7 detected" );
@@ -18,7 +21,6 @@
 	define('TINYAJAX_PATH', '.');
 	require_once("TinyAjax.php");
 	require_once("TinyAjaxBehavior.php");
-	require_once("vars.php");
 	require_once("rules.php");
 	require_once("recordings.php");
 	require_once("series.php");
