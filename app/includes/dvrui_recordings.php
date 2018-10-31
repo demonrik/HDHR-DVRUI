@@ -84,6 +84,7 @@ class DVRUI_Recordings {
 	}
 
 	private function processRecordingData($recording, $storageID) {
+		$recID = '';
 		$playURL = '';
 		$cmdURL = '';
 		$category = '';

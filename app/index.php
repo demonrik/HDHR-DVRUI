@@ -1,26 +1,12 @@
 <?php
-
-	require_once("vars.php");
-	if (function_exists('opcache_reset') && DVRUI_Vars::DVRUI_DEBUG) {
-		opcache_reset();
-	}
-
-	ini_set("log_errors", DVRUI_Vars::DVRUI_DEBUG);
-	ini_set("error_log", "/tmp/php-dvrui.log");
-	ini_set('log_errors_max_len', 1024);
-	error_log( "======= Debug Log START =========" );
 	
-	if (PHP_MAJOR_VERSION >= 7) {
-		error_log( "PHP > 7 detected" );
-    set_error_handler(function ($errno, $errstr) {
-       return strpos($errstr, 'Declaration of') === 0;
-    }, E_WARNING);
-	}
+	require_once("vars.php");
+	require_once("includes/dvrui_debug.php");
 
-	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
 	define('TINYAJAX_PATH', '.');
 	require_once("TinyAjax.php");
 	require_once("TinyAjaxBehavior.php");
+
 	require_once("rules.php");
 	require_once("recordings.php");
 	require_once("series.php");
@@ -111,6 +97,6 @@
 	$pagecontent .= $footer;
 	echo($pagecontent);
 
-//	error_log( "======= Debug Log END =========" );
+	error_log( "======= Debug Log END =========" );
 ?>
 
