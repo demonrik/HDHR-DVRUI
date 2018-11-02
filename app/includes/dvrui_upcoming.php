@@ -177,6 +177,7 @@ class DVRUI_Upcoming {
 						$this->series_list[$pos][$this->epData_SeriesID];
 
 			$episodes_info = getCachedJsonFromUrl($seriesURL,$this->cachesecs);
+			
 			for ($i = 0; $i < count($episodes_info); $i++) {
 				if (array_key_exists($this->epData_RecordingRule,$episodes_info[$i])){
 					if ((!$this->isDuplicate($episodes_info[$i])) 
@@ -249,7 +250,8 @@ class DVRUI_Upcoming {
 	}
 	public function getEpOriginalAirDate($pos) {
 		if ($pos < count($this->upcoming_list)) {
-			return date('D M/d Y',strtotime($this->upcoming_list[$pos][$this->epData_OriginalAirDate]));
+			error_log($this->upcoming_list[$pos][$this->epData_OriginalAirDate]);
+			return date('D M/d Y',$this->upcoming_list[$pos][$this->epData_OriginalAirDate]);
 		} else {
 			return '';
 		}
