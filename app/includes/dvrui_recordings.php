@@ -30,7 +30,7 @@ class DVRUI_Recordings {
 	private $recording_SeriesID  = 'SeriesID';
 	private $recording_ProgramID = 'ProgramID';
 	
-	private $recordings_list = array();
+	private $recordings = array();
 	
 	private $recording_cmd_delete = '&cmd=delete&rerecord=0';
 	private $recording_cmd_rerecord = '&cmd=delete&rerecord=1';
