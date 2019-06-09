@@ -67,7 +67,7 @@
 			$hdhr->poke_engine($i);
 		}
 		// clear cached episodes
-		$hdhrUpcoming = new DVRUI_Upcoming($hdhr);
+		$hdhrUpcoming = new DVRUI_Upcoming($hdhr, null);
 		$hdhrUpcoming->deleteCachedUpcoming($seriesid);
 
 		//create output

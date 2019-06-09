@@ -75,7 +75,7 @@ class DVRUI_HDHRjson {
 
 				continue;
 			}
-			// ELSE we have a truner
+			// ELSE we have a tuner
 		
 			$tuners='unknown';
 			if (array_key_exists($this->hdhrkey_tuners,$hdhr_info)) {
@@ -93,8 +93,10 @@ class DVRUI_HDHRjson {
 										$this->hdhrkey_modelNum => $hdhr_info[$this->hdhrkey_modelNum],
 										$this->hdhrlist_key_channelcount => count($hdhr_lineup),
 										$this->hdhrkey_baseURL => $hdhr_base,
+										$this->hdhrkey_discoverURL => $hdhr[$this->hdhrkey_discoverURL],
 										$this->hdhrkey_lineupURL => $hdhr_info[$this->hdhrkey_lineupURL],
 										$this->hdhrkey_modelName => $hdhr_info[$this->hdhrkey_modelName],
+										$this->hdhrkey_localIP => $hdhr[$this->hdhrkey_localIP],
 										$this->hdhrkey_auth =>$hdhr_info[$this->hdhrkey_auth],
 										$this->hdhrkey_fwVer => $hdhr_info[$this->hdhrkey_fwVer],
 										$this->hdhrkey_tuners => $tuners,
@@ -166,7 +168,10 @@ class DVRUI_HDHRjson {
 
 	public function poke_engine($pos) {
 		$url = $this->enginelist[$pos][$this->hdhrkey_baseURL] . "/recording_events.post?sync";
-		getJsonFromUrl($url);
+		// Newer engine requiires POST instead of GET
+		// getJsonFromUrl($url);
+		postToUrl($url,'');
+
 	}
 
 	public function get_device_id($pos) {
@@ -174,7 +179,17 @@ class DVRUI_HDHRjson {
 		return $device[$this->hdhrkey_devID];
 	}
 
-	public function get_device_model($pos) {
+	public function get_device_local_ip($pos){
+		$engine = $this->hdhrlist[$pos];
+		return $engine[$this->hdhrkey_localIP];
+	}
+
+	public function get_device_modelName($pos) {
+		$device = $this->hdhrlist[$pos];
+		return $device[$this->hdhrkey_modelName];
+	}
+
+	public function get_device_modelNum($pos) {
 		$device = $this->hdhrlist[$pos];
 		return $device[$this->hdhrkey_modelNum];
 	}
@@ -194,9 +209,14 @@ class DVRUI_HDHRjson {
 		return $device[$this->hdhrkey_baseURL];
 	}
 
-	public function get_device_firmware($pos) {
+	public function get_device_fwVer($pos) {
 		$device = $this->hdhrlist[$pos];
 		return $device[$this->hdhrkey_fwVer];
+	}
+
+	public function get_device_fwName($pos) {
+		$device = $this->hdhrlist[$pos];
+		return $device[$this->hdhrkey_fwName];
 	}
 
 	public function get_device_tuners($pos) {

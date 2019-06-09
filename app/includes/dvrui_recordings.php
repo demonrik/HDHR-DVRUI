@@ -280,7 +280,7 @@ class DVRUI_Recordings {
 		} else {
 			$url .= $this->recording_cmd_delete;
 		}
-		$response = getJsonFromUrl($url);
+		$response = postToUrl($url,'');
 		$this->removeID($id);
 		/* ignore the response at this tie */
 		echo('Removed ' . $id . ' : ' . $response);
@@ -328,7 +328,7 @@ class DVRUI_Recordings {
 	}
 
 	public function getRecordingImage($pos) {
-		return $this->recordings[$pos][$this->recording_ImageURL];
+			return $this->recordings[$pos][$this->recording_ImageURL];
 	}
 
 	public function getCategory($pos) {
@@ -396,7 +396,7 @@ class DVRUI_Recordings {
 	}
 
 	public function getShortStartTime($pos) {
-		return gmdate('m/d/y @ g:ia',$this->recordings[$pos][$this->recording_StartTime]);
+		return date('m/d/y @ g:ia',$this->recordings[$pos][$this->recording_StartTime]);
 	}
 
 

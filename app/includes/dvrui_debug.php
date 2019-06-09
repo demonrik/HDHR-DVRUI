@@ -1,6 +1,7 @@
 <?php
 	error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT));
 	require_once("vars.php");
+
 	if (function_exists('opcache_reset') && DVRUI_Vars::DVRUI_DEBUG) {
 		opcache_reset();
 	}

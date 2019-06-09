@@ -250,7 +250,6 @@ class DVRUI_Upcoming {
 	}
 	public function getEpOriginalAirDate($pos) {
 		if ($pos < count($this->upcoming_list)) {
-			error_log($this->upcoming_list[$pos][$this->epData_OriginalAirDate]);
 			return date('D M/d Y',$this->upcoming_list[$pos][$this->epData_OriginalAirDate]);
 		} else {
 			return '';

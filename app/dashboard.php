@@ -59,22 +59,30 @@
 			$hdhrEntry = file_get_contents('style/hdhrlist_entry.html');
 			$hdhr_device_data = "<a href=\"" . $hdhr->get_device_baseurl($i) . "\">" . $hdhr->get_device_id($i) . "</a>";
 			$hdhr_lineup_data = "<a href=\"" . $hdhr->get_device_lineup($i) . "\">" . $hdhr->get_device_channels($i) . " Channels</a>";
+			$hdhr_discover_data = "<a href=\"" . $hdhr->get_device_baseurl($i) . "\">" . $hdhr->get_device_local_ip($i) . "</a>";
+			$hdhr_name_data = str_replace("HDHomeRun", "HDHomeRun <br>", $hdhr->get_device_modelname($i));
 			$hdhrEntry = str_replace('<!--hdhr_device-->',$hdhr_device_data,$hdhrEntry);
 			$hdhrEntry = str_replace('<!--hdhr_channels-->',$hdhr_lineup_data,$hdhrEntry);
-			$hdhrEntry = str_replace('<!--hdhr_model-->',$hdhr->get_device_model($i),$hdhrEntry);
+			$hdhrEntry = str_replace('<!--hdhr_ip-->',$hdhr_discover_data,$hdhrEntry);
+			$hdhrEntry = str_replace('<!--hdhr_model-->',$hdhr_name_data,$hdhrEntry);
+			$hdhrEntry = str_replace('<!--hdhr_modelnum-->',$hdhr->get_device_modelNum($i),$hdhrEntry);
 			$hdhrEntry = str_replace('<!--hdhr_tuners-->',$hdhr->get_device_tuners($i) . ' tuners',$hdhrEntry);
-			$hdhrEntry = str_replace('<!--hdhr_firmware-->',$hdhr->get_device_firmware($i),$hdhrEntry);
-			$hdhrEntry = str_replace('<!--hdhr_legacy-->',$hdhr->get_device_legacy($i),$hdhrEntry);
+			$hdhrEntry = str_replace('<!--hdhr_fwname-->',$hdhr->get_device_fwName($i),$hdhrEntry);
+			$hdhrEntry = str_replace('<!--hdhr_fwver-->',$hdhr->get_device_fwVer($i),$hdhrEntry);
 			$hdhrEntry = str_replace('<!--hdhr_image-->',$hdhr->get_device_image($i),$hdhrEntry);
 			$hdhr_data .= $hdhrEntry ;
 		}
 		for ($i=0; $i < $engines; $i++) {
+			$engine_name_data = str_replace("HDHomeRun", "HDHomeRun <br>", $hdhr->get_engine_name($i));
 			$engineEntry = file_get_contents('style/recordenginelist_entry.html');
+			$engine_discover_data = "<a href=\"" . $hdhr->get_engine_base_url($i) . "\">" . $hdhr->get_engine_local_ip($i) . "</a>";
+			$engine_storage_data = "<a href=\"" . $hdhr->get_engine_storage_url($i) . "\">" . $hdhr->get_engine_local_ip($i) . "</a>";
 			$engineEntry = str_replace('<!--rec_image-->',$hdhr->get_engine_image($i),$engineEntry);
-			$engineEntry = str_replace('<!--rec_name-->',$hdhr->get_engine_name($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_name-->',$engine_name_data,$engineEntry);
 			$engineEntry = str_replace('<!--rec_version-->',$hdhr->get_engine_version($i),$engineEntry);
 			$engineEntry = str_replace('<!--rec_freespace-->',$hdhr->get_engine_space($i),$engineEntry);
-			$engine_discover_data = "<a href=\"" . $hdhr->get_engine_discoverURL($i) . "\">" . $hdhr->get_engine_local_ip($i) . "</a>";
+			$engineEntry = str_replace('<!--rec_storageid-->',$hdhr->get_engine_storage_id($i),$engineEntry);
+			$engineEntry = str_replace('<!--rec_storageURL-->',$engine_storage_data,$engineEntry);
 			$engineEntry = str_replace('<!--rec_localip-->',$engine_discover_data,$engineEntry);
 			$hdhr_data .= $engineEntry;
 		}

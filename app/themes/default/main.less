@@ -50,14 +50,13 @@ br.clearfix {
 
 .entry {
 	width: 250px;
-	height: 300px;
+	height: 330px;
 	border: solid 1px @EntryBorderColor;
 	background: @EntryBackgroundColor;
 	Text-color: @EntryTextColor;
 	box-shadow: 5px 5px 5px #000;
 	margin: 5px;
 	display:inline-block;
-	font-size: 0.75em;
 }
 
 .entry-p{
@@ -79,8 +78,8 @@ br.clearfix {
 
 
 .series_img{
-	max-height: 200px;
-	max-width: 250px;
+	height: 200px;
+	width: 250px;
 }	
 .series_img_lrg{
 	float: left;
@@ -235,6 +234,8 @@ a.settings_page{
 	color: @EntryTextColor;
 	text-shadow: 0 2px 2px #000;
 	font-size: 2em;
+	text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 
@@ -242,7 +243,7 @@ a.settings_page{
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;
-	height: 350px;
+	height: 370px;
 }
 
 #recent_recordings_list, #soon_list_box {
@@ -253,7 +254,7 @@ a.settings_page{
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;
-	height: 220px;
+	height: 340px;
 }
 
 
@@ -268,7 +269,6 @@ a.settings_page{
 #settings_box {
 	width:100%;
 }
-
 
 #hdhr_img {
 	display: block;
@@ -286,20 +286,20 @@ a.settings_page{
 }
 
 #hdhr_entry {
-	width: 200px;
-	height: 180px;
+	width: 260px;
+	height: 300px;
 	border: solid 1px @EntryBorderColor;
 	background: @EntryBackgroundColor;
 	color: @EntryTextColor;
 	box-shadow: 5px 5px 5px #000;
 	margin: 5px;
 	display: inline-block;
-	font-size: 0.75em;
 }
 
 .hdhr_entry h4 {
 	color: @EntryTextColor;
 	font-size: 1.25em;
+	text-align: center;
 }
 
 .hdhr_entry p {
@@ -307,6 +307,9 @@ a.settings_page{
 	color: @EntryTextColor;
 	font-size: 1em;
 	margin: 5px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 	
 .hdhr_entry a:visited {
@@ -383,7 +386,6 @@ a.settings_page{
 	box-shadow: 5px 5px 5px #000;
 	margin: 5px;
 	display:inline-block;
-	font-size: 0.75em;
 }
 
 /* Recordings Tab ----------------------------------------------------------------- */
