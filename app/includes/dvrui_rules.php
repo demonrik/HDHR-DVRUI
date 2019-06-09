@@ -56,7 +56,7 @@ class DVRUI_Rules {
 	private $recordingCmd_change = '&Cmd=change';
 	private $recordingCmd_add = '&Cmd=add';
 	
-	private $rules_list = array();
+	private $rules = array();
 
 	private $auth = '';
 	

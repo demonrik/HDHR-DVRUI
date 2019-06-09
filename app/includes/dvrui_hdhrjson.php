@@ -58,7 +58,7 @@ class DVRUI_HDHRjson {
 				// engine it updates my.hdhomerun.com but sometimes the
 				// old engine config is left behind.
 				$rEngine = getCachedJsonFromUrl($hdhr[$this->hdhrkey_discoverURL],$cachesecs);
-				if (strcmp($rEngine[$this->hdhrkey_storageID],$hdhr[$this->hdhrkey_storageID]) != 0) {
+				if (strcasecmp($rEngine[$this->hdhrkey_storageID],$hdhr[$this->hdhrkey_storageID]) != 0) {
 					//skip, this is not a valid engine
 					continue;
 				}
