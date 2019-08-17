@@ -38,7 +38,7 @@ class DVRUI_HDHRjson {
 		}else{
 			$cachesecs = 60;
 		}
-
+		
 		$hdhr_data = getCachedJsonFromUrl($this->myhdhrurl,$cachesecs);
 		for ($i=0;$i<count($hdhr_data);$i++) {
 			$hdhr = $hdhr_data[$i];

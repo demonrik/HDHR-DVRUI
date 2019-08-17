@@ -3,6 +3,10 @@ require_once("includes/dvrui_hdhrjson.php");
 require_once("includes/dvrui_common.php");
 require_once("vars.php");
 
+if (function_exists('opcache_reset')){
+	opcache_reset();
+}
+
 
   function getServerDiag() {
   	$htmlStr = "---------- OS and ENV VARIABLES --------------------------------------------------<br/>";
@@ -77,8 +81,8 @@ require_once("vars.php");
   	$htmlStr =  "---------- HDHR TUNERS-----------------------------------------------------------<br/>";
   	for ($i=0; $i < $devices; $i++) {
   		$htmlStr .=  'tuner(' . $i . ') id: ' . $hdhr->get_device_id($i) . "<br/>";
-  		$htmlStr .=  'tuner(' . $i . ') model: ' . $hdhr->get_device_model($i) . "<br/>";
-  		$htmlStr .=  'tuner(' . $i . ') firmware: ' . $hdhr->get_device_firmware($i) . "<br/>";
+  		$htmlStr .=  'tuner(' . $i . ') model: ' . $hdhr->get_device_modelName($i) . "<br/>";
+  		$htmlStr .=  'tuner(' . $i . ') firmware: ' . $hdhr->get_device_fwVer($i) . "<br/>";
   		$htmlStr .=  'tuner(' . $i . ') baseurl: ' . $hdhr->get_device_baseurl($i) . "<br/>";
   		$htmlStr .=  'tuner(' . $i . ') auth: ' . $hdhr->get_device_auth($i) . "<br/>";
   	}
