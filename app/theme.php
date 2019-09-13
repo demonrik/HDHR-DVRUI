@@ -12,12 +12,27 @@
 		}
 		return $theme;
 	}
+	
+	function autoCompileTheme($inputFile, $outputFile){
+		$cachefile = $inputFile . '.cache';
+		if (file_exists($cachefile)) {
+			$cache = unserialize(file_get_contents($cachefile));
+		} else {
+			$cache = $inputFile;
+		}
+  	$less = new lessc;
+  	$newCache = $less->cachedCompile($cache);
+
+	  if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
+    	file_put_contents($cacheFile, serialize($newCache));
+    	file_put_contents($outputFile, $newCache['compiled']);
+  	}
+	}
 
 	function compileTheme($theme) {
-		$less = new lessc();
 		try {
-			$less->checkedCompile("./themes/$theme/main.less","./themes/$theme/style.css");
-			$less->checkedCompile("./themes/$theme/m_main.less","./themes/$theme/m_style.css");
+			autoCompileTheme("./themes/$theme/main.less","./themes/$theme/style.css");
+			autoCompileTheme("./themes/$theme/m_main.less","./themes/$theme/m_style.css");
 		} catch (exception $e) {
 			echo ($e->getMessage());
 		}
