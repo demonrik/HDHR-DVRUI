@@ -83,8 +83,8 @@ class DVRUI_Rules {
 		$recID = $rule[$this->recording_RecID];
 		$seriesID = $rule[$this->recording_SeriesID];
 		$title = $rule[$this->recording_Title];
-		$startPad = $rule[$this->recording_StartPad];
-		$endPad = $rule[$this->recording_EndPad];
+		$startPad = 0;
+		$endPad = 0;
 		$priority = 'X';
 		$dateTimeOnly = '';
 		$channelOnly = 'All Channels';
@@ -117,6 +117,12 @@ class DVRUI_Rules {
 		}
 		if (array_key_exists($this->recording_Airdate,$rule)) {
 			$airdate = $rule[$this->recording_Airdate];
+		}
+		if (array_key_exists($this->recording_StartPad,$rule)) {
+			$startPad = $rule[$this->recording_StartPad];
+		}
+		if (array_key_exists($this->recording_EndPad,$rule)) {
+			$endPad = $rule[$this->recording_EndPad];
 		}
 			
 		$this->rules[] = array($this->recording_RecID => $recID,
