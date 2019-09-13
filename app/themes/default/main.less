@@ -1,4 +1,6 @@
 @import "colors.less";
+@import "fonts.less";
+@import "images.less";
 
 /* global stuff ------------------------------------------------------------------ */
 
@@ -12,7 +14,9 @@ html {
 }
 
 body {
-	font-family: Arial, sans-serif;
+	font-family: @DefaultFont, @DefaultFontFamily;
+	font-style: @DefaultStyle;
+	font-size: @DefaultFontSize;
 	scroll-behavior: smooth;
 }
 a:hover {
@@ -42,7 +46,7 @@ br.clearfix {
 	width: 100px;
 	position: relative;
 	color: @DateTextColor;
-	font-size: 1em;
+	font-size: @UpcomingDateSize;
 	padding: 5px 5px 5px 30px ;
 	margin-top: 25px;
 	cursor: pointer;
@@ -60,39 +64,40 @@ br.clearfix {
 }
 
 .entry-p{
-  font-style: italic;
+  font-style: @TileContentStyle;
 	color: @EntryTextColor;
-	font-size: 1.2em;
+	font-size: @TileContentSize;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }
+
 .entry-h4{
 	color: @EntryTextColor;
-	font-size: 1.7em;
+	font-size: @TileTitleSize;
 	text-align: center;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }   
 
-
 .series_img{
-	height: 200px;
-	width: 250px;
+	height: @SeriesImageHeight;
+	width: @SeriesImageWidth;
 }	
+
 .series_img_lrg{
 	float: left;
-	max-height: 225px;
-	max-width: 300px;
+	max-height: @DefaultLargeImageHeight;
+	max-width: @DefaultLargeImageWidth;
 }	
 #loading{
  z-index: 101;
 }  
 
 .logo_image {
-	width: 64ps;
-	height: 64px;
+	width: @LogoImageWidth;
+	height: @LogoImageHeight;
 	float: left;
 }
 
@@ -121,7 +126,7 @@ br.clearfix {
 
 #logo h1 {
 	top: 5px;
-	font-size: 2.25em;
+	font-size: @LogoSize;
 	color: #000000;
 	text-shadow: 0 4px 4px #000000;
 	bottom: 5px;
@@ -153,7 +158,7 @@ ul.tabmenu li a {
 	padding: 5px 40px 5px 25px;
 	text-decoration: none;
 	transition: 0.1s;
-	font-size: 1em;
+	font-size: @MenuTitleSize;
 	border-bottom: solid 4px #000000;
 }
 
@@ -173,6 +178,7 @@ a.search_page{
 	background-repeat: no-repeat;
 	background-position: left center;
 }
+
 a.recordings_page{
 	background-image: url("recordings.png");
 	background-size: 14px;
@@ -230,10 +236,10 @@ a.settings_page{
 }
 
 .dashboard_content h4 {
-	font-style: bold;
+	font-style: @DashboardSectionTitleStyle;
 	color: @EntryTextColor;
 	text-shadow: 0 2px 2px #000;
-	font-size: 2em;
+	font-size: @DashboardSectionTitleSize;
 	text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -273,7 +279,7 @@ a.settings_page{
 #hdhr_img {
 	display: block;
 	margin: 0 auto;
-	height: 75px;
+	height: @HDHRImageHeight;
 }
 
 #hdhr_img_cnt {
@@ -298,14 +304,14 @@ a.settings_page{
 
 .hdhr_entry h4 {
 	color: @EntryTextColor;
-	font-size: 1.25em;
+	font-size: @HDHRTileTitleSize;
 	text-align: center;
 }
 
 .hdhr_entry p {
-	font-style: italic;
+	font-style: @HDHRTileContentStyle;
 	color: @EntryTextColor;
-	font-size: 1em;
+	font-size: @HDHRTileContentSize;
 	margin: 5px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -360,6 +366,10 @@ a.settings_page{
 	text-align: left;
 }
 
+#listheader {
+	width: 100%;
+	text-align: left;
+}
 
 /* Series Tab ----------------------------------------------------------------- */
 
@@ -425,7 +435,7 @@ ul.sortby  {
 	top: 0px;
 	right: 0px;
 	padding: 1px 1px 1px 1px;
-	font-size: 0.70em;
+	font-size: @RecordingsSortMenuSize;
 	align: right;
 }
 ul.sortby li  {
@@ -439,12 +449,11 @@ ul.sortby li a{
 	text-decoration: none;
 	transition: 0.1s;
 	border: none;
-	font-size: 10px;
+	font-size: @RecordingsSortMenuSize;
 	border-radius: 2px 2px 2px 2px;
 	background-color: @TabMenuHighlightColor;
 	padding: 2px 2px;
-	font-style: normal;
-	font-weight: normal;
+	font-style: @RecordingsSortMenuStyle;
 }
 
 
@@ -495,7 +504,7 @@ ul.sortby li a{
 }
 .search_entry{
 	.entry;
-	overflow-y: auto;
+	overflow-y: none;
 }
 .search_entry h4 {
     .entry-h4;	
@@ -521,7 +530,7 @@ ul.sortby li a{
 	height: 30px;
 	display: inline-block;
 	text-align: right;
-	font-size: 1em;
+	font-size: @RuleEditLabelSize;
 	padding: 5px;
 }
 .edit_form input{
@@ -544,27 +553,31 @@ ul.sortby li a{
 	text-align: right;
 	margin: 0;
 	padding: 0;
-	font-style: normal;
+	font-style: @InlineCtrlsSize;
 }
-.play, .record, .delete, .rerecord, .upcoming, .settings, .RecCountButton, .RuleCountButton, .UpcomingCountButton{
+.play, .record, .delete, .rerecord, .settings, .RecCountButton, .RuleCountButton, .UpcomingCountButton{
 	display: inline-block;
 	color: @DecoratorDefaultTextColor;
 	text-align: center;
 	border-radius: 2px;
 	padding: 1px 1px;
-	font-style: normal;
+	font-style: @InlineCtrlsStyle;
 	text-decoration: none;
 	background-color: rgba(3,3,3,0.3);
 	z-index: 99;
 }
 
-.play, .delete, .rerecord, .upcoming {
+.upcoming {
+	float: right;
+}
+
+.play, .delete, .rerecord {
 	width: 30%;
 }
 
 .settings{
 	position: relative;
-	font-size: 16px;
+	font-size: @InlineCtrlsSize;
 	margin: 5px;
 	z-index: 99;
 	padding: 5px;
@@ -649,8 +662,8 @@ ul.sortby li a{
 .revealClose {
 	color: #aaa;
 	float: right;
-	font-size: 28px;
-	font-weight: bold;
+	font-size: @ModalCloseSize;
+	font-style: @ModalCloseStyle;
 }
 .revealClose:hover, .revealClose:focus {
 	color: black;
@@ -705,12 +718,16 @@ div.datepicker{
 	cursor: pointer;
 }
 .date p {
-	font-family: Helvetica, sans-serif; 
-	font-size: 20px; text-align: center; color: #444444; 
+	font-size: @UpcomingDateEntrySize;
+	text-align: center;
+	color: #444444; 
 }
 .date p span {
 	background: @DateHighlightColor; 
-	font-size: 12px; font-weight: bold; color: #fff; text-transform: uppercase; 	
+	font-size: @UpcomingDateEntryTitleSize; 
+	font-style: @UpcomingDateEntryStyle;
+	color: #fff; 
+	text-transform: uppercase; 	
 	display: block;
 	border-radius: 5px 5px 0px 0px;
 	-moz-border-radius: 5px 5px 0px 0px;

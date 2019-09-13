@@ -1,4 +1,6 @@
 @import "colors.less";
+@import "fonts.less";
+@import "images.less";
 
 
 /* global stuff ------------------------------------------------------------------ */
@@ -12,7 +14,9 @@ html {
 }
 
 body {
-	font-family: Arial, sans-serif;
+	font-family: @DefaultFont, @DefaultFontFamily;
+	font-style: @DefaultStyle;
+	font-size: @DefaultFontSize;
 }
 a:hover {
 	cursor:pointer;
