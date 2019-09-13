@@ -13,6 +13,6 @@ final class DVRUI_Vars
 	const DVRUI_discover_cache = 360;
 	const DVRUI_upcoming_cache = 3600;
 	
-	const DVRUI_DEBUG = false;
+	const DVRUI_DEBUG = true;
 }
 ?>

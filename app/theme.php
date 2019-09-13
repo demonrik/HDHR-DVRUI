@@ -14,9 +14,9 @@
 	}
 	
 	function autoCompileTheme($inputFile, $outputFile){
-		$cachefile = $inputFile . '.cache';
+		$cacheFile = $inputFile . '.cache';
 		if (file_exists($cachefile)) {
-			$cache = unserialize(file_get_contents($cachefile));
+			$cache = unserialize(file_get_contents($cacheFile));
 		} else {
 			$cache = $inputFile;
 		}
