@@ -1,7 +1,7 @@
 <?php
 final class DVRUI_Vars 
 {
-	const DVRUI_version	="0.8.1";
+	const DVRUI_version	="0.8.2";
 	const DVRUI_name    ="HDHomeRun DVR UI";
 	const DVRUI_git     ="https://github.com/demonrik/HDHR-DVRUI.git";
 	const DVRUI_apiurl  ="http://api.hdhomerun.com/";	
@@ -13,6 +13,6 @@ final class DVRUI_Vars
 	const DVRUI_discover_cache = 360;
 	const DVRUI_upcoming_cache = 3600;
 	
-	const DVRUI_DEBUG = true;
+	const DVRUI_DEBUG = false;
 }
 ?>
