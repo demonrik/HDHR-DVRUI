@@ -97,10 +97,31 @@ function sortRecordings(sortby){
 	openRecordingsPage("");
 }
 
+function viewSeries(viewmode){
+	setCookie("serViewMode",viewmode,3000);
+	openSeriesPage("");
+}
+
 function viewRecordings(viewmode){
 	setCookie("recViewMode",viewmode,3000);
 	openRecordingsPage("");
 }
+
+function viewUpcoming(viewmode){
+	setCookie("upViewMode",viewmode,3000);
+	openUpcomingPage("");
+}
+
+function viewRules(viewmode){
+	setCookie("ruleViewMode",viewmode,3000);
+	openRulesPage("");
+}
+
+function viewSearch(viewmode){
+	setCookie("searchViewMode",viewmode,3000);
+	openSearchPage("");
+}
+
 
 function selectSeries(seriesID){
 	document.getElementById("series_page").style.display = "none";	

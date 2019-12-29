@@ -133,7 +133,7 @@
 		}
 		
 		for ($i=0;$i < $numShows;$i++) {
-			$entry = file_get_contents('style/upcoming_entry.html');
+			$entry = file_get_contents('style/upcoming_entry_tile.html');
 			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($i) . ' : ' . $upcoming->getEpTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_original_airdate -->',$upcoming->getEpOriginalAirDate($i),$entry);

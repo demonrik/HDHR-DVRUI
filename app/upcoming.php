@@ -7,7 +7,16 @@
 	
 	$upcoming_list_pos = 0;
 	$upcoming;
-	
+
+	function getUpcomingViewMode(){
+		if(isset($_COOKIE['upViewMode'])){
+			$viewmode = $_COOKIE['upViewMode'];
+		}else{
+			$viewmode = "tile";
+		}
+		return $viewmode;
+	}
+		
 	function openUpcomingPage($seriesid) {
 		// prep
 		ob_start();
@@ -54,12 +63,16 @@
 				$entryData .= $entry;
 			}
 
-			$entry = file_get_contents('style/upcoming_entry.html');
+			if (getUpcomingViewMode() == 'list') {
+				$entry = file_get_contents('style/upcoming_entry_list.html');
+			} else {
+				$entry = file_get_contents('style/upcoming_entry_tile.html');
+			}
 			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($i) . ' : ' . $upcoming->getEpTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_original_airdate -->',$upcoming->getEpOriginalAirDate($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_image -->',$upcoming->getEpImg($i),$entry);
-			//$entry = str_replace('<!-- dvr_upcoming_synopsis -->',$upcoming->getEpSynopsis($i),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_synopsis -->',$upcoming->getEpSynopsis($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_start -->',$upcoming->getEpStart($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_stop -->',$upcoming->getEpEnd($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
@@ -96,12 +109,16 @@
 				$entry = str_replace('<!-- dvr_upcoming_date -->',$newdate,$entry);
 				$entryData .= $entry;
 			}
-			$entry = file_get_contents('style/upcoming_entry.html');
+			if (getUpcomingViewMode() == 'list') {
+				$entry = file_get_contents('style/upcoming_entry_list.html');
+			} else {
+				$entry = file_get_contents('style/upcoming_entry_tile.html');
+			}
 			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($i) . ' : ' . $upcoming->getEpTitle($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_original_airdate -->',$upcoming->getEpOriginalAirDate($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_image -->',$upcoming->getEpImg($i),$entry);
-//			$entry = str_replace('<!-- dvr_upcoming_synopsis -->',$upcoming->getEpSynopsis($i),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_synopsis -->',$upcoming->getEpSynopsis($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_start -->',$upcoming->getEpStart($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_stop -->',$upcoming->getEpEnd($i),$entry);
 			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
