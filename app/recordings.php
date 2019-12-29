@@ -4,13 +4,22 @@
 	require_once("includes/dvrui_hdhrjson.php");
 	require_once("includes/dvrui_recordings.php");
 
-	function getSort(){
-		if(isset($_COOKIE['sortby'])){
-			$sortby = $_COOKIE['sortby'];
+	function getRecordingSort(){
+		if(isset($_COOKIE['recSortBy'])){
+			$sortby = $_COOKIE['recSortBy'];
 		}else{
 			$sortby = "DD";
 		}
 		return $sortby;
+	}
+
+	function getRecordingViewMode(){
+		if(isset($_COOKIE['recViewMode'])){
+			$viewmode = $_COOKIE['recViewMode'];
+		}else{
+			$viewmode = "tile";
+		}
+		return $viewmode;
 	}
 	
 	function openRecordingsPage($seriesid) {
@@ -26,7 +35,7 @@
 		}else{
 			$hdhrRecordings->processAllRecordings($hdhr);
 		}		
-		$sortby = getSort();
+		$sortby = getRecordingSort();
 		$hdhrRecordings->sortRecordings($sortby);
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$htmlStr = processRecordingData($hdhrRecordings, $numRecordings, $seriesid);
@@ -59,7 +68,8 @@
 		}else{
 			$hdhrRecordings->processAllRecordings($hdhr);
 		}		
-		$hdhrRecordings->sortRecordings('DD');
+		$sortby = getRecordingSort();
+		$hdhrRecordings->sortRecordings($sortby);
 
 		$numRecordings = $hdhrRecordings->getRecordingCount();
 		$htmlStr = processRecordingData($hdhrRecordings, $numRecordings, $seriesid);
@@ -74,9 +84,14 @@
 	}
 
 	function processRecordingData($hdhrRecordings, $numRecordings, $seriesid) {
+		$viewmode = getRecordingViewMode();
 		$recordingsData = '';
 		for ($i=0; $i < $numRecordings; $i++) {
-			$recordingsEntry = file_get_contents('style/recordings_entry.html');
+			if (strcasecmp($viewmode,"list")==0) {
+				$recordingsEntry = file_get_contents('style/recordings_entry_list.html');
+			} else {
+				$recordingsEntry = file_get_contents('style/recordings_entry_tile.html');
+			}
 			$recordingsEntry = str_replace('<!-- dvr_recordings_id -->',$hdhrRecordings->getRecordingID($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_series_id -->',$hdhrRecordings->getSeriesID($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_image -->',$hdhrRecordings->getRecordingImage($i),$recordingsEntry);
@@ -91,10 +106,17 @@
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chname -->',$hdhrRecordings->getChannelName($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chnumber -->',$hdhrRecordings->getChannelNumber($i),$recordingsEntry);
 			$recordingsEntry = str_replace('<!-- dvr_recordings_chaffiliate -->',$hdhrRecordings->getChannelAffiliate($i),$recordingsEntry);
+			$recordingsEntry = str_replace('<!-- dvr_recordings_synopsis -->',$hdhrRecordings->getSynopsis($i),$recordingsEntry);
 
 			$recordingsData .= $recordingsEntry;
 		}
-		$recordingsList = file_get_contents('style/recordings_list.html');
+		if (strcasecmp($viewmode,"list")==0) {
+			error_log("Loading List View");
+			$recordingsList = file_get_contents('style/recordings_list.html');
+		} else {
+			error_log("Loading Tile View");
+			$recordingsList = file_get_contents('style/recordings_tiles.html');
+		}
 		$revealContent = file_get_contents('style/recordingdeletereveal.html');
 		$revealContent =  str_replace('<!-- dvr_series_id -->',$seriesid,$revealContent);
 		$recordingsList = str_replace('<!-- dvr_recordings_count -->','Found: ' . $numRecordings . ' Recordings',$recordingsList);

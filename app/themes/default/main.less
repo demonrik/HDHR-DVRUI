@@ -91,6 +91,38 @@ br.clearfix {
 	max-height: @DefaultLargeImageHeight;
 	max-width: @DefaultLargeImageWidth;
 }	
+
+.entry_list {
+	border-top: solid 2px @EntryBorderColor;
+	background: @EntryBackgroundColor;
+	height: 150px;
+	position: relative;
+}
+
+.entry_list-p {
+  font-style: italic;
+	color: @EntryTextColor;
+	margin-left: 200px;
+}
+
+.entry_list-h4 {
+	color: @EntryTextColor;
+	font-size: 1.25em;
+	margin-left: 200px;
+}
+
+.series_img_list{
+	float: left;
+	max-height: 150px;
+	max-width: 200px;
+}	
+
+.series_img_lrg_list{
+	float: left;
+	max-height: 225px;
+	max-width: 300px;
+}	
+
 #loading{
  z-index: 101;
 }  
@@ -99,6 +131,42 @@ br.clearfix {
 	width: @LogoImageWidth;
 	height: @LogoImageHeight;
 	float: left;
+}
+
+#PageModifiers {
+	float: right;
+}
+
+ul.pagemods {
+	list-style-type: none;
+	margin: 0;
+	overflow: hidden;
+	border: none;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 1px 1px 1px 1px;
+	font-size: @RecordingsSortMenuSize;
+	align: right;
+}
+
+li.pagemods  {
+	float: left;
+	margin: 0px 5px;
+}
+
+a.pagemods {
+	display: inline-block;
+	color: @DecoratorDefaultTextColor;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.1s;
+	border: none;
+	font-size: @RecordingsSortMenuSize;
+	border-radius: 2px 2px 2px 2px;
+	background-color: @TabMenuHighlightColor;
+	padding: 2px 2px;
+	font-style: @RecordingsSortMenuStyle;
 }
 
 /* Page Header --------------------------------------------------------------------- */
@@ -369,6 +437,7 @@ a.settings_page{
 #listheader {
 	width: 100%;
 	text-align: left;
+	margin: 5px;
 }
 
 /* Series Tab ----------------------------------------------------------------- */
@@ -425,35 +494,26 @@ a.settings_page{
   .entry-p;
 }
 
+.recording_entry_list {
+	.entry_list;
+}
+.recording_entry_list h4 {
+	.entry_list-h4;
+}
+.recording_entry_list p {
+  .entry_list-p;
+}
 
-ul.sortby  {
-	list-style-type: none;
-	margin: 0;
-	overflow: hidden;
-	border: none;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	padding: 1px 1px 1px 1px;
-	font-size: @RecordingsSortMenuSize;
-	align: right;
+ul.viewmode  {
+	ul.pagemods;
 }
-ul.sortby li  {
-	float: left;
-	margin: 0px 5px;
+
+ul.viewmode li  {
+	li.pagemods;
 }
-ul.sortby li a{
-	display: inline-block;
-	color: @DecoratorDefaultTextColor;
-	text-align: center;
-	text-decoration: none;
-	transition: 0.1s;
-	border: none;
-	font-size: @RecordingsSortMenuSize;
-	border-radius: 2px 2px 2px 2px;
-	background-color: @TabMenuHighlightColor;
-	padding: 2px 2px;
-	font-style: @RecordingsSortMenuStyle;
+
+ul.viewmode li a{
+	a.pagemods;
 }
 
 

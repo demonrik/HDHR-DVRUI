@@ -93,7 +93,12 @@ function revealRuleForm(evt, modal,seriesid,seriesname){
 }
 
 function sortRecordings(sortby){
-	setCookie("sortby",sortby,3000);
+	setCookie("recSortBy",sortby,3000);
+	openRecordingsPage("");
+}
+
+function viewRecordings(viewmode){
+	setCookie("recViewMode",viewmode,3000);
 	openRecordingsPage("");
 }
 
