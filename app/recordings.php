@@ -111,10 +111,8 @@
 			$recordingsData .= $recordingsEntry;
 		}
 		if (strcasecmp($viewmode,"list")==0) {
-			error_log("Loading List View");
 			$recordingsList = file_get_contents('style/recordings_list.html');
 		} else {
-			error_log("Loading Tile View");
 			$recordingsList = file_get_contents('style/recordings_tiles.html');
 		}
 		$revealContent = file_get_contents('style/recordingdeletereveal.html');

@@ -38,9 +38,13 @@
 			$content = getURL($url);
 			file_put_contents($cachefilename,$content);
 		}
-		return json_decode($content, true);
-		
+  	if (is_null($content)) {
+  		return null;
+  	} else {
+  		return json_decode($content, true);
+  	}
 	}
+
 	function getURL($url){
 		$ua = DVRUI_Vars::DVRUI_name . '/' . DVRUI_Vars::DVRUI_version;
 		if (in_array('curl', get_loaded_extensions())){
