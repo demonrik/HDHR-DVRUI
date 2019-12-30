@@ -6,6 +6,15 @@
 	require_once("includes/dvrui_rules.php");
 	require_once("includes/dvrui_upcoming.php");
 
+	function getSeriesViewMode(){
+		if(isset($_COOKIE['serViewMode'])){
+			$viewmode = $_COOKIE['serViewMode'];
+		}else{
+			$viewmode = "tile";
+		}
+		return $viewmode;
+	}
+
 	function openSeriesPage() {
 		// prep
 		ob_start();
@@ -34,6 +43,7 @@
 
 
 	function processSeriesData($hdhr, $hdhrRules, $hdhrSeries, $hdhrRecordings, $numSeries) {
+		$viewmode = getSeriesViewMode();
 		$seriesData = '';
 	
 		for ($i=0; $i < $numSeries; $i++) {
@@ -66,7 +76,13 @@
 			}else{
 				$rulecount = $rulecount . " rules";
 			}
-			$seriesEntry = file_get_contents('style/series_entry.html');
+			
+			if (strcasecmp($viewmode,"list")==0) {
+				$seriesEntry = file_get_contents('style/series_entry_list.html');
+			} else {
+				$seriesEntry = file_get_contents('style/series_entry_tile.html');
+			}
+
 			$seriesEntry = str_replace('<!-- dvr_series_id -->',$hdhrSeries->getSeriesID($i),$seriesEntry);
 			$seriesEntry = str_replace('<!-- dvr_recordings_image -->',$hdhrSeries->getRecordingImage($i),$seriesEntry);
 			$seriesEntry = str_replace('<!-- dvr_recordings_title -->',$hdhrSeries->getTitle($i),$seriesEntry);

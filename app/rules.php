@@ -5,6 +5,15 @@
 	require_once("includes/dvrui_rules.php");
 	require_once("includes/dvrui_recordings.php");
 	require_once("includes/dvrui_upcoming.php");
+
+	function getRulesViewMode(){
+		if(isset($_COOKIE['ruleViewMode'])){
+			$viewmode = $_COOKIE['ruleViewMode'];
+		}else{
+			$viewmode = "tile";
+		}
+		return $viewmode;
+	}
 	
 	function openRulesPage($seriesid) {
 		// prep
@@ -105,6 +114,7 @@
 	} 
 
 	function getRecordingRules($seriesid) {
+		$viewmode = getRulesViewMode();
 		$rulesStr = '';
 		
 		// Discover Recording Rules
@@ -121,7 +131,12 @@
 		$rulesData = '';
 		for ($i=0; $i < $numRules; $i++) {
 			$reccount = $hdhrRecordings->getRecordingCountBySeries($hdhrRules->getRuleSeriesID($i));
-			$rulesEntry = file_get_contents('style/rules_entry.html');
+			if (strcasecmp($viewmode,"list")==0) {
+				$rulesEntry = file_get_contents('style/rules_entry_list.html');
+			} else {
+				$rulesEntry = file_get_contents('style/rules_entry_tile.html');
+			}
+		
 			$rulesEntry = str_replace('<!-- dvr_rules_id -->',$hdhrRules->getRuleRecID($i) ,$rulesEntry);
 			if (URLExists($hdhrRules->getRuleImage($i))) {
 				$rulesEntry = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$rulesEntry);
@@ -133,7 +148,7 @@
 			$rulesEntry = str_replace('<!-- dvr_rules_priorityPlus -->',$i-2,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_priorityMinus -->',$i+1,$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_title -->',$hdhrRules->getRuleTitle($i),$rulesEntry);
-//			$rulesEntry = str_replace('<!-- dvr_rules_synopsis -->',$hdhrRules->getRuleSynopsis($i),$rulesEntry);
+			$rulesEntry = str_replace('<!-- dvr_rules_synopsis -->',$hdhrRules->getRuleSynopsis($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_startpad -->',$hdhrRules->getRuleStartPad($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_endpad -->',$hdhrRules->getRuleEndPad($i),$rulesEntry);
 			$rulesEntry = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($i),$rulesEntry);

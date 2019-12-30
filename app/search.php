@@ -5,6 +5,15 @@
 	require_once("includes/dvrui_search.php");
 	require_once("includes/dvrui_rules.php");
 	require_once("includes/dvrui_upcoming.php");
+
+	function getSearchViewMode(){
+		if(isset($_COOKIE['searchViewMode'])){
+			$viewmode = $_COOKIE['searchViewMode'];
+		}else{
+			$viewmode = "tile";
+		}
+		return $viewmode;
+	}
 	
 	function openSearchPage($searchString) {
 		// prep
@@ -83,6 +92,7 @@
 	}
 
 	function getSearchResults($searchString) {
+		$viewmode = getSearchViewMode();
 		$searchStr = '';
 		$hdhr = new DVRUI_HDHRjson();
 		$hdhrSearchResults = new DVRUI_Search($hdhr, $searchString);
@@ -90,7 +100,12 @@
 		$searchData = '';
 
 		for ($i=0; $i < $numResults; $i++) {
-			$searchEntry = file_get_contents('style/search_entry.html');
+			if (strcasecmp($viewmode,"list")==0) {
+				$searchEntry = file_get_contents('style/search_entry_list.html');
+			} else {
+				$searchEntry = file_get_contents('style/search_entry_tile.html');
+			}
+			
 			$searchEntry = str_replace('<!-- dvr_search_seriesid -->',$hdhrSearchResults->getSearchResultSeriesID($i),$searchEntry);
 			$searchEntry = str_replace('<!-- dvr_search_image -->',$hdhrSearchResults->getSearchResultImage($i),$searchEntry);
 			$searchEntry = str_replace('<!-- dvr_search_title -->',$hdhrSearchResults->getSearchResultTitle($i),$searchEntry);

@@ -36,7 +36,11 @@ class DVRUI_Search {
 		$this->auth = $auth;
 
 		$search_info = getJsonFromUrl($this->searchURL . $auth . "&Search=" . $searchString);
-
+		if (is_null($search_info)) {
+			// no data to process - leave..
+			return;
+		}
+		
 		// when a series has more than one rule,  then the search result repeats
 		//     seems like a SD bug,  this is the work around
 		if(count($search_info) > 0){
@@ -53,6 +57,8 @@ class DVRUI_Search {
 			}
 			if (array_key_exists($this->search_Synopsis,$search_info[$i])){
 				$synopsis = $search_info[$i][$this->search_Synopsis];
+			} else {
+				$synopsis = 'No Synopsis';
 			}
 			if (array_key_exists($this->search_ChannelNumber,$search_info[$i])) {
 				$channelNumber = $search_info[$i][$this->search_ChannelNumber];
