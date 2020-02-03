@@ -2,10 +2,6 @@
 	require_once("vars.php");
 	define('NO_IMAGE','images/no-preview.png');
 
-	function file_get_contents_utf8($fn) { 
-	     $content = file_get_contents($fn); 
-	      return mb_convert_encoding($content, 'UTF-8'); 
-	} 
 	function getJsonFromUrl($url) {
 		$content = getURL($url);
 		return json_decode($content, true);
@@ -28,7 +24,7 @@
 			$current_time = time();
 			$file_time = filemtime($cachefilename);
 			if ($current_time - $maxAgeSeconds < $file_time){
-				$content = file_get_contents_utf8($cachefilename);
+				$content = file_get_contents($cachefilename);
 			}else{
 				unlink($cachefilename);
 				$content = getURL($url);

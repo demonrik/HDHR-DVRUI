@@ -36,6 +36,67 @@
 		return $tab->getString();
 	}
 
+	function processUpcomingEntry($upcoming, $pos) {
+			if (getUpcomingViewMode() == 'list') {
+				$entry = file_get_contents('style/upcoming_entry_list.html');
+			} else {
+				$entry = file_get_contents('style/upcoming_entry_tile.html');
+			}
+
+			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($pos) . ' : ' . $upcoming->getEpTitle($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_original_airdate -->',$upcoming->getEpOriginalAirDate($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_image -->',$upcoming->getEpImg($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_synopsis -->',$upcoming->getEpSynopsis($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_start -->',$upcoming->getEpStart($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_stop -->',$upcoming->getEpEnd($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($pos),$entry);
+			$entry = str_replace('<!-- dvr_upcoming_channel_name -->',$upcoming->getEpChannelName($pos),$entry);
+
+			$decorator='';
+			if ($upcoming->getEpFlags($pos) > 0 ) {
+				if ($upcoming->getEpFlags_duplicate($pos)) {
+					$decorator.='[D]';
+				}
+				if ($upcoming->getEpFlag_exist($pos)) {
+					$decorator.='[E]';
+				}
+				if ($upcoming->getEpFlag_conflict($pos)) {
+					$decorator.='[C]';
+				}
+			}
+			error_log("trying to add decorator " . $decorator);
+			$entry = str_replace('<!-- dvr_upcoming_decorators -->',$decorator,$entry);
+
+			return $entry;
+	}
+
+	function processUpcoming($upcoming) {
+		$htmlStr = '';
+		$entryData = '';
+		$upcoming->sortUpcomingByDate();
+		$numShows = $upcoming->getUpcomingCount();
+		$prevdate = "";
+		for ($i=0; $i < $numShows; $i++) {
+			$newdate = $upcoming->getEpStartShort($i);
+			if($prevdate != $newdate){
+				$entry = file_get_contents('style/upcoming_datebreak.html');
+				$entry = str_replace('<!-- dvr_upcoming_date -->',$newdate,$entry);
+				$entryData .= $entry;
+			}
+
+			$entryData .= processUpcomingEntry($upcoming, $i);;
+			$prevdate = $newdate;
+		}
+		$htmlStr = getCalendar($upcoming);
+		$htmlStr .= file_get_contents('style/upcoming_list.html');
+
+		$htmlStr = str_replace('<!-- dvr_upcoming_count -->','Found: ' . $numShows . ' Shows. ',$htmlStr);
+		$htmlStr = str_replace('<!-- dvr_upcoming_list -->',$entryData,$htmlStr);
+		return $htmlStr;
+		
+	}
+
 	function getUpcoming() {
 		// Discover Recording Rules
 		$htmlStr = '';
@@ -52,40 +113,7 @@
 			$upcoming->processNext($i); 
 		}
 		
-		$upcoming->sortUpcomingByDate();
-		$numShows = $upcoming->getUpcomingCount();
-		$prevdate = "";
-		for ($i=0; $i < $numShows; $i++) {
-			$newdate = $upcoming->getEpStartShort($i);
-			if($prevdate != $newdate){
-				$entry = file_get_contents('style/upcoming_datebreak.html');
-				$entry = str_replace('<!-- dvr_upcoming_date -->',$newdate,$entry);
-				$entryData .= $entry;
-			}
-
-			if (getUpcomingViewMode() == 'list') {
-				$entry = file_get_contents('style/upcoming_entry_list.html');
-			} else {
-				$entry = file_get_contents('style/upcoming_entry_tile.html');
-			}
-			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($i) . ' : ' . $upcoming->getEpTitle($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_original_airdate -->',$upcoming->getEpOriginalAirDate($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_image -->',$upcoming->getEpImg($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_synopsis -->',$upcoming->getEpSynopsis($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_start -->',$upcoming->getEpStart($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_stop -->',$upcoming->getEpEnd($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_channel_name -->',$upcoming->getEpChannelName($i),$entry);
-			$entryData .= $entry;
-			$prevdate = $newdate;
-		}
-		$htmlStr = getCalendar($upcoming);
-		$htmlStr .= file_get_contents('style/upcoming_list.html');
-
-		$htmlStr = str_replace('<!-- dvr_upcoming_count -->','Found: ' . $numShows . ' Shows. ',$htmlStr);
-		$htmlStr = str_replace('<!-- dvr_upcoming_list -->',$entryData,$htmlStr);
-		
+		$htmlStr = processUpcoming($upcoming);
 		
 		return $htmlStr;
 	}
@@ -102,37 +130,8 @@
 		$upcoming->sortUpcomingByDate();
 		$numShows = $upcoming->getUpcomingCount();
 		$prevdate = "";
-		for ($i=0; $i < $numShows; $i++) {
-			$newdate = $upcoming->getEpStartShort($i);
-			if($prevdate != $newdate){
-				$entry = file_get_contents('style/upcoming_datebreak.html');
-				$entry = str_replace('<!-- dvr_upcoming_date -->',$newdate,$entry);
-				$entryData .= $entry;
-			}
-			if (getUpcomingViewMode() == 'list') {
-				$entry = file_get_contents('style/upcoming_entry_list.html');
-			} else {
-				$entry = file_get_contents('style/upcoming_entry_tile.html');
-			}
-			$entry = str_replace('<!-- dvr_upcoming_title -->',$upcoming->getTitle($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_episode -->',$upcoming->getEpNum($i) . ' : ' . $upcoming->getEpTitle($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_original_airdate -->',$upcoming->getEpOriginalAirDate($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_image -->',$upcoming->getEpImg($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_synopsis -->',$upcoming->getEpSynopsis($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_start -->',$upcoming->getEpStart($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_stop -->',$upcoming->getEpEnd($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_channels -->',$upcoming->getEpChannelNum($i),$entry);
-			$entry = str_replace('<!-- dvr_upcoming_channel_name -->',$upcoming->getEpChannelName($i),$entry);
-			$entryData .= $entry;
-			$prevdate = $newdate;
-		}
-
-		$htmlStr = getCalendar($upcoming);
-		$htmlStr .= file_get_contents('style/upcoming_list.html');
-		$htmlStr = str_replace('<!-- dvr_upcoming_count -->','Found: ' . $numShows . ' Shows. ',$htmlStr);
-		$htmlStr = str_replace('<!-- dvr_upcoming_list -->',$entryData,$htmlStr);
 		
-		
+		$htmlStr = processUpcoming($upcoming);
 		return $htmlStr;
 	}
 
@@ -143,7 +142,6 @@
  			$interval = 'now +' . $i . ' days';
 			$datearr[] = new DateTime($interval);
 		}
- 
 
 		$html .= "<div class=datepicker><table class=datepicker>";
 		$html .= "<tr class=datepicker>";

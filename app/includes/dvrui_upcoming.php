@@ -29,6 +29,10 @@ class DVRUI_Upcoming {
 	private $epData_ChannelImageURL = 'ChannelImageURL';
 	private $epData_ChannelName = 'ChannelName';
 	private $epData_ChannelNumber = 'ChannelNumber';
+	private $epData_Duplicate = 'dvruiDuplicate';
+	private $epData_Exists = 'dvruiExists';
+	private $epData_Conflict = 'dvruiConflict';
+	private $epData_Flags = 'dvruiFlags';
 	private $cachesecs = 3600;	
 	private	$upcoming_list = array();
 	private	$series_list = array();
@@ -80,6 +84,10 @@ class DVRUI_Upcoming {
 		$channelName = '';
 		$channelNumber = '';
 		$originalAirDate = '';
+		$duplicate = false;
+		$exists = false;
+		$conflict = false;
+		$flags = 0;
 
 		$recordingRule = $episode[$this->epData_RecordingRule];
 
@@ -116,6 +124,17 @@ class DVRUI_Upcoming {
 		if (array_key_exists($this->epData_ImageURL,$episode)) {
 			$imageURL = $episode[$this->epData_ImageURL];
 		}
+		
+		if ($this->isDuplicate($episode)) {
+			$duplicate = true;
+			$flags++;
+		}
+
+		if ($this->alreadyExists($episode)) {
+			$exists = true;
+			$flags++;
+		}
+		
 		$this->upcoming_list[] = array(
 			$this->epData_ProgramID => $programID,
 			$this->epData_Title => $title,
@@ -128,7 +147,12 @@ class DVRUI_Upcoming {
 			$this->epData_Synopsis => $synopsis,
 			$this->epData_ChannelName => $channelName,
 			$this->epData_ChannelNumber => $channelNumber,
-			$this->epData_RecordingRule => $recordingRule);
+			$this->epData_RecordingRule => $recordingRule,
+			$this->epData_Flags => $flags,
+			$this->epData_Duplicate => $duplicate,
+			$this->epData_Exists => $exists,
+			$this->epData_Conflict => $conflict
+			);
 	}
 	
 	public function getSeriesCount() {
@@ -183,10 +207,7 @@ class DVRUI_Upcoming {
 			}
 			for ($i = 0; $i < count($episodes_info); $i++) {
 				if (array_key_exists($this->epData_RecordingRule,$episodes_info[$i])){
-					if ((!$this->isDuplicate($episodes_info[$i])) 
-						&& (!$this->alreadyExists($episodes_info[$i]))){
-							$this->extractEpisodeInfo($episodes_info[$i]);
-						}
+						$this->extractEpisodeInfo($episodes_info[$i]);
 				}
 			}
 		}
@@ -313,6 +334,22 @@ class DVRUI_Upcoming {
 		} else {
 			return '';
 		}
+	}
+	
+	public function getEpFlags($pos){
+		return $this->upcoming_list[$pos][$this->epData_Flags];	
+	}
+	
+	public function getEpFlags_duplicate($pos){
+		return $this->upcoming_list[$pos][$this->epData_Duplicate];	
+	}
+	
+	public function getEpFlag_exist($pos){
+		return $this->upcoming_list[$pos][$this->epData_Exists];	
+	}
+	
+	public function getEpFlag_conflict($pos){
+		return $this->upcoming_list[$pos][$this->epData_Conflict];	
 	}
 	
 }
