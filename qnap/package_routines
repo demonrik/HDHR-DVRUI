@@ -5,6 +5,9 @@ HDHR_UI_PATH=$HDHR_QPKG_PATH/app
 HDHR_LOG_PREFIX="$HDHR_QPKG_NAME:"
 
 
+HDHR_USER=httpdusr
+HDHR_GROUP=administrators
+
 
 PKG_MAIN_REMOVE="{
 	if [ -e $SYS_WEB_PATH/HDHR-DVRUI ]; then
@@ -24,5 +27,10 @@ pkg_install(){
 		log "$HDHR_LOG_PREFIX Creating New Web Link"
 		$CMD_LN -s $HDHR_UI_PATH $SYS_WEB_PATH/HDHR-DVRUI
 	fi
+
+	log "$HDHR_LOG_PREFIX Ensuring theme/default is owned/accessible by the httpdusr user"
+        $CMD_CHOWN -R httpdusr $HDHR_UI_PATH/themes/default
+        $CMD_CHMOD -R u+w $HDHR_UI_PATH/themes/default
+
 }
 
