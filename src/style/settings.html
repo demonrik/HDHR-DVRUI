@@ -1,0 +1,28 @@
+<div id="settings_content">
+	<div id='settings_box'><!-- dvrui_settings_data --></div>
+	<a onClick="UpdateConfig()" class="settings">Update</A>
+	<a onClick="clearServerCache()" class="settings">Clear Server Cache</A>
+</div>
+<div id="settings_diagnostics">
+	<div id='diagnostics_box'>
+		<div id='diagnostics_form'>
+			<form id='diagnostics-form' name='diagnostics-form'>
+			<input type='checkbox' id='diag_server' name='diag_server' value='server'>
+			<label for='diag_server'>Server</label>
+			<input type='checkbox' id='diag_connect' name='diag_connect' value='connectivity'>
+			<label for='diag_connect'>Connectivity</label>
+			<input type='checkbox' id='diag_device' name='diag_device' value='device'>
+			<label for='diag_device'>Devices</label>
+			<input type='checkbox' id='diag_account' name='diag_account' value='account'>
+			<label for='diag_account'>DVR Account</label>
+			<input type='checkbox' id='diag_rules' name='diag_rules' value='rules'>
+			<label for='diag_rules'>Rules</label>
+			<input type='checkbox' id='diag_recordings' name='diag_recordings' value='recordings'>
+			<label for='diag_recordings'>Recordings</label>
+			<input type='Button' value='Fetch' onclick='fetchDiags()'>
+			</form>	
+		</div>
+		<div id='diagnostics_log'></div>
+		<!-- dvrui_diagnostics -->
+	</div>
+</div>
