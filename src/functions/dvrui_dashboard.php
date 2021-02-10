@@ -1,5 +1,6 @@
 <?php
 require_once("includes/TinyAjaxBehavior.php");
+require_once("dvr_api/dvr_discovery.php");
 
 function openDashboardPage() {
 	// prep
@@ -40,6 +41,7 @@ function process_devices() {
 
 	$discovery = new dvr_discovery();
 	$device_list = '';			
+	error_log('Processing Devices ' . $discovery->device_count());
 	for ($i=0;$i<$discovery->device_count();$i++) {
 
 		if (!$discovery->is_legacy_device($i)) {

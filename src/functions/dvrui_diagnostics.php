@@ -69,6 +69,7 @@ function getDiagnostics($option) {
 			$htmlStr =  "---------- HDHR Devices -----------------------------------------------------------<br/>";
 			$discovery = new dvr_discovery();
 			$htmlStr .= "Found " . $discovery->device_count() ." Devices <br/>";
+			error_log($htmlStr);
 			
 			for ($i=0;$i<$discovery->device_count();$i++) {
 
@@ -165,8 +166,7 @@ function getDiagnostics($option) {
 			$htmlStr .= 'DVRUI_apiurl = ' . DVRUI_Config::DVRUI_apiurl . "<br/>";
 			$htmlStr .= 'DVRUI_tmp = ' . DVRUI_Config::DVRUI_tmp . "<br/>";
 			$htmlStr .= 'DVRUI_TZ = ' . DVRUI_Config::DVRUI_TZ . "<br/>";
-			$htmlStr .= 'DVRUI_discover_cache = ' . DVRUI_Config::DVRUI_discover_cache . "<br/>";
-			$htmlStr .= 'DVRUI_upcoming_cache = ' . DVRUI_Config::DVRUI_upcoming_cache . "<br/>";
+			$htmlStr .= 'DVRUI_cache = ' . DVRUI_Config::DVRUI_cache . "<br/>";
 			$htmlStr .= "---------- PERMISSIONS ----------------------------------------------------------<br/>";
 			$htmlStr .= 'style = ' . substr(sprintf('%o', fileperms('style')), -4) . "<br/>";
 			$htmlStr .= 'style/style.css = ' . substr(sprintf('%o', fileperms('style/style.css')), -4) . "<br/>";

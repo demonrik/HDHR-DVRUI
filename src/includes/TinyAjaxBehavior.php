@@ -107,7 +107,7 @@ class TabAlert extends Tab
 		";
 	}
 
-	public static function getBehavior($data) {
+	public static function getBehavior($data = null) {
 		return array(get_class(), $data);
 	}
 }
@@ -122,7 +122,7 @@ class TabSetValue extends Tab
 		return $html;
 	}
 
-	public static function getBehavior($form_id, $data) {
+	public static function getBehavior($form_id = null, $data = null) {
 		return array(get_class(), $form_id, $data);
 	}
 }
@@ -135,7 +135,7 @@ class TabInnerHtml extends Tab
 	document.getElementById(data[1]).innerHTML = decodeSpecialChars(data[2]);\n}\n";
 	}
 
-	public static function getBehavior($form_id, $data) {
+	public static function getBehavior($form_id = null, $data = null) {
 		return array(get_class() , $form_id,  $data);
 	}
 }
@@ -148,7 +148,7 @@ class TabInnerHtmlPrepend extends Tab
 	document.getElementById(data[1]).innerHTML = decodeSpecialChars(data[2]) + document.getElementById(data[1]).innerHTML;\n}\n";
 	}
 
-	public static function getBehavior($form_id, $data) {
+	public static function getBehavior($form_id = null, $data = null) {
 		return array(get_class(), $form_id, $data);
 	}
 }
@@ -160,7 +160,7 @@ class TabInnerHtmlAppend extends Tab
 	document.getElementById(data[1]).innerHTML = document.getElementById(data[1]).innerHTML + decodeSpecialChars(data[2]);\n}\n";
 	}
 
-	public static function getBehavior($form_id, $data) {
+	public static function getBehavior($form_id = null, $data = null) {
 		return array(get_class(), $form_id, $data);
 	}
 }
@@ -176,7 +176,7 @@ class TabAddOption extends Tab
 		sel.selectedIndex = sel.options.length-1;\n}\n";
 	}
 
-	public static function getBehavior($element_id, $id, $value, $select_it = 0) {
+	public static function getBehavior($element_id = null, $id = null, $value = null, $select_it = 0) {
 		$select_it ? 1 : 0;
 		return array(get_class(), $element_id, $id, $value, $select_it);
 	}
@@ -192,7 +192,7 @@ class TabClearOptions extends Tab
 	sel.options.length = 0;\n}\n";
 	}
 
-	public static function getBehavior($element_id) {
+	public static function getBehavior($element_id = null) {
 		return array(get_class(), $element_id);
 	}
 
@@ -210,7 +210,7 @@ class TabRemoveSelectedOption extends Tab
 	}\n";
 	}
 
-	public static function getBehavior($element_id) {
+	public static function getBehavior($element_id = null) {
 		return array(get_class(), $element_id);
 	}
 
@@ -242,7 +242,7 @@ class TabSetBackgroundColor extends Tab
 			}\n}\n";
 	}
 
-	public static function getBehavior($element_id, $color) {
+	public static function getBehavior($element_id = null, $color = null) {
 		return array(get_class(), $element_id, $color);
 	}
 	
@@ -255,7 +255,7 @@ class TabRedirect extends Tab
 				. "\n\t document.location = data[1]; \n\t }\n";
 	}
 		
-	public static function getBehavior($location) {
+	public static function getBehavior($location = null) {
 		return array(get_class(), $location);
 	}
 	
@@ -270,7 +270,7 @@ class TabEval extends Tab
 		 eval(data[1]); \n\t }\n";
 	}
 		
-	public static function getBehavior($scriptName) {
+	public static function getBehavior($scriptName = null) {
 		return array(get_class(), $scriptName);
 	}
 	

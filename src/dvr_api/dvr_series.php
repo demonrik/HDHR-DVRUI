@@ -18,8 +18,8 @@ class dvr_series {
 	private $update_id = '';
 
 	private $episodes_count = '0';
-	
-	public function dvr_series($series_info){
+
+	public function __construct($series_info){
 		error_log("Processing Series " . print_r($series_info, true));
 		if (array_key_exists($this->key_series_id,$series_info)) {
 			$this->series_id = $series_info[$this->key_series_id];
@@ -42,6 +42,10 @@ class dvr_series {
 		if (array_key_exists($this->key_update_id,$series_info)) {
 			$this->update_id = $series_info[$this->key_update_id];
 		}
+	}
+
+	public function dvr_series($series_info){
+		self::__construct();
 	}
 	
 	private function count_episodes($url){

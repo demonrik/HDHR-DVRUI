@@ -14,8 +14,8 @@ class dvr_discovery {
 	
 	private $dev_list = array();
 	private $dvr_discovery_url ='';
-	
-	public function dvr_discovery() {
+
+	public function __construct() {
 		$this->dvr_discovery_url = DVRUI_Config::DVRUI_apiurl . 'discover';
 		error_log('Fetching discovery information from ' . $this->dvr_discovery_url);
 		$json = getCachedJsonFromUrl($this->dvr_discovery_url);
@@ -71,6 +71,10 @@ class dvr_discovery {
 			
 			continue;
 		}
+	}
+	
+	public function dvr_discovery() {
+		self::__construct();
 	}
 
 	public function device_count() {

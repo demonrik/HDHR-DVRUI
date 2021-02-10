@@ -60,7 +60,7 @@ class dvr_episode {
 
 	private $episodes_count = '0';
 	
-	public function dvr_episode($episode_info){
+	public function __construct($episode_info){
 		error_log("Processing Epsiode Info: ". print_r($episode_info,true));
 
 		if (array_key_exists($this->key_image_url,$episode_info)) {
@@ -132,6 +132,10 @@ class dvr_episode {
 		if (array_key_exists($this->key_filename,$episode_info)) {
 			$this->filename = $episode_info[$this->key_filename];
 		}
+	}
+
+	public function dvr_episode($episode_info){
+		self::__construct();
 	}
 	
 	public function get_title() {

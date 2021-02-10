@@ -24,12 +24,16 @@ class dvr_tuner {
 	private $tuners = '';
 	private $channel_count = '';
 
-	public function dvr_tuner($url) {
+	public function __construct($url) {
 		error_log('Fetching discovery information from ' . $url);
 		$json = getCachedJsonFromUrl($url);
 		error_log('Got ['. print_r($json,true) . ']');
 		$this->discover_url = $url;
 		$this->process_discover($json);
+	}
+
+	public function dvr_tuner($url) {
+		self::__construct();
 	}
 	
 	private function process_discover($device) {
