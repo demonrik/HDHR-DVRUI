@@ -124,7 +124,7 @@ function getSeriesInfo($seriesInf){
 function buildSeriesInfo($seriesID, $engineIP) {
 	$outStr=[];
 	$infStr = '';
-	$epStr = 'finding episodes....';
+	$epStr = '';
 	$discovery = new dvr_discovery();
 	for ($i=0;$i<$discovery->device_count();$i++) {
 		if ($discovery->get_local_ip($i) == $engineIP) {

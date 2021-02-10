@@ -11,6 +11,7 @@
 	require_once("functions/dvrui_settings.php");
 	require_once("functions/dvrui_diagnostics.php");
 	require_once("functions/dvrui_recordings.php");
+	require_once("functions/dvrui_rules.php");
 
 	/* Prepare Ajax */
 	$ajax = new TinyAjax();
@@ -21,6 +22,7 @@
 	$ajax->exportFunction("openDashboardPage","");
 	$ajax->exportFunction("openSettingsPage","");
 	$ajax->exportFunction("openRecordingsPage","");
+	$ajax->exportFunction("openRulesPage","");
 	$ajax->exportFunction("clearServerCache","");
 	$ajax->exportFunction("getDiagnosticInfo","options");
 	$ajax->exportFunction("getSeries","engines");
@@ -35,8 +37,8 @@
 	$pageNames = array('dashboard_page', 'series_page', 'recordings_page', 'upcoming_page', 'rules_page',  'search_page', 'settings_page');
 */
 
-	$pageTitles = array('Dashboard', 'Recordings', 'Upcoming', ' Rules', 'Search', '.');
-	$pageNames = array('dashboard_page', 'recordings_page', 'upcoming_age', 'rules_page', 'search_page', 'settings_page');
+	$pageTitles = array('Dashboard', 'Recordings', ' Rules', 'Search', '.');
+	$pageNames = array('dashboard_page', 'recordings_page', 'rules_page', 'search_page', 'settings_page');
 	$menu_data = file_get_contents('style/pagemenu.html');
 	$menuEntries = '';
 	for ($i=0; $i < count($pageNames); $i++) {
