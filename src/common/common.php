@@ -76,7 +76,7 @@
 			$ch = curl_init();   
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 1);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 			curl_setopt($ch, CURLOPT_USERAGENT, $ua);
 			curl_exec($ch);

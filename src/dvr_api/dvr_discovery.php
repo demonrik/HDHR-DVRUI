@@ -81,6 +81,17 @@ class dvr_discovery {
 		return count($this->dev_list);
 	}
 
+	public function get_auth() {
+		$auth = '';
+		for ($i=0; $i < count($this->dev_list); $i++) {
+			if ((!$this->is_legacy_device($i)) && ($this->is_tuner($i))) {
+				$tuner = new dvr_tuner($this->get_discover_url($i));
+				$auth .= $tuner->get_device_auth();
+			}
+		}
+		return $auth;
+	}
+
 	public function is_legacy_device($pos) {
 		$dev = $this->dev_list[$pos];
 		if ($dev[$this->key_discoverURL] != '') {

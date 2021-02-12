@@ -74,11 +74,13 @@
 	$dashboarddata = file_get_contents('style/dashboard.html');
 	$settingsdata = file_get_contents('style/settings.html');
 	$recordingsdata = file_get_contents('style/recordings.html');
+	$rulesdata = file_get_contents('style/rules.html');
 
 	$indexPage = str_replace('<!-- dvrui_pagemenu -->',$menu_data,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_dashboard -->',$dashboarddata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_settingslist -->',$settingsdata,$indexPage);
 	$indexPage = str_replace('<!-- dvrui_recordingslist -->',$recordingsdata,$indexPage);
+	$indexPage = str_replace('<!-- dvrui_ruleslist -->',$rulesdata,$indexPage);
 
 	// -- Attach the Index to the Page
 	$pagecontent .= $indexPage;

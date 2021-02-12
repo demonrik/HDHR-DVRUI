@@ -4,7 +4,8 @@ require_once("dvr_api/dvr_discovery.php");
 require_once("dvr_api/dvr_engine.php");
 require_once("dvr_api/dvr_series.php");
 require_once("dvr_api/dvr_episode.php");
-require_once("dvr_api/dvr_rules.php");
+require_once("dvr_api/dvr_service.php");
+require_once("dvr_api/dvr_rule.php");
 
 function openRulesPage() {
 	// prep
@@ -19,88 +20,58 @@ function openRulesPage() {
 	ob_end_clean();
 
 	//display
-	$tab->add(TabInnerHtml::getBehavior("recordings_box", $htmlStr));
+	$tab->add(TabInnerHtml::getBehavior("rules_box", $htmlStr));
 	return $tab->getString();
 }
 
 function getRecordingRules() {
-	$rulesStr = '';
+	error_log('Getting Recording Rules from Silicondust Servers... ');
+	$ruleStr = '';
 	$auth='';
+	$service = new dvr_service();
 	$discovery = new dvr_discovery();
-	for ($i=0; $i < $discovery->device_count(); $i++) {
-		if ((!$discovery->is_legacy_device($i)) && ($discovery->is_tuner($i))) {
-			$tuner = new dvr_tuner($discovery->get_discover_url($i));
-			$auth .= $tuner->get_device_auth();
-		}
-	}
-	$rules = new dvr_rules($auth);
-	
-	/* Discover Recording Rules
-	$hdhr = new DVRUI_HDHRjson();
-	$hdhrRules = new DVRUI_Rules($hdhr);
-	$hdhrRecordings = new DVRUI_Recordings($hdhr);
-	if(strlen($seriesid) > 3){
-		$hdhrRules->processRuleforSeries($seriesid);
-	}else{	
-		$hdhrRules->processAllRules();
-	}	
-	$hdhrRecordings->processAllRecordings($hdhr);
-	$numRules = $hdhrRules->getRuleCount();
-	$rulesData = '';
-	for ($i=0; $i < $numRules; $i++) {
-		$reccount = $hdhrRecordings->getRecordingCountBySeries($hdhrRules->getRuleSeriesID($i));
-		if (strcasecmp($viewmode,"list")==0) {
-			$rulesEntry = file_get_contents('style/rules_entry_list.html');
+	$service->set_auth($discovery->get_auth());
+
+
+	$rules = $service->getRules();
+	$numrules = count($rules);
+	for ($i=0; $i < $numrules; $i++) {
+		error_log('Processing rule: ' . $i);
+		$rule = new dvr_rule($rules[$i]);
+		$ruleEntry = file_get_contents('style/rule_entry_list.html');
+		$ruleEntry = str_replace('<!-- dvr_rules_id -->',$rule->get_rule_RecID() ,$ruleEntry);
+		/*if (URLExists($rule->get_rule_ImageURL())) {
+			$ruleEntry = str_replace('<!-- dvr_rules_image -->',$rule->get_rule_ImageURL(),$ruleEntry);
 		} else {
-			$rulesEntry = file_get_contents('style/rules_entry_tile.html');
-		}
-	
-		$rulesEntry = str_replace('<!-- dvr_rules_id -->',$hdhrRules->getRuleRecID($i) ,$rulesEntry);
-		if (URLExists($hdhrRules->getRuleImage($i))) {
-			$rulesEntry = str_replace('<!-- dvr_rules_image -->',$hdhrRules->getRuleImage($i),$rulesEntry);
-		} else {
-			$rulesEntry = str_replace('<!-- dvr_rules_image -->',NO_IMAGE,$rulesEntry);
-		}
+			$ruleEntry = str_replace('<!-- dvr_rules_image -->',NO_IMAGE,$ruleEntry);
+		}*/
+		$ruleEntry = str_replace('<!-- dvr_rules_image -->',$rule->get_rule_ImageURL(),$ruleEntry);
 		
-		$rulesEntry = str_replace('<!-- dvr_rules_priority -->',$hdhrRules->getRulePriority($i),$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_priorityPlus -->',$i-2,$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_priorityMinus -->',$i+1,$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_title -->',$hdhrRules->getRuleTitle($i),$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_synopsis -->',$hdhrRules->getRuleSynopsis($i),$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_startpad -->',$hdhrRules->getRuleStartPad($i),$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_endpad -->',$hdhrRules->getRuleEndPad($i),$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_channels -->',$hdhrRules->getRuleChannels($i),$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_reccount -->',$reccount,$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_rules_recent -->',$hdhrRules->getRuleRecent($i),$rulesEntry);
-		$rulesEntry = str_replace('<!-- dvr_series_id -->',$hdhrRules->getRuleSeriesID($i),$rulesEntry);
-		if(strlen($hdhrRules->getRuleAfterAirDate($i)) > 5 ){
-			$rulesEntry = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $hdhrRules->getRuleAfterAirDate($i),$rulesEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_priority -->',$rule->get_rule_Priority(),$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_priorityPlus -->',$rule->get_rule_Priority() - 1,$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_priorityMinus -->',$rule->get_rule_Priority() + 1,$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_title -->',$rule->get_rule_Title(),$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_synopsis -->',$rule->get_rule_Synopsis(),$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_startpad -->',$rule->get_rule_StartPad(),$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_endpad -->',$rule->get_rule_EndPad(),$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_channels -->',$rule->get_rule_Channel(),$ruleEntry);
+		//$rulesEntry = str_replace('<!-- dvr_reccount -->',$reccount,$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_rules_recent -->',$rule->get_rule_Recent(),$ruleEntry);
+		$ruleEntry = str_replace('<!-- dvr_series_id -->',$rule->get_rule_SeriesID(),$ruleEntry);
+		if(strlen($rule->get_rule_Airdate()) > 5 ){
+			$ruleEntry = str_replace('<!-- dvr_rules_airdate -->',", After Original Airdate: " . $rule->get_rule_Airdate(),$ruleEntry);
 		}
-		if(strlen($hdhrRules->getRuleDateTime($i)) > 5 ){
-			$rulesEntry = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $hdhrRules->getRuleDateTime($i),$rulesEntry);
+		if(strlen($rule->get_rule_DateTimeOnly()) > 5 ){
+			$ruleEntry = str_replace('<!-- dvr_rules_datetime -->',", Record Time: " . $rule->get_rule_DateTimeOnly(),$ruleEntry);
 		}
-	
-		// get upcoming count	
-		$upcoming = new DVRUI_Upcoming($hdhr, NULL);
-		$upcoming->initBySeries($hdhrRules->getRuleSeriesID($i));
-		$upcomingcount = $upcoming->getUpcomingCount();
-			if($upcomingcount == 0){
-			$upcomingcount = "no upcoming";
-		}else{
-			$upcomingcount = $upcomingcount . " upcoming";
-		}
-		$rulesEntry = str_replace('<!-- dvr_series_upcoming -->',$upcomingcount,$rulesEntry);
-
-			$rulesData .= $rulesEntry;
+		$ruleStr .= $ruleEntry;
 	}
-
 	$rulesList = file_get_contents('style/rules_list.html');
-		
-	$rulesList = str_replace('<!-- dvr_rules_count -->','Found: ' . $numRules . ' Rules.  ',$rulesList);
-	$rulesList = str_replace('<!-- dvr_rules_list -->',$rulesData,$rulesList);
-	$rulesList .= file_get_contents('style/ruledeletereveal.html');
-	*/
-	return $rulesStr;
+	$rulesList = str_replace('<!-- dvr_rules_count -->','Found: ' . $numrules . ' Rules.  ',$rulesList);
+	$rulesList = str_replace('<!-- dvr_rules_list -->',$ruleStr,$rulesList);
+	$rulesList .= file_get_contents('style/rule_deletereveal.html');
+
+	return $rulesList;
 }
 
 
